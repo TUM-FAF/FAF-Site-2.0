@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>FAF NGO – Facem ceva cu tolk’</title>
@@ -11,8 +11,7 @@
 <!-- Header -->
 <header class="site-header">
   <div class="logo">
-    <!-- Put your actual logo file in assets/ and update src -->
-    <img src="assets/logo-faf-dark.svg" alt="FAF NGO logo">
+    <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
   </div>
 
   <nav class="nav">
@@ -33,13 +32,13 @@
   <section id="hero" class="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <img src="assets/logo-faf-dark.svg" alt="FAF NGO logo" class="hero-logo">
+        <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo" class="hero-logo">
 
         <p class="hero-tagline">Student‑led NGO · Moldova</p>
         <h1>Facem ceva cu tolk’</h1>
         <p class="hero-subtitle">
-          FAF is a student-led NGO that brings together Moldova’s IT community
-          through hackathons, lectures and tech events.
+          FAF is a student-led NGO that connects Moldova’s IT community
+          through hackathons, lectures, and tech events.
         </p>
         <div class="hero-buttons">
           <a href="#meeting" class="btn btn-primary">Book a meeting</a>
@@ -48,13 +47,26 @@
       </div>
 
       <div class="hero-visual">
+        <div class="hero-photo-grid">
+          <div class="hero-photo hero-photo-large">
+            <img src="assets/photos/hero-1.JPG" alt="Students at FAF hackathon">
+          </div>
+          <div class="hero-photo hero-photo-small">
+            <img src="assets/photos/hero-2.JPG" alt="Team presenting project">
+          </div>
+          <div class="hero-photo hero-photo-small">
+            <img src="assets/photos/hero-3.JPG" alt="Mentor helping participants">
+          </div>
+        </div>
+
         <div class="hero-card">
           <p class="hero-card-title">Summer Hackathon</p>
           <p class="hero-card-text">
-            Fast‑paced 24h+ competition cu studenți, mentori și companii de top.
+            A fast‑paced 24h+ competition where students, mentors, and companies build innovative projects.
           </p>
           <span class="hero-card-tag">Coming Summer 2026 · details soon</span>
         </div>
+
         <div class="hero-pill">
           Hackathons · Lectures · Programmer’s Day · SheNovate
         </div>
@@ -67,11 +79,10 @@
     <div class="container">
       <h2>Book a meeting with FAF</h2>
       <p class="section-subtitle">
-        Vrei să devii partener, sponsor sau să aduci FAF la facultatea ta?
-        Lasă-ne un mesaj și hai să facem ceva cu tolk’.
+        Want to become a partner or sponsor, or bring FAF to your university?
+        Leave us a message and let’s do something “cu tolk’”.
       </p>
 
-      <!-- For lab: action can be "#" or your Formspree / Google Form endpoint -->
       <form method="POST" action="#" class="form">
         <div class="form-grid">
           <div class="form-row">
@@ -111,22 +122,22 @@
     <div class="container">
       <h2>About FAF NGO</h2>
       <p class="section-subtitle">
-        FAF is a student-led NGO that brings together Moldova’s IT community
-        through hackathons, lectures, and tech events. Facem ceva cu tolk’.
+        FAF is a student-led NGO that connects Moldova’s IT community
+        through hackathons, open lectures, and tech events. Facem ceva cu tolk’.
       </p>
 
       <div class="goals">
         <article class="goal-card card-glass">
           <h3>Grow our community</h3>
-          <p>Connecting students, mentori și companii din IT într-o comunitate activă.</p>
+          <p>Bringing together students, mentors, and tech companies into an active local community.</p>
         </article>
         <article class="goal-card card-glass">
           <h3>Develop IT specialists</h3>
-          <p>Hands‑on hackathons, FAF Lectures și workshop‑uri tehnice pentru skill‑uri reale.</p>
+          <p>Hands‑on hackathons, FAF Lectures, and workshops that help students build real skills.</p>
         </article>
         <article class="goal-card card-glass">
-          <h3>Improve studies’ quality</h3>
-          <p>Bridge între facultate și industrie, cu proiecte practice și feedback de la experți.</p>
+          <h3>Improve education quality</h3>
+          <p>Building a bridge between university and industry through practical projects and feedback.</p>
         </article>
       </div>
     </div>
@@ -137,86 +148,152 @@
     <div class="container">
       <h2>Our events</h2>
       <p class="section-subtitle">
-        We organize events that bring together students, mentors and industry professionals
-        to learn, build and have fun.
+        We create events where students, mentors, and professionals learn, build, and celebrate tech together.
       </p>
 
       <div class="event-grid">
+        <!-- Summer Hack -->
+        <article class="event-card card-glass">
+          <h3>Summer Hack</h3>
+          <p>
+            Our flagship end‑of‑year hackathon: 24h+ teams, real‑world challenges, mentors, and big energy.
+          </p>
+          <p class="event-tag">Coming soon – Summer Hack 2026</p>
+
+          <details class="event-details">
+            <summary class="event-summary">View photos from previous Summer Hack editions</summary>
+            <div class="event-photos">
+              <img src="assets/photos/summer-hack-1.JPG " alt="Summer Hack team working on project">
+              <img src="assets/photos/summer-hack-2.JPG" alt="Participants presenting at Summer Hack">
+              <img src="assets/photos/summer-hack-3.JPG" alt="Summer Hack award ceremony">
+            </div>
+          </details>
+        </article>
+
+        <!-- Other hackathons -->
         <article class="event-card card-glass">
           <h3>Hackathons</h3>
           <p>
-            Fast‑paced 24h+ competitions precum Summer Hack și XMAS Hack,
-            cu mentori, provocări tehnice și premii tari.
+            24h+ team challenges like XMAS Hack, with mentors, technical tasks, and exciting prizes.
           </p>
-          <p class="event-tag">Coming Summer 2026 – details soon</p>
+
+          <details class="event-details">
+            <summary class="event-summary">View photos from past hackathons</summary>
+            <div class="event-photos">
+              <img src="assets/photos/hackaton-1.JPG" alt="Participants coding at night">
+              <img src="assets/photos/hackaton-2.JPG" alt="Group photo from a FAF hackathon">
+              <img src="assets/photos/hackaton-3.JPG" alt="Mentor helping a team during a hackathon">
+            </div>
+          </details>
         </article>
+
+        <!-- FAF Lectures -->
         <article class="event-card card-glass">
           <h3>FAF Lectures</h3>
           <p>
-            Serii de prezentări tehnice cu invitați din industrie,
-            pe subiecte de la web dev la securitate și AI.
+            Technical talks with industry speakers, covering topics from web development
+            to security and AI.
           </p>
+
+          <details class="event-details">
+            <summary class="event-summary">View photos from FAF Lectures</summary>
+            <div class="event-photos">
+              <img src="assets/photos/lectures-1.JPG" alt="Speaker on stage at FAF Lecture">
+              <img src="assets/photos/lectures-2.jpeg" alt="Students listening to a lecture">
+            </div>
+          </details>
         </article>
+
+        <!-- Programmer’s Day -->
         <article class="event-card card-glass">
           <h3>Programmer’s Day</h3>
           <p>
-            Eveniment anual dedicat comunității de programatori, cu talks,
-            networking și activități fun.
+            An annual celebration of the developer community with talks,
+            networking, and fun activities.
           </p>
+
+          <details class="event-details">
+            <summary class="event-summary">View photos from Programmer’s Day</summary>
+            <div class="event-photos">
+              <img src="assets/photos/programmers-day-1.JPG" alt="Audience at Programmer's Day">
+              <img src="assets/photos/programmers-day-2.JPG" alt="Panel discussion during Programmer's Day">
+            </div>
+          </details>
         </article>
+
+        <!-- SheNovate -->
         <article class="event-card card-glass">
           <h3>SheNovate</h3>
           <p>
-            Program care susține și încurajează fetele în IT prin speakeri inspiraționali
-            și sarcini practice.
+            A program that supports and encourages girls in tech through inspiring speakers
+            and practical tasks.
           </p>
-        </article>
-      </div>
 
-      <div class="event-gallery">
-        <!-- Add your own images in assets/ and update src paths -->
-        <div class="gallery-item card-glass"></div>
-        <div class="gallery-item card-glass"></div>
-        <div class="gallery-item card-glass"></div>
+          <details class="event-details">
+            <summary class="event-summary">View photos from SheNovate</summary>
+            <div class="event-photos">
+              <img src="assets/photos/shenovate-1.JPG" alt="SheNovate workshop session">
+              <img src="assets/photos/shenovate-2.JPG" alt="Group photo from SheNovate event">
+            </div>
+          </details>
+        </article>
+
+        <!-- Movie Nights -->
+        <article class="event-card card-glass">
+          <h3>Movie Nights</h3>
+          <p>
+            Closed community evenings where FAF members watch tech‑related movies,
+            discuss ideas, and relax together.
+          </p>
+          <p class="event-tag">Community‑only · invite based</p>
+
+          <details class="event-details">
+            <summary class="event-summary">View photos from movie nights</summary>
+            <div class="event-photos">
+              <img src="assets/photos/movie-night-1.JPG" alt="FAF movie night setup">
+              <img src="assets/photos/movie-night-2.JPG" alt="Students watching a movie together">
+            </div>
+          </details>
+        </article>
       </div>
     </div>
   </section>
+
 
   <!-- Partners -->
   <section id="partners" class="partners">
     <div class="container">
       <h2>Companies we worked with</h2>
       <p class="section-subtitle">
-        From local startups to international companies, our partners help us create
-        meaningful experiences for students.
+        Local and international partners help us turn student ideas into real projects.
       </p>
 
       <div class="marquee">
         <div class="marquee-inner">
           <!-- set 1 -->
-          <img src="assets/stefanini.png" alt="Stefanini">
-          <img src="assets/tech-quarter.png" alt="Tech Quarter">
-          <img src="assets/fusionworks.png" alt="FusionWorks">
-          <img src="assets/allied-testing.png" alt="Allied Testing">
-          <img src="assets/optiplaza.png" alt="Optiplaza">
-          <img src="assets/utm.png" alt="UTM">
-          <img src="assets/sigmoid.png" alt="Sigmoid">
-          <img src="assets/pgi.png" alt="PGI">
-          <img src="assets/cybercor.png" alt="Cybercor">
-          <img src="assets/tekwill.png" alt="Tekwill">
-          <img src="assets/amdaris.png" alt="Amdaris">
-          <!-- set 2 (duplicate for seamless loop) -->
-          <img src="assets/stefanini.png" alt="Stefanini">
-          <img src="assets/tech-quarter.png" alt="Tech Quarter">
-          <img src="assets/fusionworks.png" alt="FusionWorks">
-          <img src="assets/allied-testing.png" alt="Allied Testing">
-          <img src="assets/optiplaza.png" alt="Optiplaza">
-          <img src="assets/utm.png" alt="UTM">
-          <img src="assets/sigmoid.png" alt="Sigmoid">
-          <img src="assets/pgi.png" alt="PGI">
-          <img src="assets/cybercor.png" alt="Cybercor">
-          <img src="assets/tekwill.png" alt="Tekwill">
-          <img src="assets/amdaris.png" alt="Amdaris">
+          <img src="assets/logos/stefanini.png" alt="Stefanini">
+          <img src="assets/logos/tech-quarter.png" alt="Tech Quarter">
+          <img src="assets/logos/fusionworks.png" alt="FusionWorks">
+          <img src="assets/logos/allied-testing.png" alt="Allied Testing">
+          <img src="assets/logos/optiplaza.png" alt="Optiplaza">
+          <img src="assets/logos/utm.png" alt="UTM">
+          <img src="assets/logos/sigmoid.png" alt="Sigmoid">
+          <img src="assets/logos/pgi.png" alt="PGI">
+          <img src="assets/logos/cybercor.png" alt="Cybercor">
+          <img src="assets/logos/tekwill.png" alt="Tekwill">
+          <img src="assets/logos/amdaris.png" alt="Amdaris">
+          <!-- set 2 -->
+          <img src="assets/logos/stefanini.png" alt="Stefanini">
+          <img src="assets/logos/tech-quarter.png" alt="Tech Quarter">
+          <img src="assets/logos/fusionworks.png" alt="FusionWorks">
+          <img src="assets/logos/allied-testing.png" alt="Allied Testing">
+          <img src="assets/logos/optiplaza.png" alt="Optiplaza">
+          <img src="assets/logos/utm.png" alt="UTM">
+          <img src="assets/logos/sigmoid.png" alt="Sigmoid">
+          <img src="assets/logos/pgi.png" alt="PGI">
+          <img src="assets/logos/cybercor.png" alt="Cybercor">
+          <img src="assets/logos/tekwill.png" alt="Tekwill">
+          <img src="assets/logos/amdaris.png" alt="Amdaris">
         </div>
       </div>
     </div>
@@ -227,49 +304,49 @@
     <div class="container">
       <h2>What people say</h2>
       <p class="section-subtitle">
-        A few reactions from participants la hackathoanele și evenimentele noastre.
+        A few reactions from participants at our hackathons and community events.
       </p>
 
       <div class="feedback-grid">
         <article class="feedback-card card-glass">
           <p>
-            “This is my first hackathon, and I enjoyed the time there.”
+            “This was my first hackathon and I really enjoyed my time there.”
           </p>
           <span>Participant, XMAS FAF Hackathon 2025</span>
         </article>
 
         <article class="feedback-card card-glass">
           <p>
-            “This is pure genial, like RESPECT to all staff that contributed to the hackathon.”
+            “This was pure genius. Respect to all the staff who contributed to the hackathon.”
           </p>
           <span>Participant, XMAS FAF Hackathon 2025</span>
         </article>
 
         <article class="feedback-card card-glass">
           <p>
-            “Nota 10, cum zice Ciorbă: Bravo :)”
+            “10 out of 10 – amazing vibe and organization.”
           </p>
           <span>FAF student, FAF‑22x, XMAS FAF Hackathon 2025</span>
         </article>
 
         <article class="feedback-card card-glass">
           <p>
-            “Mi-a plăcut organizarea, locația și faptul că am învățat chestii practice.”
+            “I loved the organization, the venue, and the fact that we learned practical things.”
           </p>
           <span>Participant, SheNovate 2025</span>
         </article>
 
         <article class="feedback-card card-glass">
           <p>
-            “O bună selecție de speakeri invitați și sarcini practice.”
+            “Great selection of speakers and hands‑on tasks.”
           </p>
           <span>Participant, SheNovate 2025</span>
         </article>
 
         <article class="feedback-card card-glass">
           <p>
-            “The organization of the event was at the highest level: good music, great food,
-            helpful mentors and wonderful prizes.”
+            “The event was organized at the highest level: good music, great food,
+            helpful mentors, and wonderful prizes.”
           </p>
           <span>Participant, XMAS FAF Hackathon 2024</span>
         </article>
@@ -282,46 +359,36 @@
     <div class="container">
       <h2>Meet the team</h2>
       <p class="section-subtitle">
-        Core team‑ul care coordonează proiectele FAF și ține comunitatea în mișcare.
+        The core team coordinating FAF projects and keeping the community moving forward.
       </p>
 
       <div class="team-row">
         <article class="team-card card-glass">
-          <div class="avatar">
-            <!-- <img src="assets/diana.jpg" alt="Iachim Diana"> -->
-          </div>
+          <div class="avatar"></div>
           <h3>Iachim Diana</h3>
           <p class="team-role">CEO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar">
-            <!-- <img src="assets/daria.jpg" alt="Rațeeva Daria"> -->
-          </div>
+          <div class="avatar"></div>
           <h3>Rațeeva Daria</h3>
           <p class="team-role">COO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar">
-            <!-- <img src="assets/daniel.jpg" alt="Cojocaru Daniel"> -->
-          </div>
+          <div class="avatar"></div>
           <h3>Cojocaru Daniel</h3>
           <p class="team-role">CFO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar">
-            <!-- <img src="assets/madalina.jpg" alt="Pașa Mădălina"> -->
-          </div>
+          <div class="avatar"></div>
           <h3>Pașa Mădălina</h3>
           <p class="team-role">CMO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar">
-            <!-- <img src="assets/daniela.jpg" alt="Grosu Daniela"> -->
-          </div>
+          <div class="avatar"></div>
           <h3>Grosu Daniela</h3>
           <p class="team-role">CPO</p>
         </article>
@@ -334,14 +401,13 @@
     <div class="container">
       <h2>Get in touch</h2>
       <p class="section-subtitle">
-        Scrie-ne dacă vrei să te implici în comunitatea FAF sau să colaborezi cu noi
-        pentru următorul eveniment.
+        Message us if you want to get involved in the FAF community or collaborate on a future event.
       </p>
 
       <div class="contact-info card-glass">
         <p>Email: <a href="mailto:contact@faf.ngo">contact@faf.ngo</a></p>
         <p>Instagram: <a href="#">@faf.ngo</a></p>
-        <p>Facebook / LinkedIn: link‑uri către paginile oficiale</p>
+        <p>Facebook / LinkedIn: links to our official pages</p>
       </div>
     </div>
   </section>
@@ -350,7 +416,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <p>© 2026 FAF NGO – Facem ceva cu tolk’.</p>
-    <p>Made by FAF students for FAF community.</p>
+    <p>Built by FAF students for the FAF community.</p>
   </div>
 </footer>
 </body>
