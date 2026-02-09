@@ -74,48 +74,7 @@
     </div>
   </section>
 
-  <!-- Meeting form -->
-  <section id="meeting" class="meeting">
-    <div class="container">
-      <h2>Book a meeting with FAF</h2>
-      <p class="section-subtitle">
-        Want to become a partner or sponsor, or bring FAF to your university?
-        Leave us a message and let’s do something “cu tolk’”.
-      </p>
 
-      <form method="POST" action="#" class="form">
-        <div class="form-grid">
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required>
-          </div>
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
-          </div>
-          <div class="form-row">
-            <label for="company">Company / Organization</label>
-            <input id="company" name="company" type="text">
-          </div>
-          <div class="form-row">
-            <label for="role">Role</label>
-            <select id="role" name="role">
-              <option>Student</option>
-              <option>Company representative</option>
-              <option>Mentor</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <label for="note">Additional note</label>
-          <textarea id="note" name="note" rows="4"
-                    placeholder="Tell us how you’d like to collaborate"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary form-submit">Send request</button>
-      </form>
-    </div>
-  </section>
 
   <!-- About -->
   <section id="about" class="about">
@@ -153,12 +112,12 @@
 
       <div class="event-grid">
         <!-- Summer Hack -->
+        <div class="event-row1">
         <article class="event-card card-glass">
-          <h3>Summer Hack</h3>
+          <h3>Summer Hackaton</h3>
           <p>
             Our flagship end‑of‑year hackathon: 24h+ teams, real‑world challenges, mentors, and big energy.
           </p>
-          <p class="event-tag">Coming soon – Summer Hack 2026</p>
 
           <details class="event-details">
             <summary class="event-summary">View photos from previous Summer Hack editions</summary>
@@ -172,7 +131,7 @@
 
         <!-- Other hackathons -->
         <article class="event-card card-glass">
-          <h3>Hackathons</h3>
+          <h3>XMas Hackathon</h3>
           <p>
             24h+ team challenges like XMAS Hack, with mentors, technical tasks, and exciting prizes.
           </p>
@@ -203,7 +162,8 @@
             </div>
           </details>
         </article>
-
+        </div>
+        <div class="event-row2">
         <!-- Programmer’s Day -->
         <article class="event-card card-glass">
           <h3>Programmer’s Day</h3>
@@ -245,8 +205,6 @@
             Closed community evenings where FAF members watch tech‑related movies,
             discuss ideas, and relax together.
           </p>
-          <p class="event-tag">Community‑only · invite based</p>
-
           <details class="event-details">
             <summary class="event-summary">View photos from movie nights</summary>
             <div class="event-photos">
@@ -255,6 +213,7 @@
             </div>
           </details>
         </article>
+        </div>
       </div>
     </div>
   </section>
@@ -364,35 +323,96 @@
 
       <div class="team-row">
         <article class="team-card card-glass">
-          <div class="avatar"></div>
+          <div class="avatar">
+            <img src="assets/team/team-diana.jpg" alt="Iachim Diana">
+          </div>
           <h3>Iachim Diana</h3>
           <p class="team-role">CEO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar"></div>
+          <div class="avatar">
+            <img src="assets/team/team-daria.jpg" alt="Rațeeva Daria">
+          </div>
           <h3>Rațeeva Daria</h3>
           <p class="team-role">COO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar"></div>
+          <div class="avatar">
+            <img src="assets/team/team-daniel.jpeg" alt="Cojocaru Daniel">
+          </div>
           <h3>Cojocaru Daniel</h3>
           <p class="team-role">CFO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar"></div>
+            <div class="avatar">
+                <img src="assets/team/team-alexandra.jpeg" alt="Alexandra Bujor-Cobili">
+            </div>
+            <h3>Alexandra Bujor-Cobili</h3>
+            <p class="team-role">CCO</p>
+        </article>
+
+        <article class="team-card card-glass">
+          <div class="avatar">
+            <img src="assets/team/team-madalina.jpg" alt="Pașa Mădălina">
+          </div>
           <h3>Pașa Mădălina</h3>
           <p class="team-role">CMO</p>
         </article>
 
         <article class="team-card card-glass">
-          <div class="avatar"></div>
+          <div class="avatar">
+            <img src="assets/team/team-daniela.jpeg" alt="Grosu Daniela">
+          </div>
           <h3>Grosu Daniela</h3>
           <p class="team-role">CPO</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- Meeting form -->
+  <section id="meeting" class="meeting">
+    <div class="container">
+      <h2>Book a meeting with FAF</h2>
+      <p class="section-subtitle">
+        Want to become a partner or sponsor, or bring FAF to your university?
+        Leave us a message and let’s do something “cu tolk’”.
+      </p>
+
+      <form method="POST" action="#" class="form">
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div class="form-row">
+            <label for="company">Company / Organization</label>
+            <input id="company" name="company" type="text">
+          </div>
+          <div class="form-row">
+            <label for="role">Role</label>
+            <select id="role" name="role">
+              <option>Company representative</option>
+              <option>Student</option>
+              <option>Mentor</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="note">Additional note</label>
+          <textarea id="note" name="note" rows="4"
+                    placeholder="Tell us how you’d like to collaborate"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Send request</button>
+      </form>
     </div>
   </section>
 
@@ -405,9 +425,8 @@
       </p>
 
       <div class="contact-info card-glass">
-        <p>Email: <a href="mailto:contact@faf.ngo">contact@faf.ngo</a></p>
+        <p>Email: <a href="mailto:faf@fcim.utm.md">faf@fcim.utm.md</a></p>
         <p>Instagram: <a href="#">@faf.ngo</a></p>
-        <p>Facebook / LinkedIn: links to our official pages</p>
       </div>
     </div>
   </section>
