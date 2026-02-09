@@ -3,7 +3,7 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box; /* easier sizing everywhere [web:3] */
+	box-sizing: border-box; /* consistent sizing [web:3] */
 }
 
 html,
@@ -24,7 +24,7 @@ blockquote,
 dl,
 dd {
 	margin: 0;
-	padding: 0; /* remove default spacing on basic elements [web:3][web:7] */
+	padding: 0; /* remove default margins/paddings [web:3][web:7] */
 }
 
 body {
@@ -35,17 +35,17 @@ body {
 /* Remove list bullets */
 ul,
 ol {
-	list-style: none; /* clean nav + lists [web:3] */
+	list-style: none;
 }
 
-/* Make images behave */
+/* Images */
 img,
 picture {
 	max-width: 100%;
 	display: block; /* responsive images [web:3][web:7] */
 }
 
-/* Basic links */
+/* Links */
 a {
 	text-decoration: none;
 	color: inherit;
@@ -56,7 +56,7 @@ input,
 button,
 textarea,
 select {
-	font: inherit;     /* same font as body [web:7] */
+	font: inherit;
 	border: none;
 	outline: none;
 	background: none;
@@ -69,8 +69,8 @@ input[type="submit"] {
 	cursor: pointer;
 }
 
-/* Tables (just in case) */
+/* Tables */
 table {
 	border-collapse: collapse;
-	border-spacing: 0; /* normalized table layout [web:7] */
+	border-spacing: 0;
 }
