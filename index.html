@@ -1,14 +1,220 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My landing page</title>
-    <!-- CHANGE THESE VALUES -->
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- ADD YOUR CODE HERE -->
-  </body>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>FAF NGO – Facem ceva cu tolk’</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">FAF</div>
+  <nav class="nav">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#events">Events</a>
+    <a href="#partners">Partners</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#meeting" class="btn btn-primary">Book a meeting</a>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="hero-text">
+      <h1>Facem ceva cu tolk’</h1>
+      <p>Student‑led NGO that brings together Moldova’s IT community through hackathons, lectures and tech events.</p>
+      <div class="hero-buttons">
+        <a href="#meeting" class="btn btn-primary">Book a meeting</a>
+        <a href="#contact" class="btn btn-secondary">Become a volunteer</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- background blob / image from events -->
+    </div>
+  </section>
+
+  <!-- Meeting form -->
+  <section id="meeting" class="meeting">
+    <h2>Book a meeting with FAF</h2>
+    <p>Vrei să devii partener, sponsor sau să aduci FAF la facultatea ta? Lasă-ne un mesaj.</p>
+    <form method="POST" action="#">
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+      <div class="form-row">
+        <label for="company">Company / Organization</label>
+        <input id="company" name="company" type="text">
+      </div>
+      <div class="form-row">
+        <label for="role">Role</label>
+        <select id="role" name="role">
+          <option>Student</option>
+          <option>Company representative</option>
+          <option>Mentor</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="note">Additional note</label>
+        <textarea id="note" name="note" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send request</button>
+    </form>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <h2>About FAF</h2>
+    <p>FAF is a student-led NGO that brings together Moldova’s IT community through hackathons, lectures, and tech events.</p>
+    <div class="goals">
+      <article class="goal-card">
+        <h3>Grow our community</h3>
+        <p>Connecting students, mentors și companii din IT.</p>
+      </article>
+      <article class="goal-card">
+        <h3>Develop IT specialists</h3>
+        <p>Hands‑on hackathons, lecții și workshop‑uri tehnice.</p>
+      </article>
+      <article class="goal-card">
+        <h3>Improve studies’ quality</h3>
+        <p>Bridge între facultate și industrie, cu proiecte reale.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="events">
+    <h2>Our events</h2>
+    <div class="event-grid">
+      <article class="event-card">
+        <h3>Hackathons</h3>
+        <p>Fast‑paced 24h+ competitions precum Summer Hack și XMAS Hack, cu mentori și premii tari.</p>
+        <p class="tag">Coming Summer 2026 – details soon</p>
+      </article>
+      <article class="event-card">
+        <h3>FAF Lectures</h3>
+        <p>Serii de prezentări tehnice cu invitați din industrie.</p>
+      </article>
+      <article class="event-card">
+        <h3>Programmer’s Day</h3>
+        <p>Eveniment anual dedicat comunității de programatori din Moldova.</p>
+      </article>
+      <article class="event-card">
+        <h3>SheNovate</h3>
+        <p>Program care susține și încurajează fetele în IT prin speakeri și activități practice.</p>
+      </article>
+    </div>
+    <!-- small gallery of 3–6 photos -->
+    <div class="event-gallery">
+      <!-- <img src="assets/event1.jpg" alt=""> ... -->
+    </div>
+  </section>
+
+  <!-- Partners (auto-scroll strip) -->
+  <section id="partners" class="partners">
+    <h2>Companies we worked with</h2>
+    <div class="marquee">
+      <div class="marquee-inner">
+        <!-- repeat logos twice for infinite loop -->
+        <img src="assets/stefanini.png" alt="Stefanini">
+        <img src="assets/tech-quarter.png" alt="Tech Quarter">
+        <img src="assets/fusionworks.png" alt="FusionWorks">
+        <img src="assets/allied-testing.png" alt="Allied Testing">
+        <img src="assets/optiplaza.png" alt="Optiplaza">
+        <img src="assets/utm.png" alt="UTM">
+        <img src="assets/sigmoid.png" alt="Sigmoid">
+        <img src="assets/pgi.png" alt="PGI">
+        <img src="assets/cybercor.png" alt="Cybercor">
+        <img src="assets/tekwill.png" alt="Tekwill">
+        <img src="assets/orange.png" alt="Orange">
+        <img src="assets/amdaris.png" alt="Amdaris">
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback -->
+  <section id="feedback" class="feedback">
+    <h2>What people say</h2>
+    <div class="feedback-grid">
+      <article class="feedback-card">
+        <p>“This is my first hackathon, and I enjoyed the time there.”</p>
+        <span>Participant, XMAS FAF Hackathon 2025</span>
+      </article>
+      <article class="feedback-card">
+        <p>“This is pure genial, like RESPECT to all staff that contributed to the hackathon.”</p>
+        <span>Participant, XMAS FAF Hackathon 2025</span>
+      </article>
+      <article class="feedback-card">
+        <p>“Nota 10, cum zice Ciorbă: Bravo :)”</p>
+        <span>FAF student, FAF‑22x, XMAS FAF Hackathon 2025</span>
+      </article>
+      <article class="feedback-card">
+        <p>“Mi-a plăcut organizarea, locația și faptul că am învățat chestii practice.”</p>
+        <span>Participant, SheNovate 2025</span>
+      </article>
+      <article class="feedback-card">
+        <p>“O bună selecție de speakeri invitați și sarcini practice.”</p>
+        <span>Participant, SheNovate 2025</span>
+      </article>
+      <article class="feedback-card">
+        <p>“The organization of the event was at the highest level: good music, great food, helpful mentors and wonderful prizes.”</p>
+        <span>Participant, XMAS FAF Hackathon 2024</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="team">
+    <h2>Meet the team</h2>
+    <div class="team-row">
+      <article class="team-card">
+        <div class="avatar"></div>
+        <h3>Iachim Diana</h3>
+        <p>CEO</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar"></div>
+        <h3>Rațeeva Daria</h3>
+        <p>COO</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar"></div>
+        <h3>Cojocaru Daniel</h3>
+        <p>CFO</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar"></div>
+        <h3>Pașa Mădălina</h3>
+        <p>CMO</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar"></div>
+        <h3>Grosu Daniela</h3>
+        <p>CPO</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Contact / footer -->
+  <section id="contact" class="contact">
+    <h2>Get in touch</h2>
+    <p>Scrie-ne dacă vrei să te implici în comunitatea FAF sau să colaborezi cu noi.</p>
+    <p>Email: <a href="mailto:contact@faf.ngo">contact@faf.ngo</a></p>
+    <p>Instagram / Facebook / LinkedIn links here</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 FAF NGO – Facem ceva cu tolk’.</p>
+</footer>
+</body>
 </html>
