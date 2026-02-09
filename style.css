@@ -16,6 +16,10 @@
 }
 
 /* Base */
+html {
+    scroll-behavior: smooth; /* smooth anchor scroll [web:47] */
+}
+
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 16px;
@@ -32,6 +36,7 @@ body {
 
 section {
     padding: var(--space-2xl) 0;
+    scroll-margin-top: 96px; /* avoid hiding titles under header [web:47] */
 }
 
 h1 {
@@ -73,10 +78,8 @@ p {
     backdrop-filter: blur(18px);
 }
 
-.logo {
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    font-size: 1.1rem;
+.logo img {
+    height: 32px;
 }
 
 .nav {
@@ -122,7 +125,8 @@ p {
     text-decoration: none;
     font-weight: 600;
     border: 1px solid transparent;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease, color 0.15s ease;
 }
 
 .btn-primary {
@@ -146,9 +150,12 @@ p {
     background: rgba(255, 155, 43, 0.08);
 }
 
-/* Hero */
+/* Hero – full width & height */
 .hero {
+    width: 100%;
+    min-height: 100vh; /* full viewport height [web:36] */
     padding-top: calc(80px + var(--space-xl));
+    padding-bottom: var(--space-2xl);
     background:
             radial-gradient(circle at top right, #ff9b2b33 0, transparent 55%),
             radial-gradient(circle at bottom left, #ff5b2b22 0, transparent 65%),
@@ -156,6 +163,9 @@ p {
 }
 
 .hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-inline: var(--space-md);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -164,6 +174,11 @@ p {
 
 .hero-text {
     max-width: 520px;
+}
+
+.hero-logo {
+    height: 40px;
+    margin-bottom: 12px;
 }
 
 .hero-tagline {
@@ -227,7 +242,13 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Glass card helper */
+/* Glass card helper + subtle transitions */
+.card-glass,
+.hero-card,
+section {
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
 .card-glass {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -284,11 +305,32 @@ p {
     margin-top: var(--space-md);
 }
 
-/* About */
+/* Section backgrounds for seamless transitions */
 .about {
-    background: var(--bg-alt);
+    background: radial-gradient(circle at top left, #ff9b2b11 0, transparent 55%), #080808;
 }
 
+.events {
+    background: radial-gradient(circle at bottom right, #ff5b2b18 0, transparent 60%), #050505;
+}
+
+.partners {
+    background: #050505;
+}
+
+.feedback {
+    background: radial-gradient(circle at top left, #ff9b2b11 0, transparent 55%), #080808;
+}
+
+.team {
+    background: #050505;
+}
+
+.contact {
+    background: #080808;
+}
+
+/* About */
 .goals {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -330,10 +372,6 @@ p {
 }
 
 /* Partners marquee */
-.partners {
-    background: #050505;
-}
-
 .marquee {
     overflow: hidden;
     position: relative;
@@ -462,7 +500,7 @@ p {
     }
 
     .nav {
-        display: none; /* keep it simple for lab; can add burger later */
+        display: none; /* simple for lab; can add burger later */
     }
 
     .hero {

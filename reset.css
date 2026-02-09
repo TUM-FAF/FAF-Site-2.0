@@ -3,7 +3,7 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box; /* consistent sizing [web:3] */
+	box-sizing: border-box;
 }
 
 html,
@@ -24,7 +24,7 @@ blockquote,
 dl,
 dd {
 	margin: 0;
-	padding: 0; /* remove default margins/paddings [web:3][web:7] */
+	padding: 0;
 }
 
 body {
@@ -32,26 +32,22 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
-/* Remove list bullets */
 ul,
 ol {
 	list-style: none;
 }
 
-/* Images */
 img,
 picture {
 	max-width: 100%;
-	display: block; /* responsive images [web:3][web:7] */
+	display: block;
 }
 
-/* Links */
 a {
 	text-decoration: none;
 	color: inherit;
 }
 
-/* Forms */
 input,
 button,
 textarea,
@@ -62,14 +58,12 @@ select {
 	background: none;
 }
 
-/* Buttons keep pointer cursor */
 button,
 [role="button"],
 input[type="submit"] {
 	cursor: pointer;
 }
 
-/* Tables */
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
