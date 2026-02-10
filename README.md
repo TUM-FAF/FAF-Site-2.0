@@ -1,24 +1,62 @@
-# Lab 2 - Landing page
+# FAF Landing Page – Lab
 
-Create a web page for your/friends/relatives business (example: car-rent, cookies-shop, crypto-scam)
+This lab implements a responsive single‑page **landing** site for FAF, a student‑led NGO that connects Moldova’s IT community through hackathons, lectures, and tech events.
 
-> For a maximal grade, the website should be for a real client (your/friends/relatives business), otherwise -1-2 points
+## 1. Project structure
 
-## Customer requirements
+- `index.html` – main landing page markup.
+- `style.css` – main styling (layout, grids, typography, colors).
+- `reset.css` – CSS reset for consistent base across browsers.
+- `logo-faf-dark.jpg` – FAF logo used in the header and hero.
 
-- Some form of navigation to sections (links, buttons)
-- Call to action
-- At least 4 sections ([see examples](https://webflow.com/blog/high-converting-landing-page))
-- Pleasant to the eyes
+## 2. Landing page overview
 
-## Dev requirements
+The landing page is a dark‑theme one‑pager with accent gradients and glassmorphism cards, optimized for desktop and mobile. It is structured into the following sections:
 
-- Use vanilla CSS and HTML (no frameworks)
-- Have a decent git history (no one commit)
-- The page should be deployed on a free hosting service (example: GitHub Pages, Vercel, Netlify)
-- Project repo should have a README with a short description of the landing page topic, screenshots, and a link to the live demo
+1. **Hero**
+    - Presents FAF as a student‑led NGO in Moldova that connects students, mentors, and tech companies through tech events.
+    - Contains a large headline (“Grow our community”), a short tagline, descriptive text, and call‑to‑action buttons for joining or contacting FAF.
+    - On the right, a photo collage and a glassmorphism info card highlight key aspects of the community and upcoming initiatives.
 
-## Other requirements:
+2. **About / Goals**
+    - Explains that FAF organizes hackathons, open lectures, and workshops to build real skills and bridge university and industry.
+    - Uses goal cards laid out in a responsive grid (`.goals`) to describe community growth, hands‑on learning, and collaboration.
 
-- For potential maximal mark, a WIP version should be submitted during the class
-- Use index.html, reset.css
+3. **Events**
+    - Lists key recurring events: Summer Hackathon, XMAS FAF Hack, lectures, SheNovate, community evenings, and more.
+    - Each event card includes a title, short description, tags, and can include expandable photo galleries under “event details.”
+
+4. **Partners**
+    - Displays partner logos in a responsive logo grid (`.partners-logos-row`) with consistent sizing and hover effects.
+    - Uses a subtle radial gradient background to visually separate this section.]
+
+5. **Feedback / Testimonials**
+    - Shows participant quotes from XMAS FAF Hackathon 2024–2025 and SheNovate 2025, highlighting event experience and organization quality.
+- 
+  - Cards are laid out in a grid (`.feedback-grid`) with readable typography.
+
+6. **Team**
+    - Introduces the core coordination team roles (CEO, COO, CFO, CCO, CMO, CPO) responsible for FAF projects.
+    - Uses circular avatars and role descriptions in a flexible row (`.team-row`, `.team-card`).
+
+7. **Contact & Footer**
+    - Contact band includes address (`str. Studenților 7, birou 309, Chișinău, Moldova`), email (`faf@fcim.utm.md`), and social links.
+    - Mentions the Telegram channel used for important announcements and event updates.
+    - Footer contains basic copyright / meta info styled with a top border.
+
+## 3. Running locally
+
+1. Clone or download the lab repository.
+2. Ensure the files `index.html`, `style.css`, and `reset.css` are in the project root.
+3. Open `index.html` directly in a browser (double‑click or “Open with Browser”).
+
+No build step or backend is required; it is a static HTML/CSS project.
+
+## 4. Deployment location
+The landing page is deployed at: [https://diana7376.github.io/tum-web-lab2/](https://diana7376.github.io/tum-web-lab2/)
+
+## 5. Responsive behavior
+
+- Uses CSS Grid and Flexbox for layout in the hero, goals, events, partners, feedback, and team sections.
+- Media queries at 900px, 768px, and 600px adjust paddings, hide the desktop navigation, collapse grids to fewer columns, and center hero content on small screens.
+- The design preserves readability and spacing across desktop, tablet, and mobile.
