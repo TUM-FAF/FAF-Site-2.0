@@ -19,4 +19,64 @@
     border-radius: 14px;
     margin-bottom: var(--space-md);
 }
+/* Registration Section Styles */
+/* Registration Section - Full Width & Spacing */
+.registration-section {
+    margin-top: var(--space-2xl); /* Adds significant space from the previous section */
+    padding: 0; /* Remove padding to let the card hit the edges if desired */
+    width: 100%;
+    background: var(--bg);
+}
+
+.registration-card-wide {
+    width: 100%;
+    padding: var(--space-2xl) var(--space-xl); /* Generous padding inside the card */
+    border-left: none;
+    border-right: none;
+    border-radius: 0; /* Removes rounding for a full-bleed horizontal look */
+    text-align: center;
+    background: rgba(255, 155, 43, 0.03); /* Subtle accent tint */
+    border-top: 1px solid rgba(255, 155, 43, 0.1);
+    border-bottom: 1px solid rgba(255, 155, 43, 0.1);
+}
+
+.registration-content-wrapper {
+    max-width: 1000px; /* Constrains the text/form for readability on large screens */
+    margin: 0 auto;
+}
+
+.registration-info h2 {
+    font-size: 2.8rem;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.registration-info p {
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+}
+
+/* Form refinement for wide layout */
+.registration-form-wrapper {
+    margin-top: var(--space-2xl);
+    text-align: left;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.registration-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .registration-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
 

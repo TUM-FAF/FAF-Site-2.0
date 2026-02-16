@@ -22,6 +22,60 @@
 </header>
 
 <main>
+
+    <section id="registration" class="registration-section">
+        <div class="card-glass registration-card-wide">
+            <div class="registration-content-wrapper">
+                <div class="registration-info">
+                    <p class="hero-tagline">Join the Movement</p>
+                    <h2>Next Event: Summer Hackathon 2026</h2>
+                    <p>
+                        Ready to innovate? Register for our 24-hour event on <b>June 20-21</b>.
+                        Experience mentorship, collaboration, and high-energy competition.
+                    </p>
+                    <button id="showFormBtn" class="btn btn-primary">Open Registration Form</button>
+                </div>
+
+                <div id="registrationFormContainer" class="registration-form-wrapper" style="display: none;">
+                    <form class="form registration-form">
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <label for="reg-name">Name</label>
+                                <input id="reg-name" type="text" placeholder="Your name" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="reg-surname">Surname</label>
+                                <input id="reg-surname" type="text" placeholder="Your surname" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="reg-email">Email Address</label>
+                                <input id="reg-email" type="email" placeholder="example@mail.com" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="reg-occupation">Occupation</label>
+                                <select id="reg-occupation">
+                                    <option value="student">Student</option>
+                                    <option value="junior">Junior Developer</option>
+                                    <option value="enthusiast">IT Enthusiast</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">Submit Registration</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('showFormBtn').addEventListener('click', function() {
+            const formContainer = document.getElementById('registrationFormContainer');
+            formContainer.style.display = 'block';
+            this.style.display = 'none'; // Optional: hide button after click
+        });
+    </script>
+
     <section class="events">
         <div class="container">
             <h2>Experience FAF Events</h2>
@@ -30,7 +84,7 @@
 
                 <article class="event-card-featured card-glass">
                     <img src="assets/photos/summer-hackathon.png" alt="Summer Hackathon banner" class="event-hero-img">
-                    <h3>Summer Hackathon</h3>
+                    <h3>Summer Hackathon 2025</h3>
                     <p>
                         The pinnacle of our annual calendar, the Summer Hackathon is a premier 24-hour innovation challenge held
                         right after the exam session (20-21 June). We invite students, young specialists, and IT enthusiasts to
@@ -47,7 +101,7 @@
 
                 <article class="event-card-featured card-glass">
                     <img src="assets/photos/XMAS-hackathon.png" alt="XMAS Hackathon banner " class="event-hero-img">
-                    <h3>XMAS Hackathon</h3>
+                    <h3>XMAS Hackathon 2024</h3>
                     <p>
                         Experience the unique blend of technical intensity and holiday spirit. Exclusively for the FAF community,
                         this 24-hour hackathon takes place on the weekend before Christmas break. It’s more than a competition;
@@ -64,7 +118,7 @@
 
                 <article class="event-card-featured card-glass">
                     <img src="assets/photos/programmers-day.png" alt="Programmers Day banner" class="event-hero-img">
-                    <h3>Programmers’ Day</h3>
+                    <h3>Programmers’ Day 2025</h3>
                     <p>
                         Celebrating the 256th day of the year with our annual free IT conference. We bring together renowned
                         national and international speakers to share insights on the latest tech trends. The day concludes with
@@ -80,7 +134,7 @@
 
                 <article class="event-card-featured card-glass">
                     <img src="assets/photos/she-novate.png" alt="She-novate Conference banner" class="event-hero-img">
-                    <h3>She-novate</h3>
+                    <h3>She-novate 2025</h3>
                     <p>
                         An empowering IT conference and workshop series held on 9 March 2025, dedicated to bridging the gender gap in technology.
                         She-novate provides a platform where all keynote speeches and technical workshops are led by successful women in the industry,
