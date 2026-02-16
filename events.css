@@ -1,0 +1,22 @@
+/* Custom layout for the 2-per-row grid with top-aligned images */
+.event-grid-special {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl); /* Reusing your variables */
+    margin-top: var(--space-xl);
+}
+
+.event-card-featured {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.event-hero-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: var(--space-md);
+}
+
