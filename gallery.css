@@ -1,0 +1,60 @@
+/* Gallery Masonry Layout */
+.gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.gallery-item {
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.img-caption {
+    margin-top: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+
+
+@media (max-width: 768px) {
+    .gallery-masonry {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Shorten gap on the Gallery Page */
+.gallery-page .gallery-item {
+    gap: 0 !important; /* Removes internal spacing between image and caption */
+}
+
+.gallery-page .gallery-item img {
+    margin-bottom: 0 !important;
+}
+
+.gallery-page .img-caption {
+    margin-top: 2px !important; /* Provides just a tiny sliver of breathing room */
+    padding-top: 0 !important;
+}
+
+/* Also pull the whole grid closer to the "Our Journey" intro */
+.gallery-page .gallery-grid-section {
+    padding-top: var(--space-xs) !important; /* Replaces large section padding with minimal space */
+}
