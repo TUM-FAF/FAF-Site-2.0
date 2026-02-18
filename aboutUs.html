@@ -6,6 +6,7 @@
     <title>About Us - FAF</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="about.css">
 </head>
 <body>
 
@@ -13,92 +14,105 @@
     <div class="logo">
         <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
     </div>
-
     <nav class="nav">
-        <a href="#hero">Home</a>
+        <a href="#home">Home</a>
         <a href="#events">Events</a>
     </nav>
-
+    </nav>
 </header>
+<main>
+    <section class="about-intro">
+        <div class="container">
+            <div class="intro-content">
+                <p class="hero-tagline">Who We Are</p>
+                <h1>Our Organization</h1>
+                <p class="large-text">
+                    FAF is a student-led non-profit organization dedicated to bridging the gap between university education and the IT industry in Moldova. We foster a community where passion for technology meets practical application.
+                </p>
+            </div>
+        </div>
+    </section>
 
-<!-- Intro Section -->
-<section class="about">
-    <div class="container">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: var(--space-2xl) 0;">
-            <h1 style="margin-bottom: var(--space-lg);">About FAF</h1>
-            <p style="font-size: 1.1rem; line-height: 1.7;">
-                FAF is a student-led non-profit organization that connects Moldova's IT community through hackathons, open lectures, and tech events like Programmer's Day. Facem ceva cu tolk'.
+    <section class="about-details">
+        <div class="container">
+            <div class="card-glass details-grid">
+                <div class="details-text">
+                    <h2>Events & Governance</h2>
+                    <p>
+                        We take pride in creating high-impact events like <b>Hackathons</b>, <b>FAF Lectures</b>, <b>Workshops</b> and others. These initiatives are made possible by our dedicated boards—groups of students who manage everything from logistics and finance to partnerships and marketing. Each event is a testament to the collaborative spirit of our community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <div class="container">
+            <h2>Meet the team</h2>
+            <p class="section-subtitle">
+                The core team coordinating FAF projects and keeping the community moving forward.
             </p>
+
+            <div class="team-row">
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="assets/team/team-diana.jpg" alt="Iachim Diana"></div>
+                    <h3>Iachim Diana</h3>
+                    <p class="team-role">CEO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="assets/team/team-daria.jpg" alt="Rațeeva Daria"></div>
+                    <h3>Rațeeva Daria</h3>
+                    <p class="team-role">COO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="assets/team/team-daniel.jpeg" alt="Cojocaru Daniel"></div>
+                    <h3>Cojocaru Daniel</h3>
+                    <p class="team-role">CFO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="assets/team/team-alexandra.jpeg" alt="Alexandra Bujor"></div>
+                    <h3>Alexandra Bujor-Cobili</h3>
+                    <p class="team-role">CCO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="assets/team/team-madalina.jpg" alt="Pașa Mădălina"></div>
+                    <h3>Pașa Mădălina</h3>
+                    <p class="team-role">CMO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="assets/team/team-daniela.jpeg" alt="Grosu Daniela"></div>
+                    <h3>Grosu Daniela</h3>
+                    <p class="team-role">CPO</p>
+                </article>
+            </div>
         </div>
-    </div>
-</section>
-
-<!-- Team Section (copied and cleaned from your index.html) -->
-<section id="team" class="team">
-    <div class="container">
-        <h2>Meet the team</h2>
-        <p class="section-subtitle">
-            The core team coordinating FAF projects and keeping the community moving forward.
-        </p>
-
-        <div class="team-row">
-            <article class="team-card card-glass">
-                <div class="avatar">
-                    <img src="assets/team/team-diana.jpg" alt="Iachim Diana">
-                </div>
-                <h3>Iachim Diana</h3>
-                <p class="team-role">CEO</p>
-            </article>
-
-            <article class="team-card card-glass">
-                <div class="avatar">
-                    <img src="assets/team/team-daria.jpg" alt="Rațeeva Daria">
-                </div>
-                <h3>Rațeeva Daria</h3>
-                <p class="team-role">COO</p>
-            </article>
-
-            <article class="team-card card-glass">
-                <div class="avatar">
-                    <img src="assets/team/team-daniel.jpeg" alt="Cojocaru Daniel">
-                </div>
-                <h3>Cojocaru Daniel</h3>
-                <p class="team-role">CFO</p>
-            </article>
-
-            <article class="team-card card-glass">
-                <div class="avatar">
-                    <img src="assets/team/team-alexandra.jpeg" alt="Alexandra Bujor-Cobili">
-                </div>
-                <h3>Alexandra Bujor-Cobili</h3>
-                <p class="team-role">CCO</p>
-            </article>
-
-            <article class="team-card card-glass">
-                <div class="avatar">
-                    <img src="assets/team/team-madalina.jpg" alt="Pașa Mădălina">
-                </div>
-                <h3>Pașa Mădălina</h3>
-                <p class="team-role">CMO</p>
-            </article>
-
-            <article class="team-card card-glass">
-                <div class="avatar">
-                    <img src="assets/team/team-daniela.jpeg" alt="Grosu Daniela">
-                </div>
-                <h3>Grosu Daniela</h3>
-                <p class="team-role">CPO</p>
-            </article>
-        </div>
-    </div>
-</section>
-
+    </section>
 <footer class="site-footer">
     <div class="container footer-inner">
-        <p>© 2026 FAF NGO – Facem ceva cu tolk’.</p>
-        <p>Built by FAF students for the FAF community.</p>
+        <div class="footer-brand">
+            <p>© 2026 FAF NGO – Facem ceva cu tolk’.</p>
+        </div>
+
+        <div class="footer-social-links">
+            <a href="https://www.facebook.com/FAF.NGO" target="_blank">
+                <img src="assets/logos/facebook-icon.svg" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/faf.ngo/" target="_blank">
+                <img src="assets/logos/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/company/fafngo/" target="_blank">
+                <img src="assets/logos/linkedin-icon.svg" alt="LinkedIn">
+            </a>
+            <a href="https://t.me/+rE_rO1LuJdkwY2Ni" target="_blank">
+                <img src="assets/logos/telegram.png" alt="Telegram">
+            </a>
+        </div>
+
+        <div class="footer-credit">
+            <p>Built by FAF students for the FAF community.</p>
+        </div>
     </div>
 </footer>
-
+</main>
 </body>
 </html>

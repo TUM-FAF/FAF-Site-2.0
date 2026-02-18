@@ -1,0 +1,100 @@
+/* about.css */
+
+.about-intro {
+    text-align: center;
+    padding-top: calc(80px + var(--space-2xl)); /* Offset for fixed header */
+}
+
+.intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.large-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-top: var(--space-lg);
+}
+
+.details-grid {
+    padding: var(--space-2xl);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.details-text h2 {
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+}
+
+.details-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.history-cta {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.05) 0%, transparent 70%);
+    text-align: center;
+    padding-bottom: var(--space-2xl);
+}
+
+.cta-box h2 {
+    margin-bottom: var(--space-sm);
+}
+
+.cta-box p {
+    margin-bottom: var(--space-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- Add this to the bottom of about.css --- */
+
+.site-footer {
+    padding: var(--space-xl) 0;
+    margin-top: var(--space-2xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.footer-social-links {
+    display: flex;
+    gap: var(--space-xl);
+    padding: var(--space-md) 0;
+}
+
+.footer-social-links img {
+    width: 28px; /* Slightly larger for better visibility */
+    height: 28px;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    /* This makes them white to match the text; remove if you want original colors */
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.footer-social-links a:hover img {
+    transform: translateY(-5px);
+    filter: brightness(1) invert(0); /* Returns to original color on hover */
+    opacity: 1;
+}
+
+.footer-info, .footer-credit {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
