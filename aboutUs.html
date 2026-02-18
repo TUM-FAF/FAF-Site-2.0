@@ -61,6 +61,56 @@
         </div>
     </section>
 
+    <section id="volunteer" class="volunteer-section">
+        <div class="container">
+            <div class="card-glass volunteer-cta">
+                <div class="volunteer-content">
+                    <p class="hero-tagline">Get Involved</p>
+                    <h2>Become a Volunteer</h2>
+                    <p>
+                        Want to be part of the magic? FAF is always looking for passionate students to join our community. Whether you're interested in logistics, tech, or marketing, there's a place for you here.
+                    </p>
+                    <button id="toggleVolunteerForm" class="btn btn-primary">
+                        Join the Team <span id="arrow" style="margin-left: 8px; transition: transform 0.3s ease; display: inline-block;">&#9662;</span>
+                    </button>
+                </div>
+
+                <div id="volunteerFormContainer" class="registration-form-wrapper" style="display: none; margin-top: var(--space-xl);">
+                    <form class="form volunteer-form">
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <label for="v-name">First Name</label>
+                                <input id="v-name" type="text" placeholder="Your name" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="v-surname">Last Name</label>
+                                <input id="v-surname" type="text" placeholder="Your surname" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="v-email">Email</label>
+                                <input id="v-email" type="email" placeholder="example@mail.com" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="v-interest">Area of Interest</label>
+                                <select id="v-interest">
+                                    <option value="logistics">Logistics & Events</option>
+                                    <option value="tech">Technical Support</option>
+                                    <option value="marketing">Marketing & Design</option>
+                                    <option value="partnerships">Partnerships</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-top: var(--space-md);">
+                            <label for="v-message">Why do you want to join?</label>
+                            <textarea id="v-message" rows="3" placeholder="Tell us a bit about yourself"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="team" class="team">
         <div class="container">
             <h2>Meet the team</h2>
@@ -102,32 +152,62 @@
             </div>
         </div>
     </section>
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <p>© 2026 FAF NGO – Facem ceva cu tolk’.</p>
-            </div>
 
-            <div class="footer-social-links">
-                <a href="https://www.facebook.com/FAF.NGO" target="_blank">
-                    <img src="assets/logos/facebook-icon.svg" alt="Facebook">
-                </a>
-                <a href="https://www.instagram.com/faf.ngo/" target="_blank">
-                    <img src="assets/logos/instagram.png" alt="Instagram">
-                </a>
-                <a href="https://www.linkedin.com/company/fafngo/" target="_blank">
-                    <img src="assets/logos/linkedin-icon.svg" alt="LinkedIn">
-                </a>
-                <a href="https://t.me/+rE_rO1LuJdkwY2Ni" target="_blank">
-                    <img src="assets/logos/telegram.png" alt="Telegram">
-                </a>
-            </div>
-
-            <div class="footer-credit">
-                <p>Built by FAF students for the FAF community.</p>
+    <section class="history-cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Explore Our Journey</h2>
+                <p>Want to explore the detailed history of the organization and learn about the previous boards that built our foundation?</p>
+                <a href="#" class="btn btn-primary">Discover Our History</a>
             </div>
         </div>
-    </footer>
+    </section>
+
 </main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <p>© 2026 FAF NGO – Facem ceva cu tolk’.</p>
+        </div>
+
+        <div class="footer-social-links">
+            <a href="https://www.facebook.com/FAF.NGO" target="_blank">
+                <img src="assets/logos/facebook-icon.svg" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/faf.ngo/" target="_blank">
+                <img src="assets/logos/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/company/fafngo/" target="_blank">
+                <img src="assets/logos/linkedin-icon.svg" alt="LinkedIn">
+            </a>
+            <a href="https://t.me/+rE_rO1LuJdkwY2Ni" target="_blank">
+                <img src="assets/logos/telegram.png" alt="Telegram">
+            </a>
+        </div>
+
+        <div class="footer-credit">
+            <p>Built by FAF students for the FAF community.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('toggleVolunteerForm').addEventListener('click', function() {
+        const formContainer = document.getElementById('volunteerFormContainer');
+        const arrow = document.getElementById('arrow');
+        const isHidden = formContainer.style.display === 'none';
+
+        if (isHidden) {
+            formContainer.style.display = 'block';
+            arrow.style.transform = 'rotate(180deg)'; // Arrow points up when open
+            this.firstChild.textContent = 'Hide Form '; // Optional: change text
+        } else {
+            formContainer.style.display = 'none';
+            arrow.style.transform = 'rotate(0deg)'; // Arrow points down when closed
+            this.firstChild.textContent = 'Join the Team ';
+        }
+    });
+</script>
 </body>
 </html>
