@@ -115,6 +115,128 @@ p {
     width: 100%;
 }
 
+/* Active nav link */
+.nav a.active {
+    color: var(--text);
+}
+
+.nav a.active::after {
+    width: 100%;
+}
+
+/* Nav dropdown */
+.nav-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown-trigger {
+    color: var(--muted);
+    padding: 4px 0;
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-dropdown-trigger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.2s ease;
+}
+
+.nav-dropdown-trigger:hover {
+    color: var(--text);
+}
+
+.nav-dropdown-trigger:hover::after {
+    width: 100%;
+}
+
+.nav-dropdown-trigger.active {
+    color: var(--text);
+}
+
+.nav-dropdown-trigger.active::after {
+    width: 100%;
+}
+
+.dropdown-arrow {
+    font-size: 0.7em;
+    transition: transform 0.25s ease;
+    display: inline-block;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Invisible bridge so mouse can travel from trigger to menu */
+.nav-dropdown::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    background: rgba(18, 18, 18, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 0;
+    padding: var(--space-sm) 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 30;
+    transition: opacity 0.3s ease;
+    border-top: 2px solid var(--accent);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: var(--space-sm) var(--space-lg);
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.nav-dropdown-menu a::after {
+    display: none;
+}
+
+.nav-dropdown-menu a:hover {
+    color: var(--text);
+    padding-left: calc(var(--space-lg) + 6px);
+    border-left-color: var(--accent);
+}
+
+.nav-dropdown-menu a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+}
+
 .header-cta {
     font-size: 0.9rem;
 }
