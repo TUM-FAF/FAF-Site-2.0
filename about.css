@@ -55,8 +55,6 @@
     text-align: center;
 }
 
-/* --- Add this to the bottom of about.css --- */
-
 .site-footer {
     padding: var(--space-xl) 0;
     margin-top: var(--space-2xl);
