@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#050505', 'bg-alt': '#121212',
+            accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
+          },
+          maxWidth: { '8xl': '1440px' }
+        }
+      }
+    }
+  </script>
 </head>
 <body>
 <canvas id="backgroundCanvas"></canvas>
@@ -408,7 +422,7 @@
       <div class="contact-col">
         <h3>Contact</h3>
         <p>str. Studenților 7, birou 309<br>Chișinău, Moldova</p>
-        <p>Email: <a href="mailto:faf@fcim.utm.md">faf@fcim.utm.md</a></p>
+        <p>Email: <a href="/cdn-cgi/l/email-protection#6c0a0d0a2c0a0f050142191801420108"><span class="__cf_email__" data-cfemail="f99f989fb99f9a9094d78c8d94d7949d">[email&#160;protected]</span></a></p>
       </div>
 
       <!-- Column 2: Useful links -->
