@@ -6,6 +6,16 @@
     margin-top: var(--space-xl);
 }
 
+@media (max-width: 768px) {
+    .event-grid-special {
+        grid-template-columns: 1fr;
+    }
+
+    .event-hero-img {
+        height: 200px;
+    }
+}
+
 .event-card-featured {
     display: flex;
     flex-direction: column;

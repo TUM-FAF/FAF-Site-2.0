@@ -12,6 +12,7 @@
 <canvas id="backgroundCanvas"></canvas>
 <canvas id="starsCanvas"></canvas>
 <header class="site-header">
+    <div class="mobile-only" style="position:fixed;top:0;left:0;width:100%;height:3px;background:var(--accent);z-index:100;"></div>
     <div class="logo">
         <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
     </div>
@@ -35,6 +36,11 @@
         </div>
         <a href="index.html#contact">Contact</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </header>
 
 <main>
@@ -83,14 +89,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        document.getElementById('showFormBtn').addEventListener('click', function() {
-            const formContainer = document.getElementById('registrationFormContainer');
-            formContainer.style.display = 'block';
-            this.style.display = 'none'; // Optional: hide button after click
-        });
-    </script>
 
     <section class="events">
         <div class="event-grid-special">
@@ -211,6 +209,21 @@
         <p>FAF NGO – Facem ceva cu tolk’.</p>
     </div>
 </footer>
+<script>
+    document.getElementById('showFormBtn').addEventListener('click', function() {
+        const formContainer = document.getElementById('registrationFormContainer');
+        formContainer.style.display = 'block';
+        this.style.display = 'none'; // Optional: hide button after click
+    });
+</script>
 <script src="stars.js"></script>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.querySelector('.nav');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        nav.classList.toggle('open');
+    });
+</script>
 </body>
 </html>
