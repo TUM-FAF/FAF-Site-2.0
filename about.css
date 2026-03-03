@@ -121,8 +121,31 @@
     gap: var(--space-lg);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .volunteer-form .form-grid {
         grid-template-columns: 1fr;
+    }
+
+    .details-grid {
+        padding: var(--space-lg);
+    }
+
+    .team-row {
+        justify-content: center;
+    }
+
+    .cta-box .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-intro {
+        padding-top: calc(70px + var(--space-xl));
+    }
+
+    .large-text {
+        font-size: 1rem;
     }
 }
