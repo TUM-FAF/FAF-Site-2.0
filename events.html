@@ -90,14 +90,6 @@
         </div>
     </section>
 
-    <script>
-        document.getElementById('showFormBtn').addEventListener('click', function() {
-            const formContainer = document.getElementById('registrationFormContainer');
-            formContainer.style.display = 'block';
-            this.style.display = 'none'; // Optional: hide button after click
-        });
-    </script>
-
     <section class="events">
         <div class="event-grid-special">
 
@@ -217,6 +209,13 @@
         <p>FAF NGO – Facem ceva cu tolk’.</p>
     </div>
 </footer>
+<script>
+    document.getElementById('showFormBtn').addEventListener('click', function() {
+        const formContainer = document.getElementById('registrationFormContainer');
+        formContainer.style.display = 'block';
+        this.style.display = 'none'; // Optional: hide button after click
+    });
+</script>
 <script src="stars.js"></script>
 <script>
     const hamburger = document.getElementById('hamburger');
