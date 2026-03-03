@@ -14,17 +14,33 @@
     --space-xl: 40px;
     --space-2xl: 64px;
 }
+/* ── Star background canvases ── */
+#backgroundCanvas,
+#starsCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* clicks pass through to the page */
+    z-index: 0;
+}
+
+/* Push all page content above the canvases */
+.site-header, main, footer {
+    position: relative;
+    z-index: 1;
+}
 
 /* Base */
 html {
     scroll-behavior: smooth;
+    background: var(--bg);
 }
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 17px;
     line-height: 1.6;
-    background: var(--bg);
+    background: transparent;
     color: var(--text);
 }
 
@@ -281,10 +297,7 @@ p {
     min-height: 100vh;
     padding-top: calc(80px + 40px);
     padding-bottom: 72px;
-    background:
-            radial-gradient(circle at 10% 0%, #ff9b2b33 0, transparent 55%),
-            radial-gradient(circle at 90% 100%, #ff5b2b22 0, transparent 65%),
-            #050505;
+    background:transparent;
 }
 
 .hero-inner {
@@ -413,7 +426,7 @@ section {
 
 /* Meeting form */
 .meeting {
-    background: var(--bg);
+    background: transparent;
 }
 
 .form {
@@ -460,34 +473,27 @@ section {
 
 /* Section backgrounds – smoother transitions */
 .about {
-    background:
-            linear-gradient(180deg, #050505 0%, #080808 40%, #050505 100%);
+    background: transparent;
 }
 
 .events {
-    background:
-            linear-gradient(180deg, #050505 0%, #060606 35%, #050505 100%);
+    background: transparent;
 }
 
 .partners {
-    background:
-            radial-gradient(circle at 0% 0%, #ff9b2b33 0, transparent 55%),
-            #050505;
+    background: radial-gradient(circle at 0% 0%, #ff9b2b33 0, transparent 55%);
     color: var(--text);
     padding: var(--space-xl) 0 var(--space-2xl);
     border-top: 1px solid #1b1b1b;
 }
 
-.feedback {
-    background:
-            linear-gradient(180deg, #050505 0%, #080808 40%, #050505 100%);
+.events {
+    background: transparent;
 }
 
 .team {
-    background:
-            linear-gradient(180deg, #050505 0%, #060606 40%, #050505 100%);
+    background: transparent;
 }
-
 /* Shared grid spacing */
 .goals,
 .event-grid,
@@ -757,7 +763,7 @@ section {
 .site-footer {
     border-top: 1px solid #1b1b1b;
     padding: var(--space-md) 0 var(--space-lg);
-    background: #050505;
+    background: transparent;
 }
 
 .footer-inner {

@@ -6,8 +6,7 @@
     padding-bottom: var(--space-2xl);
     background:
         radial-gradient(circle at 20% 10%, rgba(255, 155, 43, 0.15) 0, transparent 50%),
-        radial-gradient(circle at 80% 90%, rgba(255, 91, 43, 0.1) 0, transparent 60%),
-        var(--bg);
+        radial-gradient(circle at 80% 90%, rgba(255, 91, 43, 0.1) 0, transparent 60%);
     text-align: center;
 }
 
@@ -30,7 +29,7 @@
 
 /* Why Sponsor */
 .why-sponsor {
-    background: linear-gradient(180deg, #050505 0%, #080808 40%, #050505 100%);
+    bbackground: transparent;
 }
 
 .why-grid {
@@ -50,9 +49,8 @@
 
 /* ── Tier Cards ── */
 .tiers {
-    background: linear-gradient(180deg, #050505 0%, #060606 35%, #050505 100%);
+    background: transparent;
 }
-
 .tiers-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
