@@ -150,6 +150,26 @@
     }
 }
 
+@media (max-width: 768px) {
+    .tiers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sponsor-hero .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sponsor-hero .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
     .tiers-grid {
         grid-template-columns: 1fr;

@@ -5,8 +5,8 @@
     padding-top: calc(80px + 60px);
     padding-bottom: var(--space-2xl);
     background:
-        radial-gradient(circle at 30% 15%, rgba(255, 155, 43, 0.12) 0, transparent 50%),
-        radial-gradient(circle at 75% 85%, rgba(255, 91, 43, 0.08) 0, transparent 55%);
+            radial-gradient(circle at 30% 15%, rgba(255, 155, 43, 0.12) 0, transparent 50%),
+            radial-gradient(circle at 75% 85%, rgba(255, 91, 43, 0.08) 0, transparent 55%);
     text-align: center;
 }
 
@@ -59,7 +59,7 @@
     margin-bottom: var(--space-md);
 }
 
-/* ── Departments / Roles – GWC-style hover reveal ── */
+/* ── Departments / Roles ── */
 .roles {
     background: transparent;
 }
@@ -84,7 +84,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--space-lg) var(--space-md);
-    cursor: default;
+    cursor: pointer;
     transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -119,16 +119,16 @@
     transform: translateX(0);
 }
 
-/* Hidden description – revealed on hover */
+/* Hidden description – revealed on hover (desktop) */
 .role-reveal {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     padding: 0 var(--space-md);
     transition:
-        max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.35s ease,
-        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.35s ease,
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .role-item:hover .role-reveal {
@@ -169,7 +169,7 @@
 /* ── CTA Banner ── */
 .vol-cta-banner {
     background:
-        radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.08) 0, transparent 60%);
+            radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.08) 0, transparent 60%);
     border-top: 1px solid rgba(255, 155, 43, 0.15);
     border-bottom: 1px solid rgba(255, 155, 43, 0.15);
 }
@@ -196,7 +196,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .steps-grid {
         grid-template-columns: 1fr;
     }
@@ -205,6 +205,58 @@
         grid-template-columns: 1fr;
     }
 
+    .vol-hero .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .vol-hero .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Disable hover on mobile, use click/.active instead */
+    .role-item:hover .role-header {
+        padding-left: var(--space-md);
+    }
+
+    .role-item:hover .role-title {
+        color: var(--muted);
+    }
+
+    .role-item:hover .role-arrow {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+
+    .role-item:hover .role-reveal {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 var(--space-md);
+    }
+
+    /* Active state controlled by JS click */
+    .role-item.active .role-header {
+        padding-left: var(--space-lg);
+    }
+
+    .role-item.active .role-title {
+        color: var(--text);
+    }
+
+    .role-item.active .role-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .role-item.active .role-reveal {
+        max-height: 160px;
+        opacity: 1;
+        padding: 0 var(--space-md) var(--space-lg) var(--space-lg);
+    }
+}
+
+@media (max-width: 600px) {
     .vol-hero {
         padding-top: calc(70px + var(--space-xl));
     }

@@ -12,6 +12,7 @@
 <canvas id="backgroundCanvas"></canvas>
 <canvas id="starsCanvas"></canvas>
 <header class="site-header">
+  <div class="mobile-only" style="position:fixed;top:0;left:0;width:100%;height:3px;background:var(--accent);z-index:100;"></div>
   <div class="logo">
     <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
   </div>
@@ -35,6 +36,11 @@
     </div>
     <a href="index.html#contact">Contact</a>
   </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 <main>
@@ -104,7 +110,7 @@
             <span class="role-arrow">&rsaquo;</span>
           </div>
           <div class="role-reveal">
-            <p>Sets the overall vision and direction for FAF. Coordinates across all departments, represents the organization externally, and ensures every project aligns with our mission of connecting Moldova’s IT community.</p>
+            <p>Sets the overall vision and direction for FAF. Coordinates across all departments, represents the organization externally, and ensures every project aligns with our mission of connecting Moldova's IT community.</p>
           </div>
         </div>
 
@@ -154,7 +160,7 @@
             <span class="role-arrow">&rsaquo;</span>
           </div>
           <div class="role-reveal">
-            <p>Runs FAF’s public‑facing communications — social media, press coverage, community announcements, and content strategy. Grows our reach and makes sure every event gets the attention it deserves.</p>
+            <p>Runs FAF's public‑facing communications — social media, press coverage, community announcements, and content strategy. Grows our reach and makes sure every event gets the attention it deserves.</p>
           </div>
         </div>
 
@@ -208,6 +214,24 @@
     <p>Built by FAF students for the FAF community.</p>
   </div>
 </footer>
+
 <script src="stars.js"></script>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.querySelector('.nav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+</script>
+<script>
+  document.querySelectorAll('.role-item').forEach(item => {
+    item.querySelector('.role-header').addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.role-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
