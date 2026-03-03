@@ -4,6 +4,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl); /* Reusing your variables */
     margin-top: var(--space-xl);
+    padding: var(--space-xl); /* Remove internal padding to let the card edges align */
 }
 
 @media (max-width: 768px) {
