@@ -6,8 +6,7 @@
     padding-bottom: var(--space-2xl);
     background:
         radial-gradient(circle at 30% 15%, rgba(255, 155, 43, 0.12) 0, transparent 50%),
-        radial-gradient(circle at 75% 85%, rgba(255, 91, 43, 0.08) 0, transparent 55%),
-        var(--bg);
+        radial-gradient(circle at 75% 85%, rgba(255, 91, 43, 0.08) 0, transparent 55%);
     text-align: center;
 }
 
@@ -30,7 +29,7 @@
 
 /* ── How It Works – Steps ── */
 .how-it-works {
-    background: linear-gradient(180deg, #050505 0%, #080808 40%, #050505 100%);
+    background: transparent;
 }
 
 .steps-grid {
@@ -62,7 +61,7 @@
 
 /* ── Departments / Roles – GWC-style hover reveal ── */
 .roles {
-    background: linear-gradient(180deg, #050505 0%, #060606 35%, #050505 100%);
+    background: transparent;
 }
 
 .roles-list {
@@ -149,7 +148,7 @@
 
 /* ── Why Volunteer – Perks ── */
 .why-volunteer {
-    background: linear-gradient(180deg, #050505 0%, #080808 40%, #050505 100%);
+    background: transparent;
 }
 
 .perks-grid {
@@ -170,8 +169,7 @@
 /* ── CTA Banner ── */
 .vol-cta-banner {
     background:
-        radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.08) 0, transparent 60%),
-        var(--bg);
+        radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.08) 0, transparent 60%);
     border-top: 1px solid rgba(255, 155, 43, 0.15);
     border-bottom: 1px solid rgba(255, 155, 43, 0.15);
 }
