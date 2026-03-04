@@ -88,6 +88,22 @@
   let clickMsgIndex = 0;
   let clickPinTimer = null;    /* timer that un-pins the bubble after a click */
 
+  /* ── Drag state ────────────────────────────────────────────────── */
+  let isDragging    = false;
+  let dragOffX      = 0;       /* pointer offset from rig top-left at grab   */
+  let dragOffY      = 0;
+  let dragVelX      = 0;       /* smoothed drag velocity (px/frame)          */
+  let dragVelY      = 0;
+  let prevPointerX  = 0;
+  let prevPointerY  = 0;
+  let didDrag       = false;   /* true if pointer actually moved — skip click */
+  let throwSpeed    = 0;       /* extra speed injected on release            */
+
+  /* DRAG PHYSICS tuning — adjust to taste                        */
+  const DRAG_VEL_SMOOTH  = 0.25;  /* velocity smoothing (0–1, higher = snappier) */
+  const DRAG_SWAY        = 0.08;  /* how hard drag speed pushes limbs backward  */
+  const THROW_DECAY      = 0.96;  /* how fast throw speed fades each frame      */
+
   /* ── ③ HELPERS ───────────────────────────────────────────────── */
   const rand     = (lo, hi) => lo + Math.random() * (hi - lo);
   const clamp    = (v, lo, hi) => Math.max(lo, Math.min(v, hi));
@@ -224,6 +240,7 @@
 
   /* ── ⑦ EVENTS ─────────────────────────────────────────────────── */
   function handleClick() {
+    if (didDrag) return;         /* ignore click if the user dragged            */
     /* Advance to next message in the cycle                         */
     clickMsgIndex = (clickMsgIndex + 1) % CLICK_MESSAGES.length;
     thoughtEl.textContent = CLICK_MESSAGES[clickMsgIndex];
@@ -233,13 +250,72 @@
     rootEl.classList.add("mascot--thought-auto");
     clickPinTimer = setTimeout(() => {
       rootEl.classList.remove("mascot--thought-auto");
-      /* reset back to first message after hide                     */
       clickMsgIndex = 0;
       thoughtEl.textContent = CLICK_MESSAGES[0];
+      clickPinTimer = null;
     }, 3000);
   }
 
+  /* ─ Drag handlers ───────────────────────────────────────────── */
+  function onPointerDown(e) {
+    /* Only main button / first touch                               */
+    if (e.button !== undefined && e.button !== 0) return;
+    rootEl.setPointerCapture(e.pointerId);   /* keep events even outside */
+    isDragging  = true;
+    didDrag     = false;
+    dragOffX    = e.clientX - posX;
+    dragOffY    = e.clientY - posY;
+    prevPointerX = e.clientX;
+    prevPointerY = e.clientY;
+    dragVelX    = 0;
+    dragVelY    = 0;
+    throwSpeed  = 0;
+    rootEl.classList.add("mascot--dragging");
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    const nx = e.clientX - dragOffX;
+    const ny = e.clientY - dragOffY;
+
+    /* Track velocity (px this frame, smoothed in frameLoop)        */
+    dragVelX = (dragVelX + (nx - posX) * DRAG_VEL_SMOOTH) / (1 + DRAG_VEL_SMOOTH);
+    dragVelY = (dragVelY + (ny - posY) * DRAG_VEL_SMOOTH) / (1 + DRAG_VEL_SMOOTH);
+
+    /* Mark as a real drag only if pointer moved more than 4px      */
+    if (!didDrag) {
+      const dx = e.clientX - (dragOffX + posX);
+      const dy = e.clientY - (dragOffY + posY);
+      if (Math.sqrt(dx*dx + dy*dy) > 4) didDrag = true;
+    }
+
+    posX = nx;
+    posY = ny;
+    prevPointerX = e.clientX;
+    prevPointerY = e.clientY;
+  }
+
+  function onPointerUp(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    rootEl.classList.remove("mascot--dragging");
+
+    /* Convert last drag velocity into a throw:                     */
+    /* set heading and inject speed bonus that decays via THROW_DECAY */
+    const speed = Math.sqrt(dragVelX * dragVelX + dragVelY * dragVelY);
+    if (speed > 0.1) {
+      heading    = Math.atan2(dragVelY, dragVelX);
+      /* throwSpeed decays each frame — THROW_DECAY in CONFIG       */
+      throwSpeed = speed - CONFIG.speed;    /* bonus above normal speed */
+    }
+  }
+
   function bindEvents() {
+    rootEl.addEventListener("pointerdown", onPointerDown);
+    rootEl.addEventListener("pointermove", onPointerMove);
+    rootEl.addEventListener("pointerup",   onPointerUp);
+    rootEl.addEventListener("pointercancel", onPointerUp);
+
     rootEl.addEventListener("click", handleClick);
     rootEl.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -251,7 +327,6 @@
     rootEl.addEventListener("focus", () =>
       rootEl.classList.add("mascot--thought-auto"));
     rootEl.addEventListener("blur", () => {
-      /* Don't hide if a click-pin timer is active                  */
       if (!clickPinTimer) rootEl.classList.remove("mascot--thought-auto");
     });
   }

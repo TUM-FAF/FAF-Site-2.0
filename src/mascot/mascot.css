@@ -17,8 +17,14 @@
   left: 0;
   top: 0;
   z-index: 8000;
-  cursor: pointer;
+  cursor: grab;          /* grab by default, grabbing while held   */
   outline: none;
+  touch-action: none;    /* prevent scroll-swipe stealing the drag */
+}
+
+#mascot-root.mascot--dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 /* Keyboard focus ring */
