@@ -99,6 +99,8 @@
   let didDrag       = false;   /* true if pointer actually moved — skip click */
   let throwSpeed    = 0;       /* extra speed injected on release            */
 
+  let mascotPaused  = false;   /* true when user hides mascot via toggle     */
+
   /* DRAG PHYSICS tuning — adjust to taste                        */
   const DRAG_VEL_SMOOTH  = 0.25;  /* velocity smoothing (0–1, higher = snappier) */
   const DRAG_SWAY        = 0.08;  /* how hard drag speed pushes limbs backward  */
@@ -118,6 +120,8 @@
 
   /* ── ④ rAF LOOP — constant-speed wander + body orientation ───── */
   function frameLoop() {
+    if (mascotPaused) return;   /* paused by toggle — exit without re-scheduling */
+
     /* Steer: nudge heading by a tiny random amount each frame.
        This is the only source of direction change — speed is fixed. */
     heading += (Math.random() - 0.5) * CONFIG.steerRate * 2;
@@ -127,9 +131,10 @@
     posY += Math.sin(heading) * CONFIG.speed;
 
     /* Bounce off viewport edges — reflect heading component        */
-    const m = CONFIG.margin;
-    const maxX = window.innerWidth  - RIG_W - m;
-    const maxY = window.innerHeight - RIG_H - m;
+    const m  = CONFIG.margin;
+    const sc = window.innerWidth <= 768 ? 0.65 : 1;  /* mobile CSS scale */
+    const maxX = window.innerWidth  - RIG_W * sc - m;
+    const maxY = window.innerHeight - RIG_H * sc - m;
 
     if (posX < m)    { posX = m;    heading = Math.PI - heading; }
     if (posX > maxX) { posX = maxX; heading = Math.PI - heading; }
@@ -333,10 +338,41 @@
     });
   }
 
+  /* ── PUBLIC API — called by the mascot toggle button ─────────── */
+  window.__mascotShow = function () {
+    if (!rootEl || !mascotPaused) return;
+    mascotPaused = false;
+    rootEl.style.display = '';
+    /* Re-do fly-in entrance  */
+    rootEl.classList.remove('mascot--visible');
+    const sc   = window.innerWidth <= 768 ? 0.65 : 1;
+    posX       = (window.innerWidth  - RIG_W * sc) / 2 + (Math.random() - 0.5) * 60;
+    posY       = -(RIG_H * sc) - 10;
+    heading    = Math.PI / 2 + (Math.random() - 0.5) * 0.4;
+    bodyAngle  = heading;
+    throwSpeed = 32;
+    requestAnimationFrame(frameLoop);
+    scheduleThought();
+    setTimeout(() => rootEl.classList.add('mascot--visible'), 40);
+  };
+
+  window.__mascotHide = function () {
+    if (!rootEl) return;
+    mascotPaused = true;
+    rootEl.style.display = 'none';
+  };
+
   /* ── ⑧ BOOT ──────────────────────────────────────────────────── */
   function init() {
     buildMascot();
     bindEvents();
+
+    /* Restore saved visibility preference                          */
+    if (localStorage.getItem('mascot') === '0') {
+      mascotPaused = true;
+      rootEl.style.display = 'none';
+      return;   /* skip animation entirely                         */
+    }
 
     if (prefersReducedMotion) {
       /* Static: park near bottom-right, no movement                */
@@ -347,8 +383,9 @@
     } else {
       /* Fly in from above: start just above the top of the screen, */
       /* heading mostly downward, big throw-speed for a fast entry. */
-      posX       = (window.innerWidth  - RIG_W) / 2 + (Math.random() - 0.5) * 60;
-      posY       = -RIG_H / 1.5;            /* start closer to viewport edge */
+      const sc   = window.innerWidth <= 768 ? 0.65 : 1;
+      posX       = (window.innerWidth  - RIG_W * sc) / 2 + (Math.random() - 0.5) * 60;
+      posY       = -(RIG_H * sc) - 10;
       heading    = Math.PI / 2 + (Math.random() - 0.5) * 0.4; /* ~down ±11° */
       bodyAngle  = heading;
       throwSpeed = 32;                    /* faster downward entry */
