@@ -66,11 +66,27 @@
   let posX = 0, posY = 0;     /* current top-left of rig (px)      */
   let heading = 0;             /* direction of travel (radians)     */
   let bodyAngle = 0;           /* current visual rotation of rig    */
+  let prevBodyAngle = 0;       /* previous frame — used for angular velocity */
   let wobble = 0;              /* extra wobble offset (radians)     */
   let wobbleVel = 0;           /* wobble velocity                   */
 
+  /* Limb inertia — tracks follow-through when body spins          */
+  /* Tune these three numbers to change the "wind" feel:           */
+  const INERTIA_SENSITIVITY = 35;  /* how hard spin pushes limbs (higher = more sway) */
+  const INERTIA_DAMPING     = 0.88; /* velocity damping per frame  (lower = snappier) */
+  const INERTIA_SPRING      = 0.92; /* how fast limbs return to 0  (lower = faster)   */
+  let limbInertia    = 0;           /* current offset in radians   */
+  let limbInertiaVel = 0;           /* rate of change per frame    */
+
   let rootEl = null;
   let skeletonEl = null;
+  let thoughtEl = null;        /* reference to the thought bubble text node  */
+  let limbEls = {};            /* { 'arm-left': imgEl, ... }                  */
+
+  /* Messages cycled on click — add/edit entries freely            */
+  const CLICK_MESSAGES = ["mew..", "hmm..", "check out summer hackathon!!"];
+  let clickMsgIndex = 0;
+  let clickPinTimer = null;    /* timer that un-pins the bubble after a click */
 
   /* ── ③ HELPERS ───────────────────────────────────────────────── */
   const rand     = (lo, hi) => lo + Math.random() * (hi - lo);
@@ -111,7 +127,26 @@
     wobble     = clamp(wobble, -CONFIG.wobbleMax, CONFIG.wobbleMax);
 
     /* Body angle lerps toward heading + wobble (inertia feeling)   */
+    prevBodyAngle = bodyAngle;
     bodyAngle = lerpAngle(bodyAngle, heading + wobble, CONFIG.orientLerp);
+
+    /* ── Limb angular inertia ("grass in wind") ───────────────── */
+    /* angVel = how much the body rotated this frame.              */
+    /* Limbs get pushed opposite to rotation, then spring to 0.   */
+    /* TUNE: INERTIA_SENSITIVITY, INERTIA_DAMPING, INERTIA_SPRING  */
+    const angVel = bodyAngle - prevBodyAngle;
+    limbInertiaVel += -angVel * INERTIA_SENSITIVITY;
+    limbInertiaVel *= INERTIA_DAMPING;
+    limbInertia    += limbInertiaVel;
+    limbInertia    *= INERTIA_SPRING;
+    limbInertia     = clamp(limbInertia, -0.35, 0.35); /* cap ~20 deg */
+
+    /* Apply via the individual CSS `rotate` property — it ADDS    */
+    /* on top of the keyframe `transform`, so both effects stack.  */
+    const inertiaStr = `${(limbInertia * 180 / Math.PI).toFixed(2)}deg`;
+    for (const el of Object.values(limbEls)) {
+      el.style.rotate = inertiaStr;
+    }
 
     /* Write transforms — root translates, skeleton rotates         */
     rootEl.style.transform =
@@ -168,14 +203,19 @@
       img.alt = "";
       img.draggable = false;
       skeletonEl.appendChild(img);
+
+      /* Store limb references so JS can apply inertia each frame   */
+      if (["arm-left", "arm-right", "leg-left", "leg-right"].includes(cls)) {
+        limbEls[cls] = img;
+      }
     });
 
     /* Thought bubble inside skeleton so it rotates with the body   */
-    const thought = document.createElement("div");
-    thought.id = "mascot-thought";
-    thought.setAttribute("role", "tooltip");
-    thought.textContent = "mew..";
-    skeletonEl.appendChild(thought);
+    thoughtEl = document.createElement("div");
+    thoughtEl.id = "mascot-thought";
+    thoughtEl.setAttribute("role", "tooltip");
+    thoughtEl.textContent = CLICK_MESSAGES[0];
+    skeletonEl.appendChild(thoughtEl);
 
     inner.appendChild(skeletonEl);
     rootEl.appendChild(inner);
@@ -183,19 +223,37 @@
   }
 
   /* ── ⑦ EVENTS ─────────────────────────────────────────────────── */
+  function handleClick() {
+    /* Advance to next message in the cycle                         */
+    clickMsgIndex = (clickMsgIndex + 1) % CLICK_MESSAGES.length;
+    thoughtEl.textContent = CLICK_MESSAGES[clickMsgIndex];
+
+    /* Pin the bubble visible for 3 s, then hide and reset text     */
+    clearTimeout(clickPinTimer);
+    rootEl.classList.add("mascot--thought-auto");
+    clickPinTimer = setTimeout(() => {
+      rootEl.classList.remove("mascot--thought-auto");
+      /* reset back to first message after hide                     */
+      clickMsgIndex = 0;
+      thoughtEl.textContent = CLICK_MESSAGES[0];
+    }, 3000);
+  }
+
   function bindEvents() {
-    rootEl.addEventListener("click", () => CONFIG.onActivate());
+    rootEl.addEventListener("click", handleClick);
     rootEl.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        CONFIG.onActivate();
+        handleClick();
       }
     });
-    /* Keyboard focus shows bubble; blur hides it                   */
+    /* Keyboard focus shows bubble; blur hides it (unless click-pinned) */
     rootEl.addEventListener("focus", () =>
       rootEl.classList.add("mascot--thought-auto"));
-    rootEl.addEventListener("blur", () =>
-      rootEl.classList.remove("mascot--thought-auto"));
+    rootEl.addEventListener("blur", () => {
+      /* Don't hide if a click-pin timer is active                  */
+      if (!clickPinTimer) rootEl.classList.remove("mascot--thought-auto");
+    });
   }
 
   /* ── ⑧ BOOT ──────────────────────────────────────────────────── */

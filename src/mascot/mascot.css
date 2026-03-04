@@ -68,12 +68,12 @@
   transform-origin: 100px 135px;
 
   /* ── Part offsets (px) ────────────────────────────────────────── */
-  --head-x: 53px;   --head-y: 0px;    /* head: centre under rig ≈ 100px  */
-  --body-x: 40px;   --body-y: 55px;   /* body centre ≈ 100px             */
-  --arm-l-x: 148px; --arm-l-y: 75px;  /* left arm  — shoulder, right side */
-  --arm-r-x: 5px;   --arm-r-y: 75px;  /* right arm — shoulder, left side  */
-  --leg-l-x: 83px;  --leg-l-y: 178px; /* left leg  — 14 px gap between    */
-  --leg-r-x: 69px;  --leg-r-y: 178px; /* right leg   leg centres          */
+  --head-x: 53px;   --head-y: 0px;    /* head: centre ≈ 53+47=100px = rig centre */
+  --body-x: 60px;   --body-y: 55px;   /* body (80px wide): 60+40=100px = centred */
+  --arm-l-x: 128px; --arm-l-y: 75px;  /* left arm  — right shoulder edge         */
+  --arm-r-x: 17px;  --arm-r-y: 75px;  /* right arm — left shoulder edge          */
+  --leg-l-x: 90px;  --leg-l-y: 140px; /* left leg  — ~18px gap between centres  */
+  --leg-r-x: 50px;  --leg-r-y: 140px; /* right leg                               */
 }
 
 
