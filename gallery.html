@@ -26,11 +26,10 @@
 <canvas id="backgroundCanvas"></canvas>
 <canvas id="starsCanvas"></canvas>
 <header class="site-header">
-  <div class="mobile-only" style="position:fixed;top:0;left:0;width:100%;height:3px;background:var(--accent);z-index:100;"></div>
   <div class="logo">
     <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
   </div>
-  <nav class="nav">
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
     <div class="nav-dropdown">
       <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
       <div class="nav-dropdown-menu">
@@ -59,7 +58,7 @@
 </header>
 
 <main>
-  <section class="gallery-intro">
+  <section class="gallery-intro page-title">
     <div class="container">
       <h2>Our Journey </h2>
       <p class="section-subtitle">
@@ -69,38 +68,80 @@
     </div>
   </section>
 
+  <!-- ── Planet + Gallery grid ─────────────────────────── -->
+  <div class="page-end-wrapper">
+    <div class="planet-parallax-zone" aria-hidden="true">
+      <img src="assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img data-planet-align="right">
+    </div>
+
   <section class="gallery-grid-section">
     <div class="container">
-      <div class="gallery-masonry">
-        <div class="gallery-item card-glass">
-          <img src="assets/photos/summer-hack-1.JPG" alt="Summer Hackathon">
-          <div class="img-caption">Summer Hackathon 2025</div>
-        </div>
-        <div class="gallery-item card-glass">
-          <img src="assets/photos/hackaton-2.JPG" alt="Late night coding">
-          <div class="img-caption">XMAS Hackathon Marathons</div>
+      <div class="gallery-masonry distance-stage">
+
+        <div class="gallery-item">
+          <div class="gallery-item__thumb">
+            <img src="assets/photos/summer-hack-1.JPG" alt="Summer Hackathon">
+          </div>
+          <div class="gallery-item__footer">
+            <span class="gallery-item__title">Summer Hackathon 2025</span>
+            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+          </div>
         </div>
 
-        <div class="gallery-item card-glass">
-          <img src="assets/photos/lectures-1.JPG" alt="Technical Lecture">
-          <div class="img-caption">Expert Guest Lectures</div>
-        </div>
-        <div class="gallery-item card-glass">
-          <img src="assets/photos/shenovate-1.JPG" alt="She-novate Conference">
-          <div class="img-caption">She-novate 2025</div>
+        <div class="gallery-item">
+          <div class="gallery-item__thumb">
+            <img src="assets/photos/hackaton-2.JPG" alt="Late night coding">
+          </div>
+          <div class="gallery-item__footer">
+            <span class="gallery-item__title">XMAS Hackathon Marathons</span>
+            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+          </div>
         </div>
 
-        <div class="gallery-item card-glass">
-          <img src="assets/photos/movie-night-1.JPG" alt="Movie Night">
-          <div class="img-caption">Community Movie Nights</div>
+        <div class="gallery-item">
+          <div class="gallery-item__thumb">
+            <img src="assets/photos/lectures-1.JPG" alt="Technical Lecture">
+          </div>
+          <div class="gallery-item__footer">
+            <span class="gallery-item__title">Expert Guest Lectures</span>
+            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+          </div>
         </div>
-        <div class="gallery-item card-glass">
-          <img src="assets/photos/programmers-day-1.JPG" alt="Programmer's Day">
-          <div class="img-caption">Programmer's Day Celebration</div>
+
+        <div class="gallery-item">
+          <div class="gallery-item__thumb">
+            <img src="assets/photos/shenovate-1.JPG" alt="She-novate Conference">
+          </div>
+          <div class="gallery-item__footer">
+            <span class="gallery-item__title">She-novate 2025</span>
+            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+          </div>
         </div>
+
+        <div class="gallery-item">
+          <div class="gallery-item__thumb">
+            <img src="assets/photos/movie-night-1.JPG" alt="Movie Night">
+          </div>
+          <div class="gallery-item__footer">
+            <span class="gallery-item__title">Community Movie Nights</span>
+            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-item__thumb">
+            <img src="assets/photos/programmers-day-1.JPG" alt="Programmer's Day">
+          </div>
+          <div class="gallery-item__footer">
+            <span class="gallery-item__title">Programmer's Day Celebration</span>
+            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+  </div><!-- /.page-end-wrapper -->
 </main>
 
 <footer class="site-footer">
@@ -109,12 +150,56 @@
   </div>
 </footer>
 <script src="stars.js"></script>
+<script type="module">
+  import { initDistanceScroll } from '/src/effects/distanceScroll.js';
+  initDistanceScroll();
+</script>
+<div id="nav-overlay" aria-hidden="true"></div>
+<script src="src/effects/planetParallax.js"></script>
 <script>
+  /* ── Full navigation + dropdown handler ── */
   const hamburger = document.getElementById('hamburger');
-  const nav = document.querySelector('.nav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    nav.classList.toggle('open');
+  const nav       = document.getElementById('main-nav');
+  const overlay   = document.getElementById('nav-overlay');
+
+  function openNav() {
+    nav.classList.add('open');
+    hamburger.classList.add('open');
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('nav-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeNav() {
+    nav.classList.remove('open');
+    hamburger.classList.remove('open');
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nav-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-controls', 'main-nav');
+  hamburger.addEventListener('click', () => nav.classList.contains('open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      const dropdown = trigger.closest('.nav-dropdown');
+      const wasOpen  = dropdown.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+      if (!wasOpen) dropdown.classList.add('open');
+    });
+  });
+
+  nav.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => {
+    a.addEventListener('click', closeNav);
   });
 </script>
 </body>
