@@ -6,6 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            bg: '#050505', 'bg-alt': '#121212',
+            accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
+          },
+          maxWidth: { '8xl': '1440px' }
+        }
+      }
+    }
+  </script>
 </head>
 <body>
 <canvas id="backgroundCanvas"></canvas>
@@ -22,7 +37,8 @@
       <a href="index.html" class="nav-dropdown-trigger active">Home <span class="dropdown-arrow">▾</span></a>
       <div class="nav-dropdown-menu">
         <a href="#feedback">Feedback</a>
-        <a href="#team">Team</a>
+        <a href="#meeting">Meeting</a>
+        <a href="#partners">Partners</a>
       </div>
     </div>
     <a href="aboutUs.html">About</a>
@@ -59,8 +75,8 @@
           through hackathons, lectures, and tech events.
         </p>
         <div class="hero-buttons">
-          <a href="#meeting" class="btn btn-primary">Book a meeting</a>
-          <a href="#contact" class="btn btn-secondary">Become a volunteer</a>
+          <a href="sponsorship.html" class="btn btn-primary">Book a meeting</a>
+          <a href="volunteers.html" class="btn btn-secondary">Become a volunteer</a>
         </div>
       </div>
 
@@ -408,7 +424,7 @@
       <div class="contact-col">
         <h3>Contact</h3>
         <p>str. Studenților 7, birou 309<br>Chișinău, Moldova</p>
-        <p>Email: <a href="mailto:faf@fcim.utm.md">faf@fcim.utm.md</a></p>
+        <p>Email: faf@fcim.utm.md </p>
       </div>
 
       <!-- Column 2: Useful links -->
