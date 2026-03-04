@@ -1,0 +1,193 @@
+/* =============================================================
+   SPACE-CAT MASCOT  ·  mascot.css
+   All mascot visuals live here. The JS writes nothing to style.css.
+   Naming: .m-* = mascot sub-parts,  #mascot-* = unique mascot nodes.
+   ============================================================= */
+
+/* ── 1. Root container (position is set by JS via data-corner attribute) ─── */
+#mascot-root {
+  position: fixed;
+  z-index: 9000;           /* below modals but above page content          */
+  cursor: pointer;
+  outline: none;           /* custom focus ring below                       */
+  /* corner placements — JS sets data-corner, CSS reacts */
+  --margin: 16px;
+}
+
+#mascot-root[data-corner="bottom-right"] { bottom: var(--margin); right: var(--margin); }
+#mascot-root[data-corner="bottom-left"]  { bottom: var(--margin); left:  var(--margin); }
+#mascot-root[data-corner="top-right"]    { top:    var(--margin); right: var(--margin); }
+#mascot-root[data-corner="top-left"]     { top:    var(--margin); left:  var(--margin); }
+
+/* accessibility focus ring */
+#mascot-root:focus-visible {
+  outline: 2px solid var(--accent, #ff9b2b);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* ── 2. Entrance layer  ─────────────────────────────────────────────────── */
+/* JS adds .mascot--visible after the configured delay.
+   The transition handles the slide-in from off-screen.                       */
+#mascot-inner {
+  opacity: 0;
+  transform: translateY(90px);          /* default: enters from below         */
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* corner overrides for entrance direction */
+#mascot-root[data-corner="top-right"]  #mascot-inner,
+#mascot-root[data-corner="top-left"]   #mascot-inner {
+  transform: translateY(-90px);         /* drops down from top               */
+}
+
+#mascot-root.mascot--visible #mascot-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 3. Float wrap — gentle bob, applied to the whole body group  ────────── */
+#mascot-float-wrap {
+  animation: mascot-float 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0px); }
+  45%       { transform: translateY(-9px); }
+  55%       { transform: translateY(-9px); }
+}
+
+/* reduce float amplitude for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  #mascot-float-wrap { animation: mascot-float-gentle 8s ease-in-out infinite; }
+  @keyframes mascot-float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-3px); }
+  }
+}
+
+/* ── 4. Sprite wrap — JS writes jitter transform here ────────────────────── */
+#mascot-sprite-wrap {
+  display: inline-block;       /* shrink-wraps the image              */
+  will-change: transform;
+  transform-origin: center bottom; /* jitter pivots from feet         */
+  position: relative;          /* anchor for the star dots            */
+}
+
+/* ── 5. The image itself ──────────────────────────────────────────────────── */
+#mascot-sprite {
+  display: block;
+  width: 120px;                /* change to match your artwork width  */
+  height: auto;
+  pointer-events: none;        /* clicks fall through to #mascot-root */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+
+/* ── 12. Stars / sparkles decoration  ───────────────────────────────────── */
+/* Three tiny star dots orbiting the cat — pure CSS, no JS needed */
+.m-star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent, #ff9b2b);
+  pointer-events: none;
+}
+
+.m-star-1 { width: 4px; height: 4px; top: 2px;  right: 2px;  opacity: 0.7; animation: star-twinkle 2.1s 0.0s ease-in-out infinite; }
+.m-star-2 { width: 3px; height: 3px; top: 14px; left: 0px;   opacity: 0.5; animation: star-twinkle 1.8s 0.4s ease-in-out infinite; }
+.m-star-3 { width: 5px; height: 5px; top: 6px;  left: 22px;  opacity: 0.4; animation: star-twinkle 2.6s 0.9s ease-in-out infinite; }
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.7); }
+  50%       { opacity: 0.9;  transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m-star { animation: none; opacity: 0.4; }
+}
+
+/* ── 13. Tooltip bubble  ─────────────────────────────────────────────────── */
+#mascot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);   /* floats above the mascot */
+  right: 0;
+  max-width: 220px;
+  background: rgba(18, 18, 18, 0.97);
+  border: 1.5px solid var(--accent, #ff9b2b);
+  border-radius: 14px 14px 4px 14px;
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 9px 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px) scale(0.95);
+  transition:
+    opacity   0.22s ease,
+    transform 0.22s ease;
+  z-index: 1;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Arrow pointing toward the mascot body (bottom-right) */
+#mascot-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; right: 14px;
+  border: 8px solid transparent;
+  border-top-color: var(--accent, #ff9b2b);
+  border-bottom: none;
+}
+
+/* Show on hover OR keyboard focus */
+#mascot-root:hover   #mascot-tooltip,
+#mascot-root:focus   #mascot-tooltip,
+#mascot-root.mascot--tooltip-visible #mascot-tooltip {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── 14. Adjust tooltip arrow for left-side corners  ─────────────────────── */
+#mascot-root[data-corner="bottom-left"] #mascot-tooltip,
+#mascot-root[data-corner="top-left"]    #mascot-tooltip {
+  right: auto;
+  left: 0;
+  border-radius: 14px 14px 14px 4px;
+}
+
+#mascot-root[data-corner="bottom-left"] #mascot-tooltip::after,
+#mascot-root[data-corner="top-left"]    #mascot-tooltip::after {
+  right: auto;
+  left: 14px;
+}
+
+/* ── 15. Top-corner tooltip flips below the mascot  ─────────────────────── */
+#mascot-root[data-corner="top-right"] #mascot-tooltip,
+#mascot-root[data-corner="top-left"]  #mascot-tooltip {
+  bottom: auto;
+  top: calc(100% + 10px);
+  transform: translateY(-6px) scale(0.95);
+}
+
+#mascot-root[data-corner="top-right"]:hover   #mascot-tooltip,
+#mascot-root[data-corner="top-right"]:focus   #mascot-tooltip,
+#mascot-root[data-corner="top-left"]:hover    #mascot-tooltip,
+#mascot-root[data-corner="top-left"]:focus    #mascot-tooltip {
+  transform: translateY(0) scale(1);
+}
+
+#mascot-root[data-corner="top-right"] #mascot-tooltip::after,
+#mascot-root[data-corner="top-left"]  #mascot-tooltip::after {
+  bottom: auto;
+  top: -8px;
+  border-top-color: transparent;
+  border-bottom: 8px solid var(--accent, #ff9b2b);
+  border-top: none;
+}
