@@ -133,7 +133,9 @@
 
     if (posX < m)    { posX = m;    heading = Math.PI - heading; }
     if (posX > maxX) { posX = maxX; heading = Math.PI - heading; }
-    if (posY < m)    { posY = m;    heading = -heading; }
+    /* Top bounce: only deflect when heading is already going UP    */
+    /* (sin < 0). On entry the mascot flies down from above — skip. */
+    if (posY < m    && Math.sin(heading) < 0) { posY = m;    heading = -heading; }
     if (posY > maxY) { posY = maxY; heading = -heading; }
 
     /* Slow random wobble added to the body orientation             */
@@ -343,16 +345,19 @@
       posY = window.innerHeight - RIG_H - m;
       rootEl.style.transform = `translate(${posX}px, ${posY}px)`;
     } else {
-      /* Start near viewport centre, random initial heading         */
-      posX    = (window.innerWidth  - RIG_W) / 2;
-      posY    = (window.innerHeight - RIG_H) / 2;
-      heading = Math.random() * Math.PI * 2;
-      bodyAngle = heading;
+      /* Fly in from above: start just above the top of the screen, */
+      /* heading mostly downward, big throw-speed for a fast entry. */
+      posX       = (window.innerWidth  - RIG_W) / 2 + (Math.random() - 0.5) * 60;
+      posY       = -RIG_H / 1.5;            /* start closer to viewport edge */
+      heading    = Math.PI / 2 + (Math.random() - 0.5) * 0.4; /* ~down ±11° */
+      bodyAngle  = heading;
+      throwSpeed = 32;                    /* faster downward entry */
       requestAnimationFrame(frameLoop);
       scheduleThought();               /* kick off random bubbles   */
     }
 
-    setTimeout(() => rootEl.classList.add("mascot--visible"), CONFIG.delayMs);
+    /* Fade in immediately — the fly-in IS the entrance animation   */
+    setTimeout(() => rootEl.classList.add("mascot--visible"), 40); /* snappier fade */
   }
 
   if (document.readyState === "loading") {
