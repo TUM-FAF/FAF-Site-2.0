@@ -6,6 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            bg: '#050505', 'bg-alt': '#121212',
+            accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
+          },
+          maxWidth: { '8xl': '1440px' }
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="sponsorship.css">
 </head>
 <body class="sponsorship-page">
@@ -21,7 +36,8 @@
       <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
       <div class="nav-dropdown-menu">
         <a href="index.html#feedback">Feedback</a>
-        <a href="index.html#team">Team</a>
+        <a href="index.html#meeting">Meeting</a>
+        <a href="index.html#partners">Partners</a>
       </div>
     </div>
     <a href="aboutUs.html">About</a>
