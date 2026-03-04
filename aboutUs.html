@@ -6,21 +6,21 @@
     <title>About Us - FAF</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            corePlugins: { preflight: false },
-            theme: {
-                extend: {
-                    colors: {
-                        bg: '#050505', 'bg-alt': '#121212',
-                        accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
-                    },
-                    maxWidth: { '8xl': '1440px' }
-                }
-            }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            bg: '#050505', 'bg-alt': '#121212',
+            accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
+          },
+          maxWidth: { '8xl': '1440px' }
         }
-    </script>
+      }
+    }
+  </script>
     <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="src/mascot/mascot.css">
 </head>
@@ -33,28 +33,28 @@
     </div>
     <nav class="nav" id="main-nav" aria-label="Main navigation">
         <div class="nav-dropdown">
-            <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
-            <div class="nav-dropdown-menu">
-                <a href="index.html#feedback">Feedback</a>
-                <a href="index.html#meeting">Meeting</a>
-                <a href="index.html#partners">Partners</a>
-            </div>
+          <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#feedback">Feedback</a>
+            <a href="index.html#meeting">Meeting</a>
+            <a href="index.html#partners">Partners</a>
+          </div>
         </div>
         <a href="aboutUs.html" class="active">About</a>
         <a href="events.html">Events</a>
         <a href="gallery.html">Gallery</a>
         <div class="nav-dropdown">
-            <a href="#" class="nav-dropdown-trigger">Get Involved <span class="dropdown-arrow">▾</span></a>
-            <div class="nav-dropdown-menu">
-                <a href="sponsorship.html">Become a Sponsor</a>
-                <a href="volunteers.html">Become a Volunteer</a>
-            </div>
+          <a href="#" class="nav-dropdown-trigger">Get Involved <span class="dropdown-arrow">▾</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="sponsorship.html">Become a Sponsor</a>
+            <a href="volunteers.html">Become a Volunteer</a>
+          </div>
         </div>
         <a href="index.html#contact">Contact</a>
         <label class="mascot-toggle" title="Toggle mascot">
-            <input type="checkbox" id="mascot-toggle-cb" checked>
-            <span class="mascot-toggle-track"></span>
-            <span class="mascot-toggle-label">Mascot</span>
+          <input type="checkbox" id="mascot-toggle-cb" checked>
+          <span class="mascot-toggle-track"></span>
+          <span class="mascot-toggle-label">Mascot</span>
         </label>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -183,19 +183,19 @@
 
     <!-- ── Planet + Journey CTA ───────────────────────────── -->
     <div class="page-end-wrapper">
-        <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
-        </div>
+      <div class="planet-parallax-zone" aria-hidden="true">
+        <img src="assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+      </div>
 
-        <section class="history-cta">
-            <div class="container">
-                <div class="cta-box">
-                    <h2>Explore Our Journey</h2>
-                    <p>Want to explore the detailed history of the organization and learn about the previous boards that built our foundation?</p>
-                    <a href="#" class="btn btn-primary">Discover Our History</a>
-                </div>
+    <section class="history-cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Explore Our Journey</h2>
+                <p>Want to explore the detailed history of the organization and learn about the previous boards that built our foundation?</p>
+                <a href="#" class="btn btn-primary">Discover Our History</a>
             </div>
-        </section>
+        </div>
+    </section>
     </div><!-- /.page-end-wrapper -->
 
 </main>
@@ -248,60 +248,60 @@
 <script src="stars.js"></script>
 <script src="src/mascot/mascot.js"></script>
 <script>
-    const hamburger = document.getElementById('hamburger');
-    const nav       = document.getElementById('main-nav');
-    const overlay   = document.getElementById('nav-overlay');
+  const hamburger = document.getElementById('hamburger');
+  const nav       = document.getElementById('main-nav');
+  const overlay   = document.getElementById('nav-overlay');
 
-    function openNav() {
-        nav.classList.add('open');
-        hamburger.classList.add('open');
-        overlay.classList.add('active');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('nav-open');
-        hamburger.setAttribute('aria-expanded', 'true');
-    }
+  function openNav() {
+    nav.classList.add('open');
+    hamburger.classList.add('open');
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('nav-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
 
-    function closeNav() {
-        nav.classList.remove('open');
-        hamburger.classList.remove('open');
-        overlay.classList.remove('active');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('nav-open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
-    }
-
+  function closeNav() {
+    nav.classList.remove('open');
+    hamburger.classList.remove('open');
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nav-open');
     hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.setAttribute('aria-controls', 'main-nav');
-    hamburger.addEventListener('click', () => nav.classList.contains('open') ? closeNav() : openNav());
-    overlay.addEventListener('click', closeNav);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+    document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
 
-    document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
-        trigger.addEventListener('click', e => {
-            if (window.innerWidth > 768) return;
-            e.preventDefault();
-            const dropdown = trigger.closest('.nav-dropdown');
-            const wasOpen  = dropdown.classList.contains('open');
-            document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
-            if (!wasOpen) dropdown.classList.add('open');
-        });
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-controls', 'main-nav');
+  hamburger.addEventListener('click', () => nav.classList.contains('open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      const dropdown = trigger.closest('.nav-dropdown');
+      const wasOpen  = dropdown.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+      if (!wasOpen) dropdown.classList.add('open');
     });
+  });
 
-    nav.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => {
-        a.addEventListener('click', closeNav);
+  nav.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => {
+    a.addEventListener('click', closeNav);
+  });
+
+  const mascotCb = document.getElementById('mascot-toggle-cb');
+  if (mascotCb) {
+    if (localStorage.getItem('mascot') === '0') mascotCb.checked = false;
+    mascotCb.addEventListener('change', () => {
+      const on = mascotCb.checked;
+      localStorage.setItem('mascot', on ? '1' : '0');
+      if (on)  window.__mascotShow && window.__mascotShow();
+      else     window.__mascotHide && window.__mascotHide();
     });
-
-    const mascotCb = document.getElementById('mascot-toggle-cb');
-    if (mascotCb) {
-        if (localStorage.getItem('mascot') === '0') mascotCb.checked = false;
-        mascotCb.addEventListener('change', () => {
-            const on = mascotCb.checked;
-            localStorage.setItem('mascot', on ? '1' : '0');
-            if (on)  window.__mascotShow && window.__mascotShow();
-            else     window.__mascotHide && window.__mascotHide();
-        });
-    }
+  }
 </script>
 <script src="src/effects/planetParallax.js"></script>
 </body></html>
