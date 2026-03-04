@@ -418,6 +418,19 @@ section {
 
 .form-submit { margin-top: var(--space-md); }
 
+/* ── Hero title — warm gradient so "Facem ceva cu tolk'" pops ── */
+.hero-text h1 {
+    background: linear-gradient(135deg, #ffffff 15%, #ffe0a0 52%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: clamp(4.8rem, 9vw, 7.6rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+    filter: drop-shadow(0 0 48px rgba(255, 155, 43, 0.28));
+}
+
 /* ── Section backgrounds ── */
 .about, .events, .team { background: transparent; }
 
@@ -512,6 +525,100 @@ section {
 .hero-pill {
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
+
+/* ── Hero: Next Event Coming Soon card ── */
+.hero-next-event {
+    flex: 1;
+    max-width: 520px;
+    padding: var(--space-2xl) var(--space-xl);
+    border-radius: 24px;
+    background: rgba(18, 18, 18, 0.75);
+    border: 1px solid rgba(255, 155, 43, 0.18);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 0 80px rgba(255, 155, 43, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-next-event:hover {
+    border-color: rgba(255, 155, 43, 0.35);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), inset 0 0 80px rgba(255, 155, 43, 0.05);
+}
+.hero-ne-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+    border: 1px solid rgba(255, 155, 43, 0.3);
+    border-radius: 999px;
+    padding: 3px 14px;
+    align-self: flex-start;
+}
+.hero-ne-title {
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+}
+.hero-ne-body {
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: var(--space-lg);
+    flex: 1;
+}
+.hero-ne-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 0;
+}
+.hero-ne-date {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ── Hero stats strip ── */
+.hero-stats {
+    display: flex;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.hero-stat-num {
+    font-family: "EB Garamond", "Garamond", Georgia, serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+.hero-stat-lbl {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+@media (max-width: 600px) {
+    .hero-stats { gap: var(--space-lg); }
+    .hero-stat-num { font-size: 1.7rem; }
+}
+
 
 .contact-col p { color: var(--muted); font-size: 0.95rem; margin-bottom: var(--space-sm); }
 .contact-col a { color: var(--accent); }
