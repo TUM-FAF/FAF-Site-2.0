@@ -6,49 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      corePlugins: { preflight: false },
-      theme: {
-        extend: {
-          colors: {
-            bg: '#050505', 'bg-alt': '#121212',
-            accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
-          },
-          maxWidth: { '8xl': '1440px' }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#050505', 'bg-alt': '#121212',
+                        accent: '#ff9b2b', 'accent-soft': '#ff5b2b', muted: '#b3b3b3'
+                    },
+                    maxWidth: { '8xl': '1440px' }
+                }
+            }
         }
-      }
-    }
-  </script>
+    </script>
     <link rel="stylesheet" href="events.css">
 </head>
 <body class="events-page">
 <canvas id="backgroundCanvas"></canvas>
 <canvas id="starsCanvas"></canvas>
 <header class="site-header">
-    <div class="mobile-only" style="position:fixed;top:0;left:0;width:100%;height:3px;background:var(--accent);z-index:100;"></div>
     <div class="logo">
         <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
     </div>
-    <nav class="nav">
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
         <div class="nav-dropdown">
-          <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
-          <div class="nav-dropdown-menu">
-        <a href="index.html#feedback">Feedback</a>
-        <a href="index.html#meeting">Meeting</a>
-        <a href="index.html#partners">Partners</a>
-          </div>
+            <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
+            <div class="nav-dropdown-menu">
+                <a href="index.html#feedback">Feedback</a>
+                <a href="index.html#meeting">Meeting</a>
+                <a href="index.html#partners">Partners</a>
+            </div>
         </div>
         <a href="aboutUs.html">About</a>
         <a href="events.html" class="active">Events</a>
         <a href="gallery.html">Gallery</a>
         <div class="nav-dropdown">
-          <a href="#" class="nav-dropdown-trigger">Get Involved <span class="dropdown-arrow">▾</span></a>
-          <div class="nav-dropdown-menu">
-            <a href="sponsorship.html">Become a Sponsor</a>
-            <a href="volunteers.html">Become a Volunteer</a>
-          </div>
+            <a href="#" class="nav-dropdown-trigger">Get Involved <span class="dropdown-arrow">▾</span></a>
+            <div class="nav-dropdown-menu">
+                <a href="sponsorship.html">Become a Sponsor</a>
+                <a href="volunteers.html">Become a Volunteer</a>
+            </div>
         </div>
         <a href="index.html#contact">Contact</a>
     </nav>
@@ -106,118 +105,179 @@
         </div>
     </section>
 
-    <section class="events">
-        <div class="event-grid-special">
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/XMAS-hack-2025.png" alt="XMAS Hackathon banner" class="event-hero-img">
-                <h3>XMAS Hackathon 2025</h3>
-                <p>
-                    <b>Held: December 20-21, 2025 | Tekwill</b><br>
-                    The most iconic year-end event for the FAF community, focused on "Building Something Epic." This edition featured three intensive technical tracks: <b>AI for Study Optimization, Machine Learning, and Cybersecurity</b>. Each category concluded with a major prize for the winning teams, alongside the high-level mentorship and festive atmosphere that defines the FAF family.                </p>
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/programmers-day.png" alt="Programmers Day banner" class="event-hero-img">
-                <h3>Programmers’ Day 2025</h3>
-                <p>
-                    <b>Held: September 13, 2025 | Tekwill</b><br>
-                    A large-scale celebration of the 256th day of the year. The event featured a technical conference with international experts, followed by interactive IT quizzes with prizes and a vibrant networking session to connect the community.
-                </p>
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/summer-hackathon.png" alt="Summer Hackathon banner" class="event-hero-img">
-                <h3>Summer Hackathon 2025</h3>
-                <p>
-                    <b>Held: June 21-22, 2025 | CyberCor</b><br>
-                    A 24-hour endurance challenge where 150+ students and mentors built new tech products from scratch. Participants competed in three distinct technical categories, with <b>prizes of €3000</b> awarded for the winning solutions in each track.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/she-novate.png" alt="She-novate Conference banner" class="event-hero-img">
-                <h3>She-novate 2025</h3>
-                <p>
-                    <b>Held: March 9, 2025 | Tekwill</b><br>
-                    An empowering forum dedicated to women in technology. This edition featured keynote speeches and hands-on workshops led exclusively by industry leaders, focusing on breaking gender barriers and providing practical skill-building pathways.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/XMAS-hackathon.png" alt="XMAS Hackathon banner" class="event-hero-img">
-                <h3>XMAS Hackathon 2024</h3>
-                <p>
-                    <b>Held: December 21-22, 2024 | Tekwill</b><br>
-                    A holiday-themed 24h sprint centered on creative problem-solving. This edition emphasized community-led innovation, with mentors from top tech companies guiding teams to build functional prototypes in just one weekend.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/programmers-day-2024.png" alt="Programmers Day banner" class="event-hero-img">
-                <h3>Programmers’ Day 2024</h3>
-                <p>
-                    <b>Held: September 12, 2024 | Tekwill</b><br>
-                    The annual gathering featured technical talks from companies like <b>Amdaris and Cegeka</b>. The event focused on professional career paths and included a major networking session for students and young professionals.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/summer-hack-2024.png" alt="Summer Hackathon banner" class="event-hero-img">
-                <h3>Summer Hackathon 2024</h3>
-                <p>
-                    <b>Held: June 15-16, 2024 | FCIM Amphitheater</b><br>
-                    A "Marathon of Ingenuity" centered on solving real-world consumer problems through web platforms. Winning teams were recognized with specialized prizes from <b>TechQuarter</b> and <b>Stefanini</b>.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/xmas-hack-2023.png" alt="XMAS Hackathon banner" class="event-hero-img">
-                <h3>XMAS Hackathon 2023</h3>
-                <p>
-                    <b>Held: December 23-24, 2023 | Tekwill</b><br>
-                    75 enthusiasts tackled complex challenges in OCR technology and automatic timetable generation. The first-place prize was sponsored by <b>Allied Testing</b>, celebrating technical competence and festive collaboration.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/programmers-day-2023.png" alt="Programmers Day banner" class="event-hero-img">
-                <h3>Programmers’ Day 2023</h3>
-                <p>
-                    <b>Held: September 13, 2023 | Tekwill</b><br>
-                    A landmark celebration featuring panels on the future of AI and Web Development. The event hosted several guest speakers from the local IT hub and offered a platform for student-led project demonstrations.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/summer-hack-2023.png" alt="Summer Hackathon banner" class="event-hero-img">
-                <h3>Summer Hackathon 2023</h3>
-                <p>
-                    <b>Held: June 17-18, 2023 | UTM</b><br>
-                    Focused on building sustainable tech solutions, this 24h sprint brought together multi-disciplinary teams. It was noted for its high mentor-to-participant ratio, helping junior developers refine their product pitches.
-                </p>
-
-            </article>
-
-            <article class="event-card-featured card-glass">
-                <img src="assets/photos/xmas-hack-2022.png" alt="XMAS Hackathon banner" class="event-hero-img">
-                <h3>XMAS Hackathon 2022</h3>
-                <p>
-                    <b>Held: December 17-18, 2022 | Tekwill</b><br>
-                    One of our first major post-pandemic gatherings. The event focused on "Smart City" concepts and featured a strong emphasis on game development and hardware integration using Arduino-based projects.
-                </p>
-
-            </article>
-
+    <header class="page-title events-page-title">
+        <div class="container">
+            <h2>Past Events</h2>
+            <p class="section-subtitle">A timeline of what we've built and celebrated together.</p>
         </div>
-    </section>
+    </header>
+
+    <!-- ── Planet + Events grid ───────────────────────────── -->
+    <div class="page-end-wrapper">
+        <div class="planet-parallax-zone" aria-hidden="true">
+            <img src="assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img data-planet-align="right">
+        </div>
+
+        <section class="events">
+            <div class="event-grid-special distance-stage">
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/XMAS-hack-2025.png" alt="XMAS Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>XMAS Hackathon 2025</h3>
+                            <span class="event-card__sub">December 20&ndash;21, 2025 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">The most iconic year-end FAF event. Three tracks: AI for Study Optimization, Machine Learning, Cybersecurity &mdash; each with major prizes.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/programmers-day.png" alt="Programmers Day banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>Programmers’ Day 2025</h3>
+                            <span class="event-card__sub">September 13, 2025 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">A celebration of the 256th day of the year with a technical conference, international experts, IT quizzes, and networking.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/summer-hackathon.png" alt="Summer Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>Summer Hackathon 2025</h3>
+                            <span class="event-card__sub">June 21&ndash;22, 2025 &middot; CyberCor</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">24-hour endurance challenge. 150+ students built tech products from scratch, competing for &euro;3000 prizes per track.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/she-novate.png" alt="She-novate Conference banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>She-novate 2025</h3>
+                            <span class="event-card__sub">March 9, 2025 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">Empowering forum for women in tech with keynotes and workshops led by industry leaders, focused on breaking gender barriers.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/XMAS-hackathon.png" alt="XMAS Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>XMAS Hackathon 2024</h3>
+                            <span class="event-card__sub">December 21&ndash;22, 2024 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">Holiday-themed 24h sprint on creative problem-solving. Mentors from top tech companies helped teams build functional prototypes.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/programmers-day-2024.png" alt="Programmers Day banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>Programmers’ Day 2024</h3>
+                            <span class="event-card__sub">September 12, 2024 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">Technical talks from Amdaris and Cegeka focused on career paths, with a major networking session for students and young professionals.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/summer-hack-2024.png" alt="Summer Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>Summer Hackathon 2024</h3>
+                            <span class="event-card__sub">June 15&ndash;16, 2024 &middot; FCIM Amphitheater</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">&ldquo;Marathon of Ingenuity&rdquo; building web platforms for real-world consumer problems. Prizes from TechQuarter and Stefanini.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/xmas-hack-2023.png" alt="XMAS Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>XMAS Hackathon 2023</h3>
+                            <span class="event-card__sub">December 23&ndash;24, 2023 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">75 enthusiasts tackled OCR technology and automatic timetable generation. First-place prize sponsored by Allied Testing.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/programmers-day-2023.png" alt="Programmers Day banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>Programmers’ Day 2023</h3>
+                            <span class="event-card__sub">September 13, 2023 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">Panels on AI and Web Development with guest speakers from the local IT hub and student-led project demonstrations.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/summer-hack-2023.png" alt="Summer Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>Summer Hackathon 2023</h3>
+                            <span class="event-card__sub">June 17&ndash;18, 2023 &middot; UTM</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">Sustainable tech solutions sprint with a high mentor-to-participant ratio, helping junior developers refine their product pitches.</p>
+                </article>
+
+                <article class="event-card-featured">
+                    <div class="event-card__thumb">
+                        <img src="assets/photos/xmas-hack-2022.png" alt="XMAS Hackathon banner" class="event-hero-img">
+                    </div>
+                    <div class="event-card__footer">
+                        <div class="event-card__info">
+                            <h3>XMAS Hackathon 2022</h3>
+                            <span class="event-card__sub">December 17&ndash;18, 2022 &middot; Tekwill</span>
+                        </div>
+                        <span class="event-card__arrow" aria-hidden="true">&#x2197;</span>
+                    </div>
+                    <p class="event-card__desc">First major post-pandemic gathering focused on Smart City concepts, game development, and hardware integration with Arduino.</p>
+                </article>
+
+            </div>
+        </section>
+    </div><!-- /.page-end-wrapper -->
 </main>
 
 <footer class="site-footer">
@@ -233,12 +293,56 @@
     });
 </script>
 <script src="stars.js"></script>
+<script type="module">
+    import { initDistanceScroll } from '/src/effects/distanceScroll.js';
+    initDistanceScroll();
+</script>
+<div id="nav-overlay" aria-hidden="true"></div>
+<script src="src/effects/planetParallax.js"></script>
 <script>
+    /* ── Full navigation + dropdown handler ── */
     const hamburger = document.getElementById('hamburger');
-    const nav = document.querySelector('.nav');
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        nav.classList.toggle('open');
+    const nav       = document.getElementById('main-nav');
+    const overlay   = document.getElementById('nav-overlay');
+
+    function openNav() {
+        nav.classList.add('open');
+        hamburger.classList.add('open');
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('nav-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeNav() {
+        nav.classList.remove('open');
+        hamburger.classList.remove('open');
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('nav-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+    }
+
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-controls', 'main-nav');
+    hamburger.addEventListener('click', () => nav.classList.contains('open') ? closeNav() : openNav());
+    overlay.addEventListener('click', closeNav);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+    document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+        trigger.addEventListener('click', e => {
+            if (window.innerWidth > 768) return;
+            e.preventDefault();
+            const dropdown = trigger.closest('.nav-dropdown');
+            const wasOpen  = dropdown.classList.contains('open');
+            document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+            if (!wasOpen) dropdown.classList.add('open');
+        });
+    });
+
+    nav.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => {
+        a.addEventListener('click', closeNav);
     });
 </script>
 </body>

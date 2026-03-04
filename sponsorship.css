@@ -5,8 +5,8 @@
     padding-top: calc(80px + 60px);
     padding-bottom: var(--space-2xl);
     background:
-        radial-gradient(circle at 20% 10%, rgba(255, 155, 43, 0.15) 0, transparent 50%),
-        radial-gradient(circle at 80% 90%, rgba(255, 91, 43, 0.1) 0, transparent 60%);
+            radial-gradient(circle at 20% 10%, rgba(255, 155, 43, 0.15) 0, transparent 50%),
+            radial-gradient(circle at 80% 90%, rgba(255, 91, 43, 0.1) 0, transparent 60%);
     text-align: center;
 }
 
@@ -134,13 +134,21 @@
 .tier-premium {
     border-color: rgba(255, 155, 43, 0.35);
     box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.55),
-        0 0 60px rgba(255, 155, 43, 0.08);
+            0 18px 45px rgba(0, 0, 0, 0.55),
+            0 0 60px rgba(255, 155, 43, 0.08);
 }
 
 /* ── Partner card subtle glow ── */
 .tier-partner {
     border-color: rgba(255, 91, 43, 0.2);
+}
+
+/* ── Sponsorship page: planet spans from page bottom up to companies section ── */
+.sponsorship-page .planet-img {
+    width: clamp(1100px, 155vw, 2800px);
+    mask-image: linear-gradient(to top, black 48%, transparent 88%);
+    -webkit-mask-image: linear-gradient(to top, black 48%, transparent 88%);
+    opacity: 0.82;
 }
 
 /* ── Responsive ── */
@@ -167,6 +175,11 @@
 
     .why-grid {
         grid-template-columns: 1fr;
+    }
+
+    .sponsorship-page .planet-img {
+        width: clamp(640px, 160vw, 1300px);
+        opacity: 0.65;
     }
 }
 

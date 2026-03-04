@@ -27,11 +27,10 @@
 <canvas id="backgroundCanvas"></canvas>
 <canvas id="starsCanvas"></canvas>
 <header class="site-header">
-  <div class="mobile-only" style="position:fixed;top:0;left:0;width:100%;height:3px;background:var(--accent);z-index:100;"></div>
   <div class="logo">
     <img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo">
   </div>
-  <nav class="nav">
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
     <div class="nav-dropdown">
       <a href="index.html" class="nav-dropdown-trigger">Home <span class="dropdown-arrow">▾</span></a>
       <div class="nav-dropdown-menu">
@@ -182,31 +181,36 @@
     </div>
   </section>
 
-  <!-- Current Partners -->
-  <section class="partners">
-    <div class="container partners-inner">
-      <h2>Companies we've worked with</h2>
-      <p class="section-subtitle" style="margin-left: auto; margin-right: auto; text-align: center;">
-        Past and present partners who helped make our events possible.
-      </p>
-
-      <div class="partners-logos-row">
-        <img src="assets/logos/efes.png" alt="Efes" class="logo-big">
-        <img src="assets/logos/amdaris.png" alt="Amdaris">
-        <img src="assets/logos/allied-testing.png" alt="Allied Testing">
-        <img src="assets/logos/utm.png" alt="UTM" class="logo-big">
-        <img src="assets/logos/tech-quarter.png" alt="Tech Quarter" class="logo-big">
-        <img src="assets/logos/tekwill.png" alt="Tekwill" class="logo-big">
-        <img src="assets/logos/cybercor.png" alt="Cybercor" class="logo-big">
-        <img src="assets/logos/optiplaza.png" alt="Optiplaza">
-        <img src="assets/logos/pgi.png" alt="PGI" class="logo-big">
-        <img src="assets/logos/sigmoid.png" alt="Sigmoid" class="logo-big">
-        <img src="assets/logos/fusionworks.png" alt="FusionWorks" class="logo-big">
-        <img src="assets/logos/stefanini.png" alt="Stefanini" class="logo-big">
-      </div>
+  <!-- ── Planet + Current Partners ───────────────────── -->
+  <div class="page-end-wrapper">
+    <div class="planet-parallax-zone" aria-hidden="true">
+      <img src="assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
     </div>
-  </section>
 
+    <section class="partners">
+      <div class="container partners-inner">
+        <h2>Companies we've worked with</h2>
+        <p class="section-subtitle" style="margin-left: auto; margin-right: auto; text-align: center;">
+          Past and present partners who helped make our events possible.
+        </p>
+
+        <div class="partners-logos-row">
+          <img src="assets/logos/efes.png" alt="Efes" class="logo-big">
+          <img src="assets/logos/amdaris.png" alt="Amdaris">
+          <img src="assets/logos/allied-testing.png" alt="Allied Testing">
+          <img src="assets/logos/utm.png" alt="UTM" class="logo-big">
+          <img src="assets/logos/tech-quarter.png" alt="Tech Quarter" class="logo-big">
+          <img src="assets/logos/tekwill.png" alt="Tekwill" class="logo-big">
+          <img src="assets/logos/cybercor.png" alt="Cybercor" class="logo-big">
+          <img src="assets/logos/optiplaza.png" alt="Optiplaza">
+          <img src="assets/logos/pgi.png" alt="PGI" class="logo-big">
+          <img src="assets/logos/sigmoid.png" alt="Sigmoid" class="logo-big">
+          <img src="assets/logos/fusionworks.png" alt="FusionWorks" class="logo-big">
+          <img src="assets/logos/stefanini.png" alt="Stefanini" class="logo-big">
+        </div>
+      </div>
+    </section>
+  </div><!-- /.page-end-wrapper -->
 
 
 </main>
@@ -217,14 +221,54 @@
     <p>Built by FAF students for the FAF community.</p>
   </div>
 </footer>
+<div id="nav-overlay" aria-hidden="true"></div>
 <script src="stars.js"></script>
 <script>
+  /* ── Full navigation + dropdown handler ── */
   const hamburger = document.getElementById('hamburger');
-  const nav = document.querySelector('.nav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    nav.classList.toggle('open');
+  const nav       = document.getElementById('main-nav');
+  const overlay   = document.getElementById('nav-overlay');
+
+  function openNav() {
+    nav.classList.add('open');
+    hamburger.classList.add('open');
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('nav-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeNav() {
+    nav.classList.remove('open');
+    hamburger.classList.remove('open');
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nav-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-controls', 'main-nav');
+  hamburger.addEventListener('click', () => nav.classList.contains('open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      const dropdown = trigger.closest('.nav-dropdown');
+      const wasOpen  = dropdown.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+      if (!wasOpen) dropdown.classList.add('open');
+    });
+  });
+
+  nav.querySelectorAll('a:not(.nav-dropdown-trigger)').forEach(a => {
+    a.addEventListener('click', closeNav);
   });
 </script>
+<script src="src/effects/planetParallax.js"></script>
 </body>
 </html>

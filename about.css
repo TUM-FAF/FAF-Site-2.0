@@ -3,6 +3,7 @@
 .about-intro {
     text-align: center;
     padding-top: calc(80px + var(--space-2xl)); /* Offset for fixed header */
+    background: radial-gradient(ellipse at 50% 90%, rgba(255, 155, 43, 0.06) 0%, transparent 65%);
 }
 
 .intro-content {
@@ -20,6 +21,7 @@
 .details-grid {
     padding: var(--space-2xl);
     margin: 0 auto;
+    border-left: 3px solid var(--accent);
 }
 
 .details-text h2 {
@@ -57,7 +59,7 @@
 .site-footer {
     padding: var(--space-xl) 0;
     margin-top: var(--space-2xl);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none; /* planet decoration replaces the visual separator */
 }
 
 .footer-inner {
@@ -101,6 +103,11 @@
     text-align: center;
 }
 
+/* Push the action button down so it has clear visual breathing room */
+.volunteer-content .btn {
+    margin-top: var(--space-xl);
+}
+
 .registration-form-wrapper {
     text-align: left;
     max-width: 800px;
@@ -120,6 +127,16 @@
     gap: var(--space-lg);
 }
 
+/* Team card hover lift */
+.team-card.card-glass {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.team-card.card-glass:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+}
+
 @media (max-width: 768px) {
     .volunteer-form .form-grid {
         grid-template-columns: 1fr;
@@ -129,8 +146,22 @@
         padding: var(--space-lg);
     }
 
+    /* 2-column team grid on mobile */
     .team-row {
-        justify-content: center;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-md);
+        justify-items: center;
+    }
+
+    .team-card {
+        flex: none;
+        width: 100%;
+    }
+
+    .avatar {
+        width: 72px;
+        height: 72px;
     }
 
     .cta-box .btn {
