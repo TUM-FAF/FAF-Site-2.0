@@ -143,6 +143,14 @@
     border-color: rgba(255, 91, 43, 0.2);
 }
 
+/* ── Sponsorship page: planet spans from page bottom up to companies section ── */
+.sponsorship-page .planet-img {
+    width: clamp(1100px, 155vw, 2800px);
+    mask-image: linear-gradient(to top, black 48%, transparent 88%);
+    -webkit-mask-image: linear-gradient(to top, black 48%, transparent 88%);
+    opacity: 0.82;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1100px) {
     .tiers-grid {
@@ -167,6 +175,11 @@
 
     .why-grid {
         grid-template-columns: 1fr;
+    }
+
+    .sponsorship-page .planet-img {
+        width: clamp(640px, 160vw, 1300px);
+        opacity: 0.65;
     }
 }
 

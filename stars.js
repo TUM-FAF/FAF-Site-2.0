@@ -119,3 +119,46 @@ function createStars() {
 
 createStars();
 animateStars();
+
+/* ── Auto-hide header on scroll (mobile only) ─────────────────────────────
+   Hides the fixed header when scrolling down past 80px, reveals it when
+   scrolling back up or when the mobile nav is open.
+─────────────────────────────────────────────────────────────────────────── */
+(function () {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    window.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(function () {
+            // Only apply on mobile viewports
+            if (window.innerWidth > 768) {
+                header.classList.remove('header-hidden');
+                lastY = window.scrollY;
+                ticking = false;
+                return;
+            }
+
+            // Never hide while the burger menu is open
+            if (document.body.classList.contains('nav-open')) {
+                lastY = window.scrollY;
+                ticking = false;
+                return;
+            }
+
+            const currentY = window.scrollY;
+            if (currentY > lastY && currentY > 80) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+            lastY = currentY;
+            ticking = false;
+        });
+    }, { passive: true });
+}());

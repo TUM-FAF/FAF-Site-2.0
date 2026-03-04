@@ -28,7 +28,6 @@
 <canvas id="starsCanvas"></canvas>
 <!-- Header -->
 <header class="site-header">
-  <div class="mobile-only" style="position:fixed;top:0;left:0;width:100%;height:3px;background:var(--accent);z-index:100;"></div>
   <div class="logo">
     <a href="index.html"><img src="assets/logos/logo-faf-dark.svg" alt="FAF NGO logo"></a>
   </div>
@@ -86,31 +85,34 @@
           <a href="sponsorship.html" class="btn btn-primary">Book a meeting</a>
           <a href="volunteers.html" class="btn btn-secondary">Become a volunteer</a>
         </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">150+</span>
+            <span class="hero-stat-lbl">Participants per event</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">6</span>
+            <span class="hero-stat-lbl">Events per year</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">5+</span>
+            <span class="hero-stat-lbl">Years running</span>
+          </div>
+        </div>
       </div>
 
       <div class="hero-visual">
-        <div class="hero-photo-grid">
-          <div class="hero-photo hero-photo-large">
-            <img src="assets/photos/hero-2.JPG" alt="Students at FAF hackathon">
+        <div class="hero-next-event">
+          <span class="hero-ne-label">Coming Soon</span>
+          <h3 class="hero-ne-title">Summer Hackathon 2026</h3>
+          <p class="hero-ne-body">Our flagship summer hackathon returns — 24 hours of building, mentorship, and high-energy competition. Come ready to create something real.</p>
+          <div class="hero-ne-meta">
+            <span class="hero-ne-date">June 20–21, 2026</span>
+            <span>·</span>
+            <span>Chișinău, Moldova</span>
           </div>
-          <div class="hero-photo hero-photo-small">
-            <img src="assets/photos/hero-1.JPG" alt="Team presenting project">
-          </div>
-          <div class="hero-photo hero-photo-small">
-            <img src="assets/photos/hero-3.JPG" alt="Mentor helping participants">
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <p class="hero-card-title">Summer Hackathon</p>
-          <p class="hero-card-text">
-            A fast‑paced 24h+ competition where students, mentors, and companies build innovative projects.
-          </p>
-          <span class="hero-card-tag">Coming Summer 2026 · details soon</span>
-        </div>
-
-        <div class="hero-pill">
-          Hackathons · Lectures · Programmer’s Day · SheNovate
+          <a href="events.html" class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">Register Now →</a>
         </div>
       </div>
     </div>
@@ -124,13 +126,29 @@
         We create high-impact spaces where students, mentors, and professionals learn, build, and celebrate technology together. From 24-hour technical marathons to community-led workshops, discover how we are shaping the local IT landscape.
       </p>
 
-      <div class="events-content">
-        <div class="hero-pill" style="max-width: fit-content; margin-bottom: var(--space-lg);">
-          Hackathons · Technical Lectures · Programmer’s Day · She-novate · Community Evenings
+      <div class="events-overview">
+        <div class="events-list-col">
+          <ul class="event-type-list">
+            <li>Hackathons</li>
+            <li>Technical Lectures</li>
+            <li>Programmer's Day</li>
+            <li>SheNovate</li>
+            <li>Community Evenings</li>
+          </ul>
+          <a href="events.html" class="btn btn-primary" style="margin-top: var(--space-md);">View Events History</a>
         </div>
-
-        <div class="events-cta">
-          <a href="events.html" class="btn btn-primary">View Events History</a>
+        <div class="events-photos-col">
+          <div class="ep-grid">
+            <div class="ep-large">
+              <img src="assets/photos/hero-2.JPG" alt="Students at FAF hackathon">
+            </div>
+            <div class="ep-small">
+              <img src="assets/photos/hero-1.JPG" alt="Team presenting project">
+            </div>
+            <div class="ep-small">
+              <img src="assets/photos/hero-3.JPG" alt="Mentor helping participants">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -313,52 +331,58 @@
 
       <div class="feedback-grid">
         <div class="feedback-row1">
-        <article class="feedback-card card-glass">
+        <article class="feedback-bubble">
           <p>
-            “This was my first hackathon and I really enjoyed my time there.”
+            "This was my first hackathon and I really enjoyed my time there."
           </p>
-          <span>Participant, XMAS FAF Hackathon 2025</span>
+          <span class="bubble-author">Participant, XMAS FAF Hackathon 2025</span>
         </article>
 
-        <article class="feedback-card card-glass">
+        <article class="feedback-bubble">
           <p>
-            “This is pure genial, like RESPECT to all stuff that contributed to the hackathon.”
+            "This is pure genial, like RESPECT to all stuff that contributed to the hackathon."
           </p>
-          <span>Participant, XMAS FAF Hackathon 2025</span>
+          <span class="bubble-author">Participant, XMAS FAF Hackathon 2025</span>
         </article>
 
-        <article class="feedback-card card-glass">
+        <article class="feedback-bubble">
           <p>
-            “Nota 10, cum zice Ciorbă: Bravo :)”
+            "Nota 10, cum zice Ciorbă: Bravo :)"
           </p>
-          <span>FAF student, FAF‑22x, XMAS FAF Hackathon 2025</span>
+          <span class="bubble-author">FAF student, FAF‑22x, XMAS FAF Hackathon 2025</span>
         </article>
         </div>
         <div class="feedback-row2">
-        <article class="feedback-card card-glass">
+        <article class="feedback-bubble">
           <p>
-            “Mi-a plăcut organizarea, locaţia şi faptul că am învăţat chestii practice.”
+            "Mi-a plăcut organizarea, locaţia şi faptul că am învăţat chestii practice."
           </p>
-          <span>Participant, SheNovate 2025</span>
+          <span class="bubble-author">Participant, SheNovate 2025</span>
         </article>
 
-        <article class="feedback-card card-glass">
+        <article class="feedback-bubble">
           <p>
-            “O bună selecție de speakeri invitați și sarcini practice.”
+            "O bună selecție de speakeri invitați şi sarcini practice."
           </p>
-          <span>Participant, SheNovate 2025</span>
+          <span class="bubble-author">Participant, SheNovate 2025</span>
         </article>
 
-        <article class="feedback-card card-glass">
+        <article class="feedback-bubble">
           <p>
-            “The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful (The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful”
+            "The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful (The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful"
           </p>
-          <span>Participant, XMAS FAF Hackathon 2024</span>
+          <span class="bubble-author">Participant, XMAS FAF Hackathon 2024</span>
         </article>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ── Planet backdrop: meeting → partners → contact ── -->
+  <div class="page-end-wrapper page-end-home">
+    <div class="planet-parallax-zone" aria-hidden="true">
+      <img src="assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+    </div>
 
   <!-- Meeting form -->
   <section id="meeting" class="meeting">
@@ -462,6 +486,7 @@
       </div>
     </div>
   </section>
+  </div><!-- /.page-end-wrapper -->
 
 </main>
 
@@ -476,6 +501,7 @@
 <div id="nav-overlay" aria-hidden="true"></div>
 <script src="stars.js"></script>
 <script src="src/mascot/mascot.js"></script>
+<script src="src/effects/planetParallax.js"></script>
 <script>
   /* ── Navigation + Mascot ─────────────────────────────────────────────── */
   const hamburger = document.getElementById('hamburger');
