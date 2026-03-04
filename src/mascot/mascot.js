@@ -59,9 +59,9 @@
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  /* Rig size — keep in sync with CSS #mascot-skeleton              */
-  const RIG_W = 180;
-  const RIG_H = 240;
+  /* Rig size — keep in sync with CSS #mascot-skeleton width/height  */
+  const RIG_W = 200;   /* sync with #mascot-skeleton width  in mascot.css */
+  const RIG_H = 270;   /* sync with #mascot-skeleton height in mascot.css */
 
   let posX = 0, posY = 0;     /* current top-left of rig (px)      */
   let heading = 0;             /* direction of travel (radians)     */

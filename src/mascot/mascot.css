@@ -45,22 +45,35 @@
 
 
 /* ── 3. Skeleton rig — JS rotates this to face movement direction ── */
-/* TWEAK OFFSETS: change the CSS variables below to fit your artwork  */
+/*
+  ┌─ RESIZE THE MASCOT ──────────────────────────────────────────────┐
+  │  1. Change width/height below (rig bounding box).               │
+  │  2. Update transform-origin to (width/2)px (height/2)px.        │
+  │  3. Update RIG_W and RIG_H in mascot.js to match.               │
+  └──────────────────────────────────────────────────────────────────┘
+  ┌─ REPOSITION PARTS ───────────────────────────────────────────────┐
+  │  Tweak only the --var values to move individual parts.           │
+  │  -x = left edge, -y = top edge of that PNG layer.               │
+  │  Rule of thumb: body-x ≈ (rig width - body width) / 2           │
+  │                 head-x ≈ (rig width - head width) / 2           │
+  │                 legs should sit ≈ 10–14 px apart (centers).     │
+  └──────────────────────────────────────────────────────────────────┘
+*/
 #mascot-skeleton {
   position: relative;
-  width: 180px;          /* rig bounding-box width  — sync with RIG_W in JS */
-  height: 240px;         /* rig bounding-box height — sync with RIG_H in JS */
+  width: 200px;          /* rig bounding-box — sync with RIG_W in JS  */
+  height: 270px;         /* rig bounding-box — sync with RIG_H in JS  */
   overflow: visible;
-  /* Rotation applied by JS — pivot at visual centre of the rig */
-  transform-origin: 90px 120px;
+  /* pivot at visual centre; update when you change width/height    */
+  transform-origin: 100px 135px;
 
-  /* ── Part offsets (px) — adjust these to align your PNGs ───── */
-  --head-x: 50px;   --head-y: 0px;      /* head position              */
-  --body-x: 40px;   --body-y: 55px;     /* body position              */
-  --arm-l-x: 118px; --arm-l-y: 72px;    /* left arm  (viewer's right) */
-  --arm-r-x: 18px;  --arm-r-y: 72px;    /* right arm (viewer's left)  */
-  --leg-l-x: 84px;  --leg-l-y: 158px;   /* left leg  — CLOSER together */
-  --leg-r-x: 60px;  --leg-r-y: 158px;   /* right leg — 24 px gap      */
+  /* ── Part offsets (px) ────────────────────────────────────────── */
+  --head-x: 53px;   --head-y: 0px;    /* head: centre under rig ≈ 100px  */
+  --body-x: 40px;   --body-y: 55px;   /* body centre ≈ 100px             */
+  --arm-l-x: 148px; --arm-l-y: 75px;  /* left arm  — shoulder, right side */
+  --arm-r-x: 5px;   --arm-r-y: 75px;  /* right arm — shoulder, left side  */
+  --leg-l-x: 83px;  --leg-l-y: 178px; /* left leg  — 14 px gap between    */
+  --leg-r-x: 69px;  --leg-r-y: 178px; /* right leg   leg centres          */
 }
 
 
@@ -76,52 +89,59 @@
 /* ── 5. Per-part position, size, z-index, animation ──────────── */
 /* z-index scheme: head 4 · arm-left 3 · body 2 · arm-right/legs 1 */
 
+/*
+  ┌─ RESIZE INDIVIDUAL PARTS ────────────────────────────────────────┐
+  │  Change the width value on each rule below.                     │
+  │  Parts scale from their top-left corner, so also update the     │
+  │  matching --x / --y offset above when you resize.              │
+  └──────────────────────────────────────────────────────────────────┘
+*/
 .mascot-head {
   z-index: 4;
-  width: 80px;
+  width: 95px;           /* ← resize head here */
   left: var(--head-x);
   top:  var(--head-y);
   transform-origin: center bottom;
-  animation: mascot-head-tilt 6s ease-in-out infinite;  /* ±1.5 deg */
+  animation: mascot-head-tilt 6s ease-in-out infinite;
 }
 
 .mascot-body {
   z-index: 2;
-  width: 100px;
+  width: 80px;          /* ← resize body here */
   left: var(--body-x);
   top:  var(--body-y);
 }
 
 .mascot-arm-left {
   z-index: 3;
-  width: 45px;
+  width: 55px;           /* ← resize arms here */
   left: var(--arm-l-x);
   top:  var(--arm-l-y);
-  transform-origin: top left;          /* pivot at shoulder */
-  animation: mascot-arm-l 4s ease-in-out infinite;   /* ±3 deg wiggle */
+  transform-origin: top left;
+  animation: mascot-arm-l 4s ease-in-out infinite;
 }
 
 .mascot-arm-right {
   z-index: 1;
-  width: 45px;
+  width: 55px;
   left: var(--arm-r-x);
   top:  var(--arm-r-y);
   transform-origin: top right;
-  animation: mascot-arm-r 4.6s ease-in-out infinite; /* offset timing */
+  animation: mascot-arm-r 4.6s ease-in-out infinite;
 }
 
 .mascot-leg-left {
   z-index: 1;
-  width: 40px;
+  width: 48px;           /* ← resize legs here */
   left: var(--leg-l-x);
   top:  var(--leg-l-y);
   transform-origin: top center;
-  animation: mascot-leg-l 5s ease-in-out infinite;   /* ±2 deg wiggle */
+  animation: mascot-leg-l 5s ease-in-out infinite;
 }
 
 .mascot-leg-right {
   z-index: 1;
-  width: 40px;
+  width: 48px;
   left: var(--leg-r-x);
   top:  var(--leg-r-y);
   transform-origin: top center;
@@ -130,39 +150,47 @@
 
 
 /* ── 6. Keyframes — head tilt, arm / leg wiggles ─────────────── */
-/* Head: subtle ±1.5 deg tilt */
+/*
+  ┌─ TWEAK WIGGLE AMPLITUDE ─────────────────────────────────────────┐
+  │  Change the rotate() degree values to swing more / less.        │
+  │  Current: head ±2.5°, arms ±7°, legs ±5°                        │
+  │  Timing (speed) is set via animation-duration on .mascot-* above │
+  └──────────────────────────────────────────────────────────────────┘
+*/
+
+/* Head: ±2.5 deg tilt */
 @keyframes mascot-head-tilt {
   0%, 100% { transform: rotate(0deg);    }
-  30%      { transform: rotate(1.5deg);  }
-  70%      { transform: rotate(-1deg);   }
+  30%      { transform: rotate(2.5deg);  }
+  70%      { transform: rotate(-2deg);   }
 }
 
-/* Arms: ±3 deg swing with tiny Y translate */
+/* Arms: ±7 deg swing */
 @keyframes mascot-arm-l {
   0%, 100% { transform: rotate(0deg)   translateY(0);    }
-  25%      { transform: rotate(3deg)   translateY(1px);  }
-  55%      { transform: rotate(-2deg)  translateY(-1px); }
-  75%      { transform: rotate(2.5deg) translateY(1px);  }
+  25%      { transform: rotate(7deg)   translateY(2px);  }
+  55%      { transform: rotate(-5deg)  translateY(-2px); }
+  75%      { transform: rotate(6deg)   translateY(2px);  }
 }
 
 @keyframes mascot-arm-r {
   0%, 100% { transform: rotate(0deg)   translateY(0);    }
-  20%      { transform: rotate(-3deg)  translateY(1px);  }
-  50%      { transform: rotate(2.5deg) translateY(-1px); }
-  80%      { transform: rotate(-2deg)  translateY(0);    }
+  20%      { transform: rotate(-7deg)  translateY(2px);  }
+  50%      { transform: rotate(6deg)   translateY(-2px); }
+  80%      { transform: rotate(-5deg)  translateY(0);    }
 }
 
-/* Legs: ±2 deg wiggle */
+/* Legs: ±5 deg wiggle */
 @keyframes mascot-leg-l {
-  0%, 100% { transform: rotate(0deg)    translateY(0);   }
-  30%      { transform: rotate(2deg)    translateY(1px); }
-  65%      { transform: rotate(-1.5deg) translateY(0);   }
+  0%, 100% { transform: rotate(0deg)   translateY(0);   }
+  30%      { transform: rotate(5deg)   translateY(2px); }
+  65%      { transform: rotate(-4deg)  translateY(0);   }
 }
 
 @keyframes mascot-leg-r {
-  0%, 100% { transform: rotate(0deg)    translateY(0);    }
-  35%      { transform: rotate(-2deg)   translateY(1px);  }
-  70%      { transform: rotate(1.5deg)  translateY(-1px); }
+  0%, 100% { transform: rotate(0deg)   translateY(0);    }
+  35%      { transform: rotate(-5deg)  translateY(2px);  }
+  70%      { transform: rotate(4deg)   translateY(-2px); }
 }
 
 
@@ -175,10 +203,11 @@
   left: 50%;
   transform: translateX(-50%) scale(0.88);
 
-  background: #fff;
-  color: #222;
+  background: rgba(255, 255, 255, 0.82); /* ← bubble transparency here */
+  color: #111;
   font-family: system-ui, sans-serif;
   font-size: 13px;
+  font-weight: bold;                     /* ← bubble font weight here  */
   line-height: 1.4;
   padding: 5px 12px;
   border-radius: 16px;
@@ -197,6 +226,10 @@
   position: absolute;
   background: #fff;
   border-radius: 50%;
+}
+#mascot-thought::before,
+#mascot-thought::after {
+  background: rgba(255, 255, 255, 0.82); /* match bubble transparency */
 }
 #mascot-thought::before {
   width: 9px; height: 9px;
