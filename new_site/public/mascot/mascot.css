@@ -1,0 +1,280 @@
+/* =============================================================
+   SPACE-CAT MASCOT  ·  src/mascot/mascot.css
+   Layered rig — constant-speed space drift, body orientation,
+   limb wiggles, and random thought bubble.
+
+   HOW TO ADJUST:
+   • Offsets:     --head-x/y … --leg-r-x/y on #mascot-skeleton.
+   • Rig size:    width/height on #mascot-skeleton AND RIG_W/H in JS.
+   • Wiggle:      rotate() values in the @keyframes section.
+   • Speed/turn:  SPEED and STEER_RATE in mascot.js CONFIG.
+   ============================================================= */
+
+
+/* ── 1. Root — JS sets transform:translate() for roaming ──────── */
+#mascot-root {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 8000;
+  cursor: grab;          /* grab by default, grabbing while held   */
+  outline: none;
+  touch-action: none;    /* prevent scroll-swipe stealing the drag */
+}
+
+#mascot-root.mascot--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Keyboard focus ring */
+#mascot-root:focus-visible {
+  outline: 2px solid #ff9b2b;
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+
+/* ── 2. Entrance fade-in — JS adds .mascot--visible ──────────── */
+/* The mascot flies in from above the viewport via JS physics.    */
+/* We only fade opacity here — position is handled by the loop.  */
+#mascot-inner {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+#mascot-root.mascot--visible #mascot-inner {
+  opacity: 1;
+}
+
+
+/* ── 3. Skeleton rig — JS rotates this to face movement direction ── */
+/*
+  ┌─ RESIZE THE MASCOT ──────────────────────────────────────────────┐
+  │  1. Change width/height below (rig bounding box).               │
+  │  2. Update transform-origin to (width/2)px (height/2)px.        │
+  │  3. Update RIG_W and RIG_H in mascot.js to match.               │
+  └──────────────────────────────────────────────────────────────────┘
+  ┌─ REPOSITION PARTS ───────────────────────────────────────────────┐
+  │  Tweak only the --var values to move individual parts.           │
+  │  -x = left edge, -y = top edge of that PNG layer.               │
+  │  Rule of thumb: body-x ≈ (rig width - body width) / 2           │
+  │                 head-x ≈ (rig width - head width) / 2           │
+  │                 legs should sit ≈ 10–14 px apart (centers).     │
+  └──────────────────────────────────────────────────────────────────┘
+*/
+#mascot-skeleton {
+  position: relative;
+  width: 200px;          /* rig bounding-box — sync with RIG_W in JS  */
+  height: 270px;         /* rig bounding-box — sync with RIG_H in JS  */
+  overflow: visible;
+  /* pivot at visual centre; update when you change width/height    */
+  transform-origin: 100px 135px;
+
+  /* ── Part offsets (px) ────────────────────────────────────────── */
+  --head-x: 53px;   --head-y: 0px;    /* head: centre ≈ 53+47=100px = rig centre */
+  --body-x: 60px;   --body-y: 55px;   /* body (80px wide): 60+40=100px = centred */
+  --arm-l-x: 128px; --arm-l-y: 75px;  /* left arm  — right shoulder edge         */
+  --arm-r-x: 17px;  --arm-r-y: 75px;  /* right arm — left shoulder edge          */
+  --leg-l-x: 90px;  --leg-l-y: 140px; /* left leg  — ~18px gap between centres  */
+  --leg-r-x: 50px;  --leg-r-y: 140px; /* right leg                               */
+}
+
+
+/* ── 4. Shared part defaults ──────────────────────────────────── */
+#mascot-skeleton .mascot-part {
+  position: absolute;
+  display: block;
+  user-select: none;
+  pointer-events: none;    /* clicks fall through to #mascot-root */
+}
+
+
+/* ── 5. Per-part position, size, z-index, animation ──────────── */
+/* z-index scheme: head 4 · arm-left 3 · body 2 · arm-right/legs 1 */
+
+/*
+  ┌─ RESIZE INDIVIDUAL PARTS ────────────────────────────────────────┐
+  │  Change the width value on each rule below.                     │
+  │  Parts scale from their top-left corner, so also update the     │
+  │  matching --x / --y offset above when you resize.              │
+  └──────────────────────────────────────────────────────────────────┘
+*/
+.mascot-head {
+  z-index: 4;
+  width: 95px;           /* ← resize head here */
+  left: var(--head-x);
+  top:  var(--head-y);
+  transform-origin: center bottom;
+  animation: mascot-head-tilt 6s ease-in-out infinite;
+}
+
+.mascot-body {
+  z-index: 2;
+  width: 80px;          /* ← resize body here */
+  left: var(--body-x);
+  top:  var(--body-y);
+}
+
+.mascot-arm-left {
+  z-index: 3;
+  width: 55px;           /* ← resize arms here */
+  left: var(--arm-l-x);
+  top:  var(--arm-l-y);
+  transform-origin: top left;
+  animation: mascot-arm-l 4s ease-in-out infinite;
+}
+
+.mascot-arm-right {
+  z-index: 1;
+  width: 55px;
+  left: var(--arm-r-x);
+  top:  var(--arm-r-y);
+  transform-origin: top right;
+  animation: mascot-arm-r 4.6s ease-in-out infinite;
+}
+
+.mascot-leg-left {
+  z-index: 1;
+  width: 48px;           /* ← resize legs here */
+  left: var(--leg-l-x);
+  top:  var(--leg-l-y);
+  transform-origin: top center;
+  animation: mascot-leg-l 5s ease-in-out infinite;
+}
+
+.mascot-leg-right {
+  z-index: 1;
+  width: 48px;
+  left: var(--leg-r-x);
+  top:  var(--leg-r-y);
+  transform-origin: top center;
+  animation: mascot-leg-r 5.3s ease-in-out infinite;
+}
+
+
+/* ── 6. Keyframes — head tilt, arm / leg wiggles ─────────────── */
+/*
+  ┌─ TWEAK WIGGLE AMPLITUDE ─────────────────────────────────────────┐
+  │  Change the rotate() degree values to swing more / less.        │
+  │  Current: head ±2.5°, arms ±7°, legs ±5°                        │
+  │  Timing (speed) is set via animation-duration on .mascot-* above │
+  └──────────────────────────────────────────────────────────────────┘
+*/
+
+/* Head: ±2.5 deg tilt */
+@keyframes mascot-head-tilt {
+  0%, 100% { transform: rotate(0deg);    }
+  30%      { transform: rotate(2.5deg);  }
+  70%      { transform: rotate(-2deg);   }
+}
+
+/* Arms: ±7 deg swing */
+@keyframes mascot-arm-l {
+  0%, 100% { transform: rotate(0deg)   translateY(0);    }
+  25%      { transform: rotate(7deg)   translateY(2px);  }
+  55%      { transform: rotate(-5deg)  translateY(-2px); }
+  75%      { transform: rotate(6deg)   translateY(2px);  }
+}
+
+@keyframes mascot-arm-r {
+  0%, 100% { transform: rotate(0deg)   translateY(0);    }
+  20%      { transform: rotate(-7deg)  translateY(2px);  }
+  50%      { transform: rotate(6deg)   translateY(-2px); }
+  80%      { transform: rotate(-5deg)  translateY(0);    }
+}
+
+/* Legs: ±5 deg wiggle */
+@keyframes mascot-leg-l {
+  0%, 100% { transform: rotate(0deg)   translateY(0);   }
+  30%      { transform: rotate(5deg)   translateY(2px); }
+  65%      { transform: rotate(-4deg)  translateY(0);   }
+}
+
+@keyframes mascot-leg-r {
+  0%, 100% { transform: rotate(0deg)   translateY(0);    }
+  35%      { transform: rotate(-5deg)  translateY(2px);  }
+  70%      { transform: rotate(4deg)   translateY(-2px); }
+}
+
+
+/* ── 7. Thought bubble ─────────────────────────────────────────── */
+/* Bubble lives inside #mascot-skeleton so it rotates with the body */
+#mascot-thought {
+  position: absolute;
+  /* sits above rig centre — adjust top/left to taste              */
+  bottom: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.88);
+
+  background: rgba(255, 255, 255, 0.82); /* ← bubble transparency here */
+  color: #111;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: bold;                     /* ← bubble font weight here  */
+  line-height: 1.4;
+  padding: 5px 12px;
+  border-radius: 16px;
+  white-space: nowrap;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 10;
+}
+
+/* Thought-trail dots (two circles below the bubble)               */
+#mascot-thought::before,
+#mascot-thought::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+#mascot-thought::before,
+#mascot-thought::after {
+  background: rgba(255, 255, 255, 0.82); /* match bubble transparency */
+}
+#mascot-thought::before {
+  width: 9px; height: 9px;
+  bottom: -13px; left: 50%; margin-left: -4px;
+}
+#mascot-thought::after {
+  width: 5px; height: 5px;
+  bottom: -21px; left: 50%; margin-left: -9px;
+}
+
+/* Show on hover, keyboard focus, OR JS random auto-show           */
+#mascot-root:hover  #mascot-thought,
+#mascot-root:focus  #mascot-thought,
+#mascot-root.mascot--thought-auto #mascot-thought {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+
+/* ── 8. Reduced motion — disable roam wiggles, keep static ───── */
+@media (prefers-reduced-motion: reduce) {
+  #mascot-skeleton,
+  .mascot-head,
+  .mascot-arm-left,
+  .mascot-arm-right,
+  .mascot-leg-left,
+  .mascot-leg-right {
+    animation: none !important;
+  }
+
+  #mascot-inner {
+    transition-duration: 0.01s;
+  }
+}
+
+/* JS also adds .mascot--no-motion for programmatic control        */
+.mascot--no-motion #mascot-skeleton,
+.mascot--no-motion .mascot-head,
+.mascot--no-motion .mascot-arm-left,
+.mascot--no-motion .mascot-arm-right,
+.mascot--no-motion .mascot-leg-left,
+.mascot--no-motion .mascot-leg-right {
+  animation: none !important;
+}
