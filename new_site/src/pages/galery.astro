@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+    <section class="gallery-intro page-title">
+        <div class="container">
+            <h2>Our Journey </h2>
+            <p class="section-subtitle">
+                Take a look at the smiles, the late-night coding sessions, and the moments that bring us together.
+                Every photo tells a story of the friendships and innovations that make our community so special.
+            </p>
+        </div>
+    </section>
+
+    <div class="page-end-wrapper">
+        <div class="planet-parallax-zone" aria-hidden="true">
+            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img data-planet-align="right">
+        </div>
+
+        <section class="gallery-grid-section">
+            <div class="container">
+                <div class="gallery-masonry distance-stage">
+
+                    <div class="gallery-item">
+                        <div class="gallery-item__thumb">
+                            <img src="/assets/photos/summer-hack-1.JPG" alt="Summer Hackathon">
+                        </div>
+                        <div class="gallery-item__footer">
+                            <span class="gallery-item__title">Summer Hackathon 2025</span>
+                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-item__thumb">
+                            <img src="/assets/photos/hackaton-2.JPG" alt="Late night coding">
+                        </div>
+                        <div class="gallery-item__footer">
+                            <span class="gallery-item__title">XMAS Hackathon Marathons</span>
+                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-item__thumb">
+                            <img src="/assets/photos/lectures-1.JPG" alt="Technical Lecture">
+                        </div>
+                        <div class="gallery-item__footer">
+                            <span class="gallery-item__title">Expert Guest Lectures</span>
+                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-item__thumb">
+                            <img src="/assets/photos/shenovate-1.JPG" alt="She-novate Conference">
+                        </div>
+                        <div class="gallery-item__footer">
+                            <span class="gallery-item__title">She-novate 2025</span>
+                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-item__thumb">
+                            <img src="/assets/photos/movie-night-1.JPG" alt="Movie Night">
+                        </div>
+                        <div class="gallery-item__footer">
+                            <span class="gallery-item__title">Community Movie Nights</span>
+                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-item__thumb">
+                            <img src="/assets/photos/programmers-day-1.JPG" alt="Programmer's Day">
+                        </div>
+                        <div class="gallery-item__footer">
+                            <span class="gallery-item__title">Programmer's Day Celebration</span>
+                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+
+<script type="module" is:inline>
+    import { initDistanceScroll } from '/effects/distanceScroll.js';
+    initDistanceScroll();
+</script>
