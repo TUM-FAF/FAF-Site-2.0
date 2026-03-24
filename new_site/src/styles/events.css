@@ -1,0 +1,246 @@
+/* ── Event grid: 2-column ─────────────────────────────────────────────────── */
+.event-grid-special {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl) var(--space-lg);
+    padding: var(--space-xl);
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .event-grid-special {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+    }
+}
+
+/* ── Event card ────────────────────────────────────────────────────────────── */
+.event-card-featured {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    /* Remove any card-glass styles that may bleed in */
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Thumbnail */
+.event-card__thumb {
+    overflow: hidden;
+    width: 100%;
+}
+
+.event-hero-img,
+.event-card__thumb img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+    margin-bottom: 0;
+    transition: transform 0.45s ease;
+}
+
+.event-card-featured:hover .event-hero-img,
+.event-card-featured:hover .event-card__thumb img {
+    transform: scale(1.04);
+}
+
+/* Footer row: separator line + title/date left + arrow right */
+.event-card__footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0 var(--space-xs);
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    margin-bottom: var(--space-xs);
+}
+
+.event-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.event-card__info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-card__sub {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-card__arrow {
+    font-size: 1.1rem;
+    color: var(--text);
+    flex-shrink: 0;
+    line-height: 1.3;
+    margin-top: 1px;
+    font-style: normal;
+    transition: transform 0.2s ease;
+}
+
+.event-card-featured:hover .event-card__arrow {
+    transform: translate(2px, -2px);
+}
+
+/* Description — compact, 3-line clamp */
+.event-card__desc {
+    font-size: 0.80rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.events {
+    background: transparent;
+}
+
+.registration-info {
+    background: transparent;
+}
+/* Registration Section Styles */
+/* Registration Section - Full Width & Spacing */
+.registration-section {
+    margin-top: var(--space-2xl); /* Adds significant space from the previous section */
+    padding: 0; /* Remove padding to let the card hit the edges if desired */
+    width: 100%;
+    background: transparent;
+}
+
+.registration-card-wide {
+    width: 100%;
+    padding: var(--space-2xl) var(--space-xl); /* Generous padding inside the card */
+    border-left: none;
+    border-right: none;
+    border-radius: 0; /* Removes rounding for a full-bleed horizontal look */
+    text-align: center;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.05) 0, transparent 70%) !important;
+    backdrop-filter: none;
+    box-shadow: none;
+    border-top: 1px solid rgba(255, 155, 43, 0.1);
+    border-bottom: 1px solid rgba(255, 155, 43, 0.1);
+}
+
+.registration-content-wrapper {
+    max-width: 1000px; /* Constrains the text/form for readability on large screens */
+    margin: 0 auto;
+}
+
+.registration-info h2 {
+    font-size: 2.8rem;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.registration-info p {
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+}
+
+/* Form refinement for wide layout */
+.registration-form-wrapper {
+    margin-top: var(--space-2xl);
+    text-align: left;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.registration-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .registration-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ── Events page-title: static section label ──────────────────────────────────────────── */
+.events-page .events-page-title {
+    position: relative;
+    top: auto;
+    z-index: auto;
+    padding: var(--space-xl) 0 var(--space-md);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom: 0;
+    border-left: 3px solid rgba(255, 155, 43, 0.45);
+}
+
+.events-page-title .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+.events-page-title h2   { margin-bottom: var(--space-xs); }
+.events-page-title .section-subtitle { margin-bottom: 0; }
+
+/* Distance-card override (class added by distanceScroll.js) */
+.event-card-featured.distance-card {
+    will-change: transform;
+    transform-origin: top center;
+    transition: opacity 0.06s linear;
+}
+
+/* ── Events page: planet anchored bottom-right, not centred ── */
+.events-page .planet-img {
+    left: auto;
+    right: -3%;
+    /* JS will output translateX(0px) translateY(...) for data-planet-align="right" */
+    transform: translateX(0);
+    width: clamp(380px, 46vw, 740px);
+    mask-image: linear-gradient(to top, black 28%, transparent 70%);
+    -webkit-mask-image: linear-gradient(to top, black 28%, transparent 70%);
+}
+
+@media (max-width: 768px) {
+    .events-page .planet-img {
+        width: clamp(260px, 80vw, 500px);
+        right: -5%;
+    }
+}
+
+/* ── Mobile: compact "Past Events" title ── */
+@media (max-width: 768px) {
+    .events-page-title h2 {
+        font-size: 1.4rem;
+    }
+    .events-page-title .section-subtitle {
+        font-size: 0.85rem;
+    }
+}
