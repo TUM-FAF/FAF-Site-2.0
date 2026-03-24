@@ -6,6 +6,9 @@
 import '../styles/reset.css';
 import '../styles/style.css';
 import '../styles/mascot.css';
+
+// 1. Add this line to accept a custom body class
+const { bodyClass = "" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -31,7 +34,7 @@ import '../styles/mascot.css';
         }
     </script>
 </head>
-<body class="bg-[#050505] text-white">
+<body class={`bg-[#050505] text-white ${bodyClass}`}>
 <canvas id="backgroundCanvas"></canvas>
 <canvas id="starsCanvas"></canvas>
 
