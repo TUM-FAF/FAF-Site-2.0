@@ -1,17 +1,242 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<section id="hero" class="hero">
+		<div class="hero-inner">
+			<div class="hero-text">
+				<p class="hero-tagline">Student‑led NGO · Moldova</p>
+				<h1>Facem ceva cu tolk’</h1>
+				<p class="hero-subtitle">
+					FAF is a student-led NGO that connects Moldova’s IT community
+					through hackathons, lectures, and tech events.
+				</p>
+				<div class="hero-buttons">
+					<a href="/sponsorship" class="btn btn-primary">Book a meeting</a>
+					<a href="/volunteers" class="btn btn-secondary">Become a volunteer</a>
+				</div>
+
+				<div class="hero-stats">
+					<div class="hero-stat">
+						<span class="hero-stat-num">150+</span>
+						<span class="hero-stat-lbl">Participants per event</span>
+					</div>
+					<div class="hero-stat">
+						<span class="hero-stat-num">6</span>
+						<span class="hero-stat-lbl">Events per year</span>
+					</div>
+					<div class="hero-stat">
+						<span class="hero-stat-num">5+</span>
+						<span class="hero-stat-lbl">Years running</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="hero-visual">
+				<div class="hero-next-event">
+					<span class="hero-ne-label">Coming Soon</span>
+					<h3 class="hero-ne-title">Summer Hackathon 2026</h3>
+					<p class="hero-ne-body">Our flagship summer hackathon returns — 24 hours of building, mentorship, and high-energy competition. Come ready to create something real.</p>
+					<div class="hero-ne-meta">
+						<span class="hero-ne-date">June 20–21, 2026</span>
+						<span>·</span>
+						<span>Chișinău, Moldova</span>
+					</div>
+					<a href="/events" class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">Register Now →</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="events" class="events">
+		<div class="container">
+			<h2>Our Events</h2>
+			<p class="section-subtitle">
+				We create high-impact spaces where students, mentors, and professionals learn, build, and celebrate technology together. From 24-hour technical marathons to community-led workshops, discover how we are shaping the local IT landscape.
+			</p>
+
+			<div class="events-overview">
+				<div class="events-list-col">
+					<ul class="event-type-list">
+						<li>Hackathons</li>
+						<li>Technical Lectures</li>
+						<li>Programmer's Day</li>
+						<li>SheNovate</li>
+						<li>Community Evenings</li>
+					</ul>
+					<a href="/events" class="btn btn-primary" style="margin-top: var(--space-md);">View Events History</a>
+				</div>
+				<div class="events-photos-col">
+					<div class="ep-grid">
+						<div class="ep-large">
+							<img src="/assets/photos/hero-2.JPG" alt="Students at FAF hackathon">
+						</div>
+						<div class="ep-small">
+							<img src="/assets/photos/hero-1.JPG" alt="Team presenting project">
+						</div>
+						<div class="ep-small">
+							<img src="/assets/photos/hero-3.JPG" alt="Mentor helping participants">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="feedback" class="feedback">
+		<div class="container">
+			<h2>What people say</h2>
+			<p class="section-subtitle">
+				A few reactions from participants at our hackathons and community events.
+			</p>
+
+			<div class="feedback-grid">
+				<div class="feedback-row1">
+					<article class="feedback-bubble">
+						<p>
+							"This was my first hackathon and I really enjoyed my time there."
+						</p>
+						<span class="bubble-author">Participant, XMAS FAF Hackathon 2025</span>
+					</article>
+
+					<article class="feedback-bubble">
+						<p>
+							"This is pure genial, like RESPECT to all stuff that contributed to the hackathon."
+						</p>
+						<span class="bubble-author">Participant, XMAS FAF Hackathon 2025</span>
+					</article>
+
+					<article class="feedback-bubble">
+						<p>
+							"Nota 10, cum zice Ciorbă: Bravo :)"
+						</p>
+						<span class="bubble-author">FAF student, FAF‑22x, XMAS FAF Hackathon 2025</span>
+					</article>
+				</div>
+				<div class="feedback-row2">
+					<article class="feedback-bubble">
+						<p>
+							"Mi-a plăcut organizarea, locaţia şi faptul că am învăţat chestii practice."
+						</p>
+						<span class="bubble-author">Participant, SheNovate 2025</span>
+					</article>
+
+					<article class="feedback-bubble">
+						<p>
+							"O bună selecție de speakeri invitați şi sarcini practice."
+						</p>
+						<span class="bubble-author">Participant, SheNovate 2025</span>
+					</article>
+
+					<article class="feedback-bubble">
+						<p>
+							"The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful"
+						</p>
+						<span class="bubble-author">Participant, XMAS FAF Hackathon 2024</span>
+					</article>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="page-end-wrapper page-end-home">
+		<div class="planet-parallax-zone" aria-hidden="true">
+			<img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+		</div>
+
+		<section id="meeting" class="meeting">
+			<div class="container">
+				<h2>Book a meeting with FAF</h2>
+				<p class="section-subtitle">
+					Want to become a partner or sponsor?
+					Leave us a message and let’s do something “cu tolk’”.
+				</p>
+
+				<form method="POST" action="#" class="form">
+					<div class="form-grid">
+						<div class="form-row">
+							<label for="name">Name</label>
+							<input id="name" name="name" type="text" required>
+						</div>
+						<div class="form-row">
+							<label for="email">Email</label>
+							<input id="email" name="email" type="email" required>
+						</div>
+						<div class="form-row">
+							<label for="company">Company / Organization</label>
+							<input id="company" name="company" type="text">
+						</div>
+						<div class="form-row">
+							<label for="role">Role</label>
+							<select id="role" name="role">
+								<option>Company representative</option>
+								<option>Student</option>
+								<option>Mentor</option>
+								<option>Other</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<label for="note">Additional note</label>
+						<textarea id="note" name="note" rows="4"
+								  placeholder="Tell us how you’d like to collaborate"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary form-submit">Send request</button>
+				</form>
+			</div>
+		</section>
+
+		<section id="partners" class="partners">
+			<div class="container partners-inner">
+				<h2>Our partners</h2>
+
+				<div class="partners-logos-row">
+					<img src="/assets/logos/efes.png" alt="Efes" class="logo-big">
+					<img src="/assets/logos/amdaris.png" alt="Amdaris">
+					<img src="/assets/logos/allied-testing.png" alt="Allied Testing">
+					<img src="/assets/logos/utm.png" alt="UTM" class="logo-big">
+					<img src="/assets/logos/tech-quarter.png" alt="Tech Quarter" class="logo-big">
+					<img src="/assets/logos/tekwill.png" alt="Tekwill" class="logo-big">
+					<img src="/assets/logos/cybercor.png" alt="Cybercor" class="logo-big">
+					<img src="/assets/logos/optiplaza.png" alt="Optiplaza">
+					<img src="/assets/logos/pgi.png" alt="PGI" class="logo-big">
+					<img src="/assets/logos/sigmoid.png" alt="Sigmoid" class="logo-big">
+					<img src="/assets/logos/fusionworks.png" alt="FusionWorks" class="logo-big">
+					<img src="/assets/logos/stefanini.png" alt="Stefanini" class="logo-big">
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="contact-band">
+			<div class="container contact-grid">
+				<div class="contact-col">
+					<h3>Contact</h3>
+					<p>str. Studenților 7, birou 309<br>Chișinău, Moldova</p>
+					<p>Email: faf@fcim.utm.md </p>
+				</div>
+				<div class="contact-col">
+					<h3>Useful links</h3>
+					<p><a href="#">Privacy policy</a></p>
+					<p><a href="#">Code of conduct</a></p>
+					<p><a href="#">Partner with FAF</a></p>
+				</div>
+				<div class="contact-col">
+					<h3>Connect with us</h3>
+					<p>Follow FAF for event updates and important announcements.</p>
+					<div class="contact-social">
+						<a href="https://instagram.com/faf.ngo" target="_blank" rel="noreferrer">
+							<img src="/assets/logos/instagram.png" alt="Instagram FAF" class="social-icon">
+						</a>
+						<a href="https://t.me/+rE_rO1LuJdkwY2Ni" target="_blank" rel="noreferrer">
+							<img src="/assets/logos/telegram.png" alt="Telegram FAF" class="social-icon">
+						</a>
+					</div>
+					<p style="margin-top: 8px; font-size: 0.85rem;">
+						Telegram channel is used for important announcements.
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+</BaseLayout>
