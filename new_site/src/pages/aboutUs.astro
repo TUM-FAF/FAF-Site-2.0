@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+    <section class="about-intro">
+        <div class="container">
+            <div class="intro-content">
+                <p class="hero-tagline">Connecting Moldova's IT Community</p>
+                <h1>Who we are</h1>
+                <p class="large-text">
+                    FAF is a student-led non-profit organization dedicated to bridging the gap between university education and the IT industry in Moldova. We foster a community where passion for technology meets practical application.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-details">
+        <div class="container">
+            <div class="card-glass details-grid">
+                <div class="details-text">
+                    <h2>Events & Governance</h2>
+                    <p>
+                        We take pride in creating high-impact events like <b>Hackathons</b>, <b>FAF Lectures</b>, <b>Workshops</b> and others. These initiatives are made possible by our dedicated boards—groups of students who manage everything from logistics and finance to partnerships and marketing. Each event is a testament to the collaborative spirit of our community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteer" class="volunteer-section">
+        <div class="container">
+            <div class="card-glass volunteer-cta">
+                <div class="volunteer-content">
+                    <p class="hero-tagline">Get Involved</p>
+                    <h2>Become a Volunteer</h2>
+                    <p>
+                        Want to be part of the magic? FAF is always looking for passionate students to join our community. Whether you're interested in logistics, tech, or marketing, there's a place for you here.
+                    </p>
+                    <button id="toggleVolunteerForm" class="btn btn-primary">
+                        Join the Team <span id="arrow" style="margin-left: 8px; transition: transform 0.3s ease; display: inline-block;">&#9662;</span>
+                    </button>
+                </div>
+
+                <div id="volunteerFormContainer" class="registration-form-wrapper" style="display: none; margin-top: var(--space-xl);">
+                    <form class="form volunteer-form">
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <label for="v-name">First Name</label>
+                                <input id="v-name" type="text" placeholder="Your name" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="v-surname">Last Name</label>
+                                <input id="v-surname" type="text" placeholder="Your surname" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="v-email">Email</label>
+                                <input id="v-email" type="email" placeholder="example@mail.com" required>
+                            </div>
+                            <div class="form-row">
+                                <label for="v-interest">Area of Interest</label>
+                                <select id="v-interest">
+                                    <option value="logistics">Logistics & Events</option>
+                                    <option value="tech">Technical Support</option>
+                                    <option value="marketing">Marketing & Design</option>
+                                    <option value="partnerships">Partnerships</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-top: var(--space-md);">
+                            <label for="v-message">Why do you want to join?</label>
+                            <textarea id="v-message" rows="3" placeholder="Tell us a bit about yourself"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <div class="container">
+            <h2>Meet the team</h2>
+            <p class="section-subtitle">
+                The core team coordinating FAF projects and keeping the community moving forward.
+            </p>
+
+            <div class="team-row">
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="/assets/team/team-diana.jpg" alt="Iachim Diana"></div>
+                    <h3>Iachim Diana</h3>
+                    <p class="team-role">CEO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="/assets/team/team-daria.jpg" alt="Rațeeva Daria"></div>
+                    <h3>Rațeeva Daria</h3>
+                    <p class="team-role">COO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="/assets/team/team-daniel.jpeg" alt="Cojocaru Daniel"></div>
+                    <h3>Cojocaru Daniel</h3>
+                    <p class="team-role">CFO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="/assets/team/team-alexandra.jpeg" alt="Alexandra Bujor"></div>
+                    <h3>Alexandra Bujor-Cobili</h3>
+                    <p class="team-role">CCO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="/assets/team/team-madalina.jpg" alt="Pașa Mădălina"></div>
+                    <h3>Pașa Mădălina</h3>
+                    <p class="team-role">CMO</p>
+                </article>
+                <article class="team-card card-glass">
+                    <div class="avatar"><img src="/assets/team/team-daniela.jpeg" alt="Grosu Daniela"></div>
+                    <h3>Grosu Daniela</h3>
+                    <p class="team-role">CPO</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <div class="page-end-wrapper">
+        <div class="planet-parallax-zone" aria-hidden="true">
+            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+        </div>
+
+        <section class="history-cta">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>Explore Our Journey</h2>
+                    <p>Want to explore the detailed history of the organization and learn about the previous boards that built our foundation?</p>
+                    <a href="#" class="btn btn-primary">Discover Our History</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    const toggleBtn = document.getElementById('toggleVolunteerForm');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            const formContainer = document.getElementById('volunteerFormContainer');
+            const arrow = document.getElementById('arrow');
+            const isHidden = formContainer.style.display === 'none';
+
+            if (isHidden) {
+                formContainer.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+                this.firstChild.textContent = 'Hide Form ';
+            } else {
+                formContainer.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+                this.firstChild.textContent = 'Join the Team ';
+            }
+        });
+    }
+</script>
