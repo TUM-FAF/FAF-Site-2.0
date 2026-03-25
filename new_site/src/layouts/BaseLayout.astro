@@ -6,6 +6,7 @@
 import '../styles/reset.css';
 import '../styles/style.css';
 import '../styles/mascot.css';
+import '../styles/global.css';
 
 // 1. Add this line to accept a custom body class
 const { bodyClass = "" } = Astro.props;
@@ -19,7 +20,6 @@ const pathname = Astro.url.pathname;
     <title>FAF NGO – Facem ceva cu tolk’</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script is:inline src="https://cdn.tailwindcss.com"></script>
     <script is:inline>
         tailwind.config = {
             corePlugins: { preflight: false },
