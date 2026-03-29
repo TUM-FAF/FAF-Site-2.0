@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: TUM-FAF/FAF-Site-2.0
   branch: master
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 media_folder: new_site/public/uploads
 public_folder: /uploads
