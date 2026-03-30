@@ -29,6 +29,7 @@ const testimonials = defineCollection({
     author: z.string(),
     event: z.string(),
     quote: z.string(),
+    sort_order: z.number().optional(),
   }),
 });
 

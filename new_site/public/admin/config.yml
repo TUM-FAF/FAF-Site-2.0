@@ -42,6 +42,7 @@ collections:
       - { label: Author, name: author, widget: string }
       - { label: Event, name: event, widget: string }
       - { label: Quote, name: quote, widget: text }
+      - { label: Sort Order, name: sort_order, widget: number, required: false }
 
   - name: partners
     label: Partners

@@ -1,17 +1,23 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const homeEntry = await getEntry('home', 'index');
+const home = homeEntry!.data;
+
+const allTestimonials = await getCollection('testimonials');
+const testimonials = allTestimonials.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const row1 = testimonials.slice(0, 3);
+const row2 = testimonials.slice(3);
 ---
 
 <BaseLayout>
 	<section id="hero" class="hero">
 		<div class="hero-inner">
 			<div class="hero-text">
-				<p class="hero-tagline">Student‑led NGO · Moldova</p>
-				<h1>Facem ceva cu tolk’</h1>
-				<p class="hero-subtitle">
-					FAF is a student-led NGO that connects Moldova’s IT community
-					through hackathons, lectures, and tech events.
-				</p>
+				<p class="hero-tagline">{home.hero_tagline}</p>
+				<h1>{home.hero_title}</h1>
+				<p class="hero-subtitle">{home.hero_subtitle}</p>
 				<div class="hero-buttons">
 					<a href="/sponsorship" class="btn btn-primary">Book a meeting</a>
 					<a href="/volunteers" class="btn btn-secondary">Become a volunteer</a>
@@ -36,12 +42,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<div class="hero-visual">
 				<div class="hero-next-event">
 					<span class="hero-ne-label">Coming Soon</span>
-					<h3 class="hero-ne-title">Summer Hackathon 2026</h3>
-					<p class="hero-ne-body">Our flagship summer hackathon returns — 24 hours of building, mentorship, and high-energy competition. Come ready to create something real.</p>
+					<h3 class="hero-ne-title">{home.next_event_title}</h3>
+					<p class="hero-ne-body">{home.next_event_description}</p>
 					<div class="hero-ne-meta">
-						<span class="hero-ne-date">June 20–21, 2026</span>
+						<span class="hero-ne-date">{home.next_event_date}</span>
 						<span>·</span>
-						<span>Chișinău, Moldova</span>
+						<span>{home.next_event_location}</span>
 					</div>
 					<a href="/events" class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">Register Now →</a>
 				</div>
@@ -93,48 +99,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 			<div class="feedback-grid">
 				<div class="feedback-row1">
-					<article class="feedback-bubble">
-						<p>
-							"This was my first hackathon and I really enjoyed my time there."
-						</p>
-						<span class="bubble-author">Participant, XMAS FAF Hackathon 2025</span>
-					</article>
-
-					<article class="feedback-bubble">
-						<p>
-							"This is pure genial, like RESPECT to all stuff that contributed to the hackathon."
-						</p>
-						<span class="bubble-author">Participant, XMAS FAF Hackathon 2025</span>
-					</article>
-
-					<article class="feedback-bubble">
-						<p>
-							"Nota 10, cum zice Ciorbă: Bravo :)"
-						</p>
-						<span class="bubble-author">FAF student, FAF‑22x, XMAS FAF Hackathon 2025</span>
-					</article>
+					{row1.map(t => (
+						<article class="feedback-bubble">
+							<p>"{t.data.quote}"</p>
+							<span class="bubble-author">{t.data.author}</span>
+						</article>
+					))}
 				</div>
 				<div class="feedback-row2">
-					<article class="feedback-bubble">
-						<p>
-							"Mi-a plăcut organizarea, locaţia şi faptul că am învăţat chestii practice."
-						</p>
-						<span class="bubble-author">Participant, SheNovate 2025</span>
-					</article>
-
-					<article class="feedback-bubble">
-						<p>
-							"O bună selecție de speakeri invitați şi sarcini practice."
-						</p>
-						<span class="bubble-author">Participant, SheNovate 2025</span>
-					</article>
-
-					<article class="feedback-bubble">
-						<p>
-							"The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful (The organization of the event was at the highest level. Music was good, food was great, mentors were helpful and very kind and the prizes were wonderful"
-						</p>
-						<span class="bubble-author">Participant, XMAS FAF Hackathon 2024</span>
-					</article>
+					{row2.map(t => (
+						<article class="feedback-bubble">
+							<p>"{t.data.quote}"</p>
+							<span class="bubble-author">{t.data.author}</span>
+						</article>
+					))}
 				</div>
 			</div>
 		</div>
@@ -147,11 +125,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 		<section id="meeting" class="meeting">
 			<div class="container">
-				<h2>Book a meeting with FAF</h2>
-				<p class="section-subtitle">
-					Want to become a partner or sponsor?
-					Leave us a message and let’s do something “cu tolk’”.
-				</p>
+				<h2>{home.meeting_heading}</h2>
+				<p class=”section-subtitle”>{home.meeting_subtitle}</p>
 
 				<form method="POST" action="#" class="form">
 					<div class="form-grid">
