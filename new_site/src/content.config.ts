@@ -59,6 +59,7 @@ const roles = defineCollection({
     title: z.string(),
     description: z.string(),
     apply_link: z.string().optional(),
+    sort_order: z.number().optional(),
   }),
 });
 
