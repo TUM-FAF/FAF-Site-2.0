@@ -18,6 +18,7 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Date, name: date, widget: datetime }
       - { label: Description, name: description, widget: text }
+      - { label: Venue, name: venue, widget: string, required: false }
       - { label: Image, name: image, widget: image, required: false }
 
   - name: team
@@ -50,6 +51,7 @@ collections:
       - { label: Name, name: name, widget: string }
       - { label: Logo, name: logo, widget: image }
       - { label: Website, name: url, widget: string, required: false }
+      - { label: Large logo, name: large, widget: boolean, default: false, required: false }
 
   - name: gallery
     label: Gallery
@@ -60,3 +62,45 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Image, name: image, widget: image }
       - { label: Caption, name: caption, widget: string, required: false }
+
+  - name: roles
+    label: Volunteer Roles
+    folder: new_site/src/content/roles
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Apply Link, name: apply_link, widget: string, required: false }
+
+  - name: tiers
+    label: Sponsorship Tiers
+    folder: new_site/src/content/tiers
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Description, name: description, widget: text }
+      - label: Benefits
+        name: benefits
+        widget: list
+        field: { label: Benefit, name: benefit, widget: string }
+      - { label: CTA Label, name: cta_label, widget: string }
+      - { label: Featured (Most Popular), name: featured, widget: boolean, default: false, required: false }
+
+  - name: home
+    label: Home Page
+    files:
+      - label: Home Settings
+        name: home
+        file: new_site/src/content/home/index.md
+        fields:
+          - { label: Hero Tagline, name: hero_tagline, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Next Event Title, name: next_event_title, widget: string }
+          - { label: Next Event Date, name: next_event_date, widget: string }
+          - { label: Next Event Description, name: next_event_description, widget: text }
+          - { label: Next Event Location, name: next_event_location, widget: string }
+          - { label: Meeting Heading, name: meeting_heading, widget: string }
+          - { label: Meeting Subtitle, name: meeting_subtitle, widget: text }
