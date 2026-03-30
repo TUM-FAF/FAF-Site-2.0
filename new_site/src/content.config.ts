@@ -39,6 +39,7 @@ const partners = defineCollection({
     logo: z.string(),
     url: z.string().optional(),
     large: z.boolean().optional(),
+    sort_order: z.number().optional(),
   }),
 });
 
@@ -69,6 +70,7 @@ const tiers = defineCollection({
     benefits: z.array(z.string()),
     cta_label: z.string(),
     featured: z.boolean().optional(),
+    sort_order: z.number().optional(),
   }),
 });
 
