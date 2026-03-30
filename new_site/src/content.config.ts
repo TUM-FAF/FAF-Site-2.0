@@ -19,7 +19,6 @@ const team = defineCollection({
     role: z.string(),
     photo: z.string().optional(),
     bio: z.string().optional(),
-    sort_order: z.number().optional(),
   }),
 });
 
@@ -29,7 +28,6 @@ const testimonials = defineCollection({
     author: z.string(),
     event: z.string(),
     quote: z.string(),
-    sort_order: z.number().optional(),
   }),
 });
 
@@ -40,7 +38,6 @@ const partners = defineCollection({
     logo: z.string(),
     url: z.string().optional(),
     large: z.boolean().optional(),
-    sort_order: z.number().optional(),
   }),
 });
 
@@ -50,7 +47,6 @@ const gallery = defineCollection({
     title: z.string(),
     image: z.string(),
     caption: z.string().optional(),
-    sort_order: z.number().optional(),
   }),
 });
 
@@ -60,7 +56,6 @@ const roles = defineCollection({
     title: z.string(),
     description: z.string(),
     apply_link: z.string().optional(),
-    sort_order: z.number().optional(),
   }),
 });
 
@@ -72,7 +67,6 @@ const tiers = defineCollection({
     benefits: z.array(z.string()),
     cta_label: z.string(),
     featured: z.boolean().optional(),
-    sort_order: z.number().optional(),
   }),
 });
 
