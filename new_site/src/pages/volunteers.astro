@@ -1,6 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/volunteers.css';
+
+const allRoles = await getCollection('roles');
+const roles = allRoles.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout bodyClass="volunteers-page">
@@ -59,67 +63,20 @@ import '../styles/volunteers.css';
             </p>
 
             <div class="roles-list">
-
-                <div class="role-item">
-                    <div class="role-header">
-                        <span class="role-title">President</span>
-                        <span class="role-arrow">&rsaquo;</span>
+                {roles.map(role => (
+                    <div class="role-item">
+                        <div class="role-header">
+                            <span class="role-title">{role.data.title}</span>
+                            <span class="role-arrow">&rsaquo;</span>
+                        </div>
+                        <div class="role-reveal">
+                            <p>{role.data.description}</p>
+                            {role.data.apply_link && (
+                                <a href={role.data.apply_link} class="btn btn-secondary" style="margin-top: var(--space-sm);">Apply</a>
+                            )}
+                        </div>
                     </div>
-                    <div class="role-reveal">
-                        <p>Sets the overall vision and direction for FAF. Coordinates across all departments, represents the organization externally, and ensures every project aligns with our mission of connecting Moldova's IT community.</p>
-                    </div>
-                </div>
-
-                <div class="role-item">
-                    <div class="role-header">
-                        <span class="role-title">Vice President</span>
-                        <span class="role-arrow">&rsaquo;</span>
-                    </div>
-                    <div class="role-reveal">
-                        <p>Supports the President in day‑to‑day operations, steps in when needed, and oversees cross‑department collaboration. The VP ensures deadlines are met and the team stays on track during event season.</p>
-                    </div>
-                </div>
-
-                <div class="role-item">
-                    <div class="role-header">
-                        <span class="role-title">CRM Lead</span>
-                        <span class="role-arrow">&rsaquo;</span>
-                    </div>
-                    <div class="role-reveal">
-                        <p>Manages relationships with partners, sponsors, and external stakeholders. Handles outreach, negotiates sponsorship packages, and maintains the network of companies that support FAF events.</p>
-                    </div>
-                </div>
-
-                <div class="role-item">
-                    <div class="role-header">
-                        <span class="role-title">HR Lead</span>
-                        <span class="role-arrow">&rsaquo;</span>
-                    </div>
-                    <div class="role-reveal">
-                        <p>Recruits and onboards new volunteers, organizes internal team‑building activities, and keeps the FAF community healthy and motivated. HR is the heartbeat of our volunteer culture.</p>
-                    </div>
-                </div>
-
-                <div class="role-item">
-                    <div class="role-header">
-                        <span class="role-title">Design Lead</span>
-                        <span class="role-arrow">&rsaquo;</span>
-                    </div>
-                    <div class="role-reveal">
-                        <p>Owns the visual identity of FAF — from event banners and social media graphics to merchandise and presentation decks. Leads a small design team to keep everything on‑brand and polished.</p>
-                    </div>
-                </div>
-
-                <div class="role-item">
-                    <div class="role-header">
-                        <span class="role-title">PR Lead</span>
-                        <span class="role-arrow">&rsaquo;</span>
-                    </div>
-                    <div class="role-reveal">
-                        <p>Runs FAF's public‑facing communications — social media, press coverage, community announcements, and content strategy. Grows our reach and makes sure every event gets the attention it deserves.</p>
-                    </div>
-                </div>
-
+                ))}
             </div>
         </div>
     </section>

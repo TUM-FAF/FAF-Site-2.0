@@ -1,6 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/gallery.css';
+
+const allPhotos = await getCollection('gallery');
+const photos = allPhotos.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout bodyClass="gallery-page">
@@ -22,67 +26,17 @@ import '../styles/gallery.css';
         <section class="gallery-grid-section">
             <div class="container">
                 <div class="gallery-masonry distance-stage">
-
-                    <div class="gallery-item">
-                        <div class="gallery-item__thumb">
-                            <img src="/assets/photos/summer-hack-1.JPG" alt="Summer Hackathon">
+                    {photos.map(photo => (
+                        <div class="gallery-item">
+                            <div class="gallery-item__thumb">
+                                <img src={photo.data.image} alt={photo.data.caption ?? photo.data.title} />
+                            </div>
+                            <div class="gallery-item__footer">
+                                <span class="gallery-item__title">{photo.data.title}</span>
+                                <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
+                            </div>
                         </div>
-                        <div class="gallery-item__footer">
-                            <span class="gallery-item__title">Summer Hackathon 2025</span>
-                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <div class="gallery-item__thumb">
-                            <img src="/assets/photos/hackaton-2.JPG" alt="Late night coding">
-                        </div>
-                        <div class="gallery-item__footer">
-                            <span class="gallery-item__title">XMAS Hackathon Marathons</span>
-                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <div class="gallery-item__thumb">
-                            <img src="/assets/photos/lectures-1.JPG" alt="Technical Lecture">
-                        </div>
-                        <div class="gallery-item__footer">
-                            <span class="gallery-item__title">Expert Guest Lectures</span>
-                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <div class="gallery-item__thumb">
-                            <img src="/assets/photos/shenovate-1.JPG" alt="She-novate Conference">
-                        </div>
-                        <div class="gallery-item__footer">
-                            <span class="gallery-item__title">She-novate 2025</span>
-                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <div class="gallery-item__thumb">
-                            <img src="/assets/photos/movie-night-1.JPG" alt="Movie Night">
-                        </div>
-                        <div class="gallery-item__footer">
-                            <span class="gallery-item__title">Community Movie Nights</span>
-                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <div class="gallery-item__thumb">
-                            <img src="/assets/photos/programmers-day-1.JPG" alt="Programmer's Day">
-                        </div>
-                        <div class="gallery-item__footer">
-                            <span class="gallery-item__title">Programmer's Day Celebration</span>
-                            <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
-                        </div>
-                    </div>
-
+                    ))}
                 </div>
             </div>
         </section>

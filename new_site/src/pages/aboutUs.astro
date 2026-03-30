@@ -1,6 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/about.css';
+
+const allTeam = await getCollection('team');
+const teamMembers = allTeam.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout>
@@ -87,36 +91,16 @@ import '../styles/about.css';
             </p>
 
             <div class="team-row">
-                <article class="team-card card-glass">
-                    <div class="avatar"><img src="/assets/team/team-diana.jpg" alt="Iachim Diana"></div>
-                    <h3>Iachim Diana</h3>
-                    <p class="team-role">CEO</p>
-                </article>
-                <article class="team-card card-glass">
-                    <div class="avatar"><img src="/assets/team/team-daria.jpg" alt="Rațeeva Daria"></div>
-                    <h3>Rațeeva Daria</h3>
-                    <p class="team-role">COO</p>
-                </article>
-                <article class="team-card card-glass">
-                    <div class="avatar"><img src="/assets/team/team-daniel.jpeg" alt="Cojocaru Daniel"></div>
-                    <h3>Cojocaru Daniel</h3>
-                    <p class="team-role">CFO</p>
-                </article>
-                <article class="team-card card-glass">
-                    <div class="avatar"><img src="/assets/team/team-alexandra.jpeg" alt="Alexandra Bujor"></div>
-                    <h3>Alexandra Bujor-Cobili</h3>
-                    <p class="team-role">CCO</p>
-                </article>
-                <article class="team-card card-glass">
-                    <div class="avatar"><img src="/assets/team/team-madalina.jpg" alt="Pașa Mădălina"></div>
-                    <h3>Pașa Mădălina</h3>
-                    <p class="team-role">CMO</p>
-                </article>
-                <article class="team-card card-glass">
-                    <div class="avatar"><img src="/assets/team/team-daniela.jpeg" alt="Grosu Daniela"></div>
-                    <h3>Grosu Daniela</h3>
-                    <p class="team-role">CPO</p>
-                </article>
+                {teamMembers.map(member => (
+                    <article class="team-card card-glass">
+                        <div class="avatar">
+                            {member.data.photo && <img src={member.data.photo} alt={member.data.name} />}
+                        </div>
+                        <h3>{member.data.name}</h3>
+                        <p class="team-role">{member.data.role}</p>
+                        {member.data.bio && <p class="team-bio">{member.data.bio}</p>}
+                    </article>
+                ))}
             </div>
         </div>
     </section>
