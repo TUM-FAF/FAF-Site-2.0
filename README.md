@@ -2,7 +2,21 @@
 
 This lab implements a responsive single‑page **landing** site for FAF, a student‑led NGO that connects Moldova’s IT community through hackathons, lectures, and tech events.
 
-## 1. Project structure
+## The actual site
+
+The production site is an Astro 6 app living in `new_site/`. To run it locally:
+
+```bash
+cd new_site
+npm install
+npm run dev   # opens at http://localhost:4321
+```
+
+Content is managed through Decap CMS — editors log in at `/admin`, make changes, and those changes commit directly to this repo and trigger a redeploy.
+
+---
+
+## 1. Legacy lab (flat HTML/CSS)
 
 - `index.html` – main landing page markup.
 - `style.css` – main styling (layout, grids, typography, colors).
@@ -53,7 +67,13 @@ The landing page is a dark‑theme one‑pager with accent gradients and glassmo
 No build step or backend is required; it is a static HTML/CSS project.
 
 ## 4. Deployment location
-The landing page is deployed at: [https://diana7376.github.io/tum-web-lab2/](https://diana7376.github.io/tum-web-lab2/)
+The legacy flat HTML/CSS lab is no longer separately deployed.
+
+The current Astro site is live at: [https://fafngo.netlify.app](https://fafngo.netlify.app)
+
+Every push to `master` automatically triggers a build and redeploy on Netlify — no manual steps needed.
+
+The CMS admin panel is at [https://fafngo.netlify.app/admin](https://fafngo.netlify.app/admin) (login with GitHub).
 
 ## 5. Responsive behavior
 
