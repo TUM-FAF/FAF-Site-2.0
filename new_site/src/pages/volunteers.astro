@@ -4,7 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/volunteers.css';
 
 const allRoles = await getCollection('roles');
-const roles = allRoles.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const roles = allRoles
+  .filter(r => !r.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout bodyClass="volunteers-page">

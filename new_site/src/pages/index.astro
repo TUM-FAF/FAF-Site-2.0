@@ -6,7 +6,9 @@ const homeEntry = await getEntry('home', 'index');
 const home = homeEntry!.data;
 
 const allTestimonials = await getCollection('testimonials');
-const testimonials = allTestimonials.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const testimonials = allTestimonials
+  .filter(t => !t.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 const row1 = testimonials.slice(0, 3);
 const row2 = testimonials.slice(3);
 ---

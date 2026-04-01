@@ -14,6 +14,17 @@ collections:
     folder: new_site/src/content/events
     create: true
     slug: "{{slug}}"
+    summary: "{{title}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Date, name: date, widget: datetime }
@@ -27,6 +38,17 @@ collections:
     folder: new_site/src/content/team
     create: true
     slug: "{{slug}}"
+    summary: "{{name}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Name, name: name, widget: string }
       - { label: Role, name: role, widget: string }
@@ -40,6 +62,17 @@ collections:
     folder: new_site/src/content/testimonials
     create: true
     slug: "{{slug}}"
+    summary: "{{author}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Author, name: author, widget: string }
       - { label: Event, name: event, widget: string }
@@ -52,6 +85,17 @@ collections:
     folder: new_site/src/content/partners
     create: true
     slug: "{{slug}}"
+    summary: "{{name}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Name, name: name, widget: string }
       - { label: Logo, name: logo, widget: image }
@@ -64,6 +108,17 @@ collections:
     folder: new_site/src/content/gallery
     create: true
     slug: "{{slug}}"
+    summary: "{{title}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Image, name: image, widget: image }
@@ -75,6 +130,17 @@ collections:
     folder: new_site/src/content/roles
     create: true
     slug: "{{slug}}"
+    summary: "{{title}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text }
@@ -86,6 +152,17 @@ collections:
     folder: new_site/src/content/tiers
     create: true
     slug: "{{slug}}"
+    summary: "{{name}}"
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    view_groups:
+      - label: Status
+        field: draft
     fields:
       - { label: Name, name: name, widget: string }
       - { label: Description, name: description, widget: text }

@@ -8,5 +8,29 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <style>
+    .cms-draft-row {
+      border-left: 4px solid #f59e0b !important;
+      background: rgba(245, 158, 11, 0.06) !important;
+    }
+  </style>
+  <script>
+    // Highlight draft entries in the collection list with an amber left border.
+    // Decap renders entries as <a> tags; we look for any that contain a child
+    // element whose text starts with "true" (the raw value of the draft field
+    // when shown via the view_groups grouping header or the entry row itself).
+    function markDraftRows() {
+      document.querySelectorAll('a, li').forEach(function(el) {
+        var text = el.innerText || '';
+        // The view_groups header for draft=true reads "true"; individual entry
+        // rows don't show the field value, but the group container wraps them.
+        if (/^\s*true\s*$/m.test(text.split('\n')[0])) {
+          el.classList.add('cms-draft-row');
+        }
+      });
+    }
+    var observer = new MutationObserver(markDraftRows);
+    observer.observe(document.body, { childList: true, subtree: true });
+  </script>
 </body>
 </html>

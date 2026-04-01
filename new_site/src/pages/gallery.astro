@@ -4,7 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/gallery.css';
 
 const allPhotos = await getCollection('gallery');
-const photos = allPhotos.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const photos = allPhotos
+  .filter(p => !p.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout bodyClass="gallery-page">

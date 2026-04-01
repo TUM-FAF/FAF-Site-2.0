@@ -4,10 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/sponsorship.css';
 
 const allTiers = await getCollection('tiers');
-const tiers = allTiers.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const tiers = allTiers
+  .filter(t => !t.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 
 const allPartners = await getCollection('partners');
-const partners = allPartners.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const partners = allPartners
+  .filter(p => !p.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout bodyClass="sponsorship-page">

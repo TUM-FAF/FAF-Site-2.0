@@ -4,7 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/about.css';
 
 const allTeam = await getCollection('team');
-const teamMembers = allTeam.sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const teamMembers = allTeam
+  .filter(m => !m.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 ---
 
 <BaseLayout>

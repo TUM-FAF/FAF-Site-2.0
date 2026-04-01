@@ -5,7 +5,7 @@ import '../styles/events.css';
 
 const allEvents = await getCollection('events');
 const pastEvents = allEvents
-  .filter(e => e.id !== 'cms-test')
+  .filter(e => e.id !== 'cms-test' && !e.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
