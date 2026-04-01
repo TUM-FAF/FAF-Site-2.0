@@ -20,6 +20,7 @@ collections:
       - { label: Description, name: description, widget: text }
       - { label: Venue, name: venue, widget: string, required: false }
       - { label: Image, name: image, widget: image, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: team
     label: Team Members
@@ -32,6 +33,7 @@ collections:
       - { label: Photo, name: photo, widget: image, required: false }
       - { label: Bio, name: bio, widget: text, required: false }
       - { label: Sort Order, name: sort_order, widget: number, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: testimonials
     label: Testimonials
@@ -43,6 +45,7 @@ collections:
       - { label: Event, name: event, widget: string }
       - { label: Quote, name: quote, widget: text }
       - { label: Sort Order, name: sort_order, widget: number, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: partners
     label: Partners
@@ -54,6 +57,7 @@ collections:
       - { label: Logo, name: logo, widget: image }
       - { label: Website, name: url, widget: string, required: false }
       - { label: Large logo, name: large, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: gallery
     label: Gallery
@@ -64,6 +68,7 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Image, name: image, widget: image }
       - { label: Caption, name: caption, widget: string, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: roles
     label: Volunteer Roles
@@ -74,6 +79,7 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text }
       - { label: Apply Link, name: apply_link, widget: string, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: tiers
     label: Sponsorship Tiers
@@ -89,6 +95,7 @@ collections:
         field: { label: Benefit, name: benefit, widget: string }
       - { label: CTA Label, name: cta_label, widget: string }
       - { label: Featured (Most Popular), name: featured, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
   - name: home
     label: Home Page
