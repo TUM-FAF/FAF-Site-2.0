@@ -9,6 +9,7 @@ const events = defineCollection({
     description: z.string(),
     image: z.string().optional(),
     venue: z.string().optional(),
+    images: z.array(z.string()).optional(),
     draft: z.boolean().optional(),
   }),
 });
