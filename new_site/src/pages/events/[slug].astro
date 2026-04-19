@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/events.css';
+import '../../styles/event-detail.css';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events
+    .filter(e => e.id !== 'cms-test' && !e.data.draft)
+    .map(event => ({
+      params: { slug: event.id },
+      props: { event },
+    }));
+}
+
+const { event } = Astro.props;
+const { title, date, description, image, venue, images } = event.data;
+const { Content } = await render(event);
+
+const dateStr = date.toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout bodyClass="event-detail-page">
+  <article class="event-detail">
+
+    {image && (
+      <div class="event-detail__hero">
+        <img src={image} alt={`${title} banner`} />
+      </div>
+    )}
+
+    <div class="event-detail__container">
+      <a href="/events" class="event-detail__back">← Back to Events</a>
+
+      <header class="event-detail__header">
+        <h1>{title}</h1>
+        <p class="event-detail__meta">{dateStr}{venue ? ` · ${venue}` : ''}</p>
+      </header>
+
+      <div class="event-detail__body">
+        <Content />
+      </div>
+
+      {images && images.length > 0 && (
+        <section class="event-detail__gallery">
+          <h2>Photos</h2>
+          <div class="event-detail__photo-grid">
+            {images.map((src, i) => (
+              <div class="event-detail__photo">
+                <img src={src} alt={`${title} — photo ${i + 1}`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+
+  </article>
+</BaseLayout>
