@@ -1,7 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/about.css';
+
+import planet from '../assets/web_elements/planet.PNG';
+import teamDiana from '../assets/team/team-diana.jpg';
+import teamDaria from '../assets/team/team-daria.jpg';
+import teamDaniel from '../assets/team/team-daniel.jpeg';
+import teamAlexandra from '../assets/team/team-alexandra.jpeg';
+import teamMadalina from '../assets/team/team-madalina.jpg';
+import teamDaniela from '../assets/team/team-daniela.jpeg';
+
+const teamPhotoMap: Record<string, ImageMetadata> = {
+  '/assets/team/team-diana.jpg': teamDiana,
+  '/assets/team/team-daria.jpg': teamDaria,
+  '/assets/team/team-daniel.jpeg': teamDaniel,
+  '/assets/team/team-alexandra.jpeg': teamAlexandra,
+  '/assets/team/team-madalina.jpg': teamMadalina,
+  '/assets/team/team-daniela.jpeg': teamDaniela,
+};
 
 const allTeam = await getCollection('team');
 const teamMembers = allTeam
@@ -96,7 +114,10 @@ const teamMembers = allTeam
                 {teamMembers.map(member => (
                     <article class="team-card card-glass">
                         <div class="avatar">
-                            {member.data.photo && <img src={member.data.photo} alt={member.data.name} />}
+                            {member.data.photo && (teamPhotoMap[member.data.photo]
+                              ? <Image src={teamPhotoMap[member.data.photo]} alt={member.data.name} loading="lazy" />
+                              : <img src={member.data.photo} alt={member.data.name} loading="lazy" />
+                            )}
                         </div>
                         <h3>{member.data.name}</h3>
                         <p class="team-role">{member.data.role}</p>
@@ -109,7 +130,7 @@ const teamMembers = allTeam
 
     <div class="page-end-wrapper">
         <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+            <Image src={planet} alt="" class="planet-img" data-planet-img loading="lazy" />
         </div>
 
         <section class="history-cta">

@@ -1,7 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/gallery.css';
+
+import planet from '../assets/web_elements/planet.PNG';
+import summerHack1 from '../assets/photos/summer-hack-1.JPG';
+import hackaton2 from '../assets/photos/hackaton-2.JPG';
+import lectures1 from '../assets/photos/lectures-1.JPG';
+import shenovate1 from '../assets/photos/shenovate-1.JPG';
+import movieNight1 from '../assets/photos/movie-night-1.JPG';
+import programmersDay1 from '../assets/photos/programmers-day-1.JPG';
+
+const galleryImageMap: Record<string, ImageMetadata> = {
+  '/assets/photos/summer-hack-1.JPG': summerHack1,
+  '/assets/photos/hackaton-2.JPG': hackaton2,
+  '/assets/photos/lectures-1.JPG': lectures1,
+  '/assets/photos/shenovate-1.JPG': shenovate1,
+  '/assets/photos/movie-night-1.JPG': movieNight1,
+  '/assets/photos/programmers-day-1.JPG': programmersDay1,
+};
 
 const allPhotos = await getCollection('gallery');
 const photos = allPhotos
@@ -22,7 +40,7 @@ const photos = allPhotos
 
     <div class="page-end-wrapper">
         <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img data-planet-align="right">
+            <Image src={planet} alt="" class="planet-img" data-planet-img data-planet-align="right" loading="lazy" />
         </div>
 
         <section class="gallery-grid-section">
@@ -31,7 +49,10 @@ const photos = allPhotos
                     {photos.map(photo => (
                         <div class="gallery-item">
                             <div class="gallery-item__thumb">
-                                <img src={photo.data.image} alt={photo.data.caption ?? photo.data.title} />
+                                {galleryImageMap[photo.data.image]
+                                  ? <Image src={galleryImageMap[photo.data.image]} alt={photo.data.caption ?? photo.data.title} loading="lazy" />
+                                  : <img src={photo.data.image} alt={photo.data.caption ?? photo.data.title} loading="lazy" />
+                                }
                             </div>
                             <div class="gallery-item__footer">
                                 <span class="gallery-item__title">{photo.data.title}</span>

@@ -1,7 +1,37 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/sponsorship.css';
+
+import planet from '../assets/web_elements/planet.PNG';
+import logoEfes from '../assets/logos/efes.png';
+import logoAmdaris from '../assets/logos/amdaris.png';
+import logoAlliedTesting from '../assets/logos/allied-testing.png';
+import logoUtm from '../assets/logos/utm.png';
+import logoTechQuarter from '../assets/logos/tech-quarter.png';
+import logoTekwill from '../assets/logos/tekwill.png';
+import logoCybercor from '../assets/logos/cybercor.png';
+import logoOptiplaza from '../assets/logos/optiplaza.png';
+import logoPgi from '../assets/logos/pgi.png';
+import logoSigmoid from '../assets/logos/sigmoid.png';
+import logoFusionworks from '../assets/logos/fusionworks.png';
+import logoStefanini from '../assets/logos/stefanini.png';
+
+const partnerLogoMap: Record<string, ImageMetadata> = {
+  '/assets/logos/efes.png': logoEfes,
+  '/assets/logos/amdaris.png': logoAmdaris,
+  '/assets/logos/allied-testing.png': logoAlliedTesting,
+  '/assets/logos/utm.png': logoUtm,
+  '/assets/logos/tech-quarter.png': logoTechQuarter,
+  '/assets/logos/tekwill.png': logoTekwill,
+  '/assets/logos/cybercor.png': logoCybercor,
+  '/assets/logos/optiplaza.png': logoOptiplaza,
+  '/assets/logos/pgi.png': logoPgi,
+  '/assets/logos/sigmoid.png': logoSigmoid,
+  '/assets/logos/fusionworks.png': logoFusionworks,
+  '/assets/logos/stefanini.png': logoStefanini,
+};
 
 const allTiers = await getCollection('tiers');
 const tiers = allTiers
@@ -82,7 +112,7 @@ const partners = allPartners
 
     <div class="page-end-wrapper">
         <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+            <Image src={planet} alt="" class="planet-img" data-planet-img loading="lazy" />
         </div>
 
         <section class="partners">
@@ -94,11 +124,9 @@ const partners = allPartners
 
                 <div class="partners-logos-row">
                     {partners.map(p => (
-                        <img
-                            src={p.data.logo}
-                            alt={p.data.name}
-                            class={p.data.large ? 'logo-big' : undefined}
-                        />
+                        partnerLogoMap[p.data.logo]
+                          ? <Image src={partnerLogoMap[p.data.logo]} alt={p.data.name} class={p.data.large ? 'logo-big' : undefined} loading="lazy" />
+                          : <img src={p.data.logo} alt={p.data.name} class={p.data.large ? 'logo-big' : undefined} loading="lazy" />
                     ))}
                 </div>
             </div>

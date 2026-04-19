@@ -1,14 +1,13 @@
 ---
 // src/layouts/BaseLayout.astro
 
-// Import your global CSS here.
-// (Make sure you moved these files into a src/styles/ folder!)
+import { Image } from 'astro:assets';
 import '../styles/reset.css';
 import '../styles/style.css';
 import '../styles/mascot.css';
 import '../styles/global.css';
+import logoFaf from '../assets/logos/logo-faf-dark.svg';
 
-// 1. Add this line to accept a custom body class
 const { bodyClass = "" } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
@@ -42,7 +41,7 @@ const pathname = Astro.url.pathname;
 
 <header class="site-header">
     <div class="logo">
-        <a href="/"><img src="/assets/logos/logo-faf-dark.svg" alt="FAF NGO logo"></a>
+        <a href="/"><Image src={logoFaf} alt="FAF NGO logo" /></a>
     </div>
 
     <nav class="nav" id="main-nav" aria-label="Main navigation">
