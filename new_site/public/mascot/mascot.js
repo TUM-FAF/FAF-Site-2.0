@@ -46,7 +46,7 @@
     bubbleDurationMax: 4000,
 
     /* Asset path (trailing slash required)                         */
-    assetPath: "assets/mascot/",
+    assetPath: "mascot/",
 
     /* Click / Enter — placeholder                                  */
     onActivate() {
