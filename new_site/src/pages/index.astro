@@ -1,6 +1,25 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import hero1 from '../assets/photos/hero-1.JPG';
+import hero2 from '../assets/photos/hero-2.JPG';
+import hero3 from '../assets/photos/hero-3.JPG';
+import planet from '../assets/web_elements/planet.PNG';
+import logoEfes from '../assets/logos/efes.png';
+import logoAmdaris from '../assets/logos/amdaris.png';
+import logoAllied from '../assets/logos/allied-testing.png';
+import logoUtm from '../assets/logos/utm.png';
+import logoTechQuarter from '../assets/logos/tech-quarter.png';
+import logoTekwill from '../assets/logos/tekwill.png';
+import logoCybercor from '../assets/logos/cybercor.png';
+import logoOptiplaza from '../assets/logos/optiplaza.png';
+import logoPgi from '../assets/logos/pgi.png';
+import logoSigmoid from '../assets/logos/sigmoid.png';
+import logoFusionworks from '../assets/logos/fusionworks.png';
+import logoStefanini from '../assets/logos/stefanini.png';
+import logoInstagram from '../assets/logos/instagram.png';
+import logoTelegram from '../assets/logos/telegram.png';
 
 const homeEntry = await getEntry('home', 'index');
 const home = homeEntry!.data;
@@ -78,13 +97,13 @@ const row2 = testimonials.slice(3);
 				<div class="events-photos-col">
 					<div class="ep-grid">
 						<div class="ep-large">
-							<img src="/assets/photos/hero-2.JPG" alt="Students at FAF hackathon">
+							<Image src={hero2} alt="Students at FAF hackathon" />
 						</div>
 						<div class="ep-small">
-							<img src="/assets/photos/hero-1.JPG" alt="Team presenting project">
+							<Image src={hero1} alt="Team presenting project" />
 						</div>
 						<div class="ep-small">
-							<img src="/assets/photos/hero-3.JPG" alt="Mentor helping participants">
+							<Image src={hero3} alt="Mentor helping participants" />
 						</div>
 					</div>
 				</div>
@@ -122,7 +141,7 @@ const row2 = testimonials.slice(3);
 
 	<div class="page-end-wrapper page-end-home">
 		<div class="planet-parallax-zone" aria-hidden="true">
-			<img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+			<Image src={planet} alt="" class="planet-img" data-planet-img loading="lazy" />
 		</div>
 
 		<section id="meeting" class="meeting">
@@ -169,18 +188,18 @@ const row2 = testimonials.slice(3);
 				<h2>Our partners</h2>
 
 				<div class="partners-logos-row">
-					<img src="/assets/logos/efes.png" alt="Efes" class="logo-big">
-					<img src="/assets/logos/amdaris.png" alt="Amdaris">
-					<img src="/assets/logos/allied-testing.png" alt="Allied Testing">
-					<img src="/assets/logos/utm.png" alt="UTM" class="logo-big">
-					<img src="/assets/logos/tech-quarter.png" alt="Tech Quarter" class="logo-big">
-					<img src="/assets/logos/tekwill.png" alt="Tekwill" class="logo-big">
-					<img src="/assets/logos/cybercor.png" alt="Cybercor" class="logo-big">
-					<img src="/assets/logos/optiplaza.png" alt="Optiplaza">
-					<img src="/assets/logos/pgi.png" alt="PGI" class="logo-big">
-					<img src="/assets/logos/sigmoid.png" alt="Sigmoid" class="logo-big">
-					<img src="/assets/logos/fusionworks.png" alt="FusionWorks" class="logo-big">
-					<img src="/assets/logos/stefanini.png" alt="Stefanini" class="logo-big">
+					<Image src={logoEfes} alt="Efes" class="logo-big" loading="lazy" />
+					<Image src={logoAmdaris} alt="Amdaris" loading="lazy" />
+					<Image src={logoAllied} alt="Allied Testing" loading="lazy" />
+					<Image src={logoUtm} alt="UTM" class="logo-big" loading="lazy" />
+					<Image src={logoTechQuarter} alt="Tech Quarter" class="logo-big" loading="lazy" />
+					<Image src={logoTekwill} alt="Tekwill" class="logo-big" loading="lazy" />
+					<Image src={logoCybercor} alt="Cybercor" class="logo-big" loading="lazy" />
+					<Image src={logoOptiplaza} alt="Optiplaza" loading="lazy" />
+					<Image src={logoPgi} alt="PGI" class="logo-big" loading="lazy" />
+					<Image src={logoSigmoid} alt="Sigmoid" class="logo-big" loading="lazy" />
+					<Image src={logoFusionworks} alt="FusionWorks" class="logo-big" loading="lazy" />
+					<Image src={logoStefanini} alt="Stefanini" class="logo-big" loading="lazy" />
 				</div>
 			</div>
 		</section>
@@ -203,10 +222,10 @@ const row2 = testimonials.slice(3);
 					<p>Follow FAF for event updates and important announcements.</p>
 					<div class="contact-social">
 						<a href="https://instagram.com/faf.ngo" target="_blank" rel="noreferrer">
-							<img src="/assets/logos/instagram.png" alt="Instagram FAF" class="social-icon">
+							<Image src={logoInstagram} alt="Instagram FAF" class="social-icon" loading="lazy" />
 						</a>
 						<a href="https://t.me/+rE_rO1LuJdkwY2Ni" target="_blank" rel="noreferrer">
-							<img src="/assets/logos/telegram.png" alt="Telegram FAF" class="social-icon">
+							<Image src={logoTelegram} alt="Telegram FAF" class="social-icon" loading="lazy" />
 						</a>
 					</div>
 					<p style="margin-top: 8px; font-size: 0.85rem;">

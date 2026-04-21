@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/sponsorship.css';
+import planet from '../assets/web_elements/planet.PNG';
 
 const allTiers = await getCollection('tiers');
 const tiers = allTiers
@@ -82,7 +84,7 @@ const partners = allPartners
 
     <div class="page-end-wrapper">
         <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+            <Image src={planet} alt="" class="planet-img" data-planet-img loading="lazy" />
         </div>
 
         <section class="partners">
@@ -94,11 +96,14 @@ const partners = allPartners
 
                 <div class="partners-logos-row">
                     {partners.map(p => (
-                        <img
+                        {p.data.logo && (
+                        <Image
                             src={p.data.logo}
                             alt={p.data.name}
                             class={p.data.large ? 'logo-big' : undefined}
+                            loading="lazy"
                         />
+                    )}
                     ))}
                 </div>
             </div>
