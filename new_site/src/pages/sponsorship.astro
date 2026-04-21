@@ -96,14 +96,14 @@ const partners = allPartners
 
                 <div class="partners-logos-row">
                     {partners.map(p => (
-                        {p.data.logo && (
-                        <Image
-                            src={p.data.logo}
-                            alt={p.data.name}
-                            class={p.data.large ? 'logo-big' : undefined}
-                            loading="lazy"
-                        />
-                    )}
+                        p.data.logo && (
+                            <Image
+                                src={p.data.logo}
+                                alt={p.data.name}
+                                class={p.data.large ? 'logo-big' : undefined}
+                                loading="lazy"
+                            />
+                        )
                     ))}
                 </div>
             </div>
