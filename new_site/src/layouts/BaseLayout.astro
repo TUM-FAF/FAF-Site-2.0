@@ -40,7 +40,7 @@ const pathname = Astro.url.pathname;
 
 <header class="site-header">
     <div class="logo">
-        <a href="/"><Image src={fafLogo} alt="FAF NGO logo" /></a>
+        <a href="/"><Image src={fafLogo} alt="FAF NGO logo" width={71} height={48} /></a>
     </div>
 
     <nav class="nav" id="main-nav" aria-label="Main navigation">
@@ -62,7 +62,7 @@ const pathname = Astro.url.pathname;
                 <a href="/volunteers" class={pathname.includes('/volunteers') ? 'active' : ''}>Become a Volunteer</a>
             </div>
         </div>
-        <a href="#contact">Contact</a>
+        <a href="/#contact">Contact</a>
 
         <label class="mascot-toggle" title="Toggle mascot (saves preference)">
             <input type="checkbox" id="mascot-toggle-cb" checked>
