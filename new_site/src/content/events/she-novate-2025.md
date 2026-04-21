@@ -5,12 +5,12 @@ description: >
   Empowering forum for women in tech with keynotes and workshops led by industry
   leaders, focused on breaking gender barriers.
 venue: Tekwill
-image: /assets/photos/she-novate.png
+image: ../../assets/photos/she-novate.png
 images:
-  - /assets/photos/she-novate-2025/photo-1.jpg
-  - /assets/photos/she-novate-2025/photo-2.jpg
-  - /assets/photos/she-novate-2025/photo-3.jpg
-  - /assets/photos/she-novate-2025/photo-4.jpg
+  - ../../assets/photos/she-novate-2025/photo-1.jpg
+  - ../../assets/photos/she-novate-2025/photo-2.jpg
+  - ../../assets/photos/she-novate-2025/photo-3.jpg
+  - ../../assets/photos/she-novate-2025/photo-4.jpg
 ---
 
 ## She-novate 2025: Empowering the Next Generation of Tech Leaders

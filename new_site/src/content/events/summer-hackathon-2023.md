@@ -3,12 +3,12 @@ title: Summer Hackathon 2023
 date: 2023-06-17
 description: Sustainable tech solutions sprint with a high mentor-to-participant ratio, helping junior developers refine their product pitches.
 venue: UTM
-image: /assets/photos/summer-hack-2023.png
+image: ../../assets/photos/summer-hack-2023.png
 images:
-  - /assets/photos/summer-hackathon-2023/photo-1.jpg
-  - /assets/photos/summer-hackathon-2023/photo-2.jpg
-  - /assets/photos/summer-hackathon-2023/photo-3.jpg
-  - /assets/photos/summer-hackathon-2023/photo-4.jpg
+  - ../../assets/photos/summer-hackathon-2023/photo-1.jpg
+  - ../../assets/photos/summer-hackathon-2023/photo-2.jpg
+  - ../../assets/photos/summer-hackathon-2023/photo-3.jpg
+  - ../../assets/photos/summer-hackathon-2023/photo-4.jpg
 ---
 
 ## Summer FAF Hackathon 2023

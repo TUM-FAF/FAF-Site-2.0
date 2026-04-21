@@ -3,12 +3,12 @@ title: Summer Hackathon 2024
 date: 2024-06-15
 description: '"Marathon of Ingenuity" — building web platforms for real-world consumer problems. Prizes from TechQuarter and Stefanini.'
 venue: FCIM Amphitheater
-image: /assets/photos/summer-hack-2024.png
+image: ../../assets/photos/summer-hack-2024.png
 images:
-  - /assets/photos/summer-hackathon-2024/photo-1.jpg
-  - /assets/photos/summer-hackathon-2024/photo-2.jpg
-  - /assets/photos/summer-hackathon-2024/photo-3.jpg
-  - /assets/photos/summer-hackathon-2024/photo-4.jpg
+  - ../../assets/photos/summer-hackathon-2024/photo-1.jpg
+  - ../../assets/photos/summer-hackathon-2024/photo-2.jpg
+  - ../../assets/photos/summer-hackathon-2024/photo-3.jpg
+  - ../../assets/photos/summer-hackathon-2024/photo-4.jpg
 ---
 
 ## Summer FAF x Sigmoid Hackathon 2024: Igniting Innovation and Talent

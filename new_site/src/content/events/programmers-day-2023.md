@@ -3,12 +3,12 @@ title: Programmers' Day 2023
 date: 2023-09-13
 description: Panels on AI and Web Development with guest speakers from the local IT hub and student-led project demonstrations.
 venue: Tekwill
-image: /assets/photos/programmers-day-2023.png
+image: ../../assets/photos/programmers-day-2023.png
 images:
-  - /assets/photos/programmers-day-2023/photo-1.jpg
-  - /assets/photos/programmers-day-2023/photo-2.jpg
-  - /assets/photos/programmers-day-2023/photo-3.jpg
-  - /assets/photos/programmers-day-2023/photo-4.jpg
+  - ../../assets/photos/programmers-day-2023/photo-1.jpg
+  - ../../assets/photos/programmers-day-2023/photo-2.jpg
+  - ../../assets/photos/programmers-day-2023/photo-3.jpg
+  - ../../assets/photos/programmers-day-2023/photo-4.jpg
 ---
 
 ## Programmers' Day 2023

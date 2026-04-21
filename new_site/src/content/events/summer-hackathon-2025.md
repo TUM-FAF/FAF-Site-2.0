@@ -3,12 +3,12 @@ title: Summer Hackathon 2025
 date: 2025-06-21
 description: 24-hour endurance challenge. 150+ students built tech products from scratch, competing for €3000 prizes per track.
 venue: CyberCor
-image: /assets/photos/summer-hackathon.png
+image: ../../assets/photos/summer-hackathon.png
 images:
-  - /assets/photos/summer-hackathon-2025/photo-1.jpg
-  - /assets/photos/summer-hackathon-2025/photo-2.jpg
-  - /assets/photos/summer-hackathon-2025/photo-3.jpg
-  - /assets/photos/summer-hackathon-2025/photo-4.jpg
+  - ../../assets/photos/summer-hackathon-2025/photo-1.jpg
+  - ../../assets/photos/summer-hackathon-2025/photo-2.jpg
+  - ../../assets/photos/summer-hackathon-2025/photo-3.jpg
+  - ../../assets/photos/summer-hackathon-2025/photo-4.jpg
 ---
 
 ## Who do you think won the Summer FAF x Sigmoid Hackathon?

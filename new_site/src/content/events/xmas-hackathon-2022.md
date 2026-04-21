@@ -3,12 +3,12 @@ title: XMAS Hackathon 2022
 date: 2022-12-17
 description: First major post-pandemic gathering focused on Smart City concepts, game development, and hardware integration with Arduino.
 venue: Tekwill
-image: /assets/photos/xmas-hack-2022.png
+image: ../../assets/photos/xmas-hack-2022.png
 images:
-  - /assets/photos/xmas-hackathon-2022/photo-1.jpg
-  - /assets/photos/xmas-hackathon-2022/photo-2.jpg
-  - /assets/photos/xmas-hackathon-2022/photo-3.jpg
-  - /assets/photos/xmas-hackathon-2022/photo-4.jpg
+  - ../../assets/photos/xmas-hackathon-2022/photo-1.jpg
+  - ../../assets/photos/xmas-hackathon-2022/photo-2.jpg
+  - ../../assets/photos/xmas-hackathon-2022/photo-3.jpg
+  - ../../assets/photos/xmas-hackathon-2022/photo-4.jpg
 ---
 
 ## XMAS FAF Hackathon 2022

@@ -3,12 +3,12 @@ title: Programmers' Day 2025
 date: 2025-09-13
 description: A celebration of the 256th day of the year with a technical conference, international experts, IT quizzes, and networking.
 venue: Tekwill
-image: /assets/photos/programmers-day.png
+image: ../../assets/photos/programmers-day.png
 images:
-  - /assets/photos/programmers-day-2025/photo-1.jpg
-  - /assets/photos/programmers-day-2025/photo-2.jpg
-  - /assets/photos/programmers-day-2025/photo-3.jpg
-  - /assets/photos/programmers-day-2025/photo-4.jpg
+  - ../../assets/photos/programmers-day-2025/photo-1.jpg
+  - ../../assets/photos/programmers-day-2025/photo-2.jpg
+  - ../../assets/photos/programmers-day-2025/photo-3.jpg
+  - ../../assets/photos/programmers-day-2025/photo-4.jpg
 ---
 
 ## Programmers Day 2025: An Evening of Inspiration, Innovation, and Community

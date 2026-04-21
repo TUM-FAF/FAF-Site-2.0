@@ -3,12 +3,12 @@ title: XMAS Hackathon 2025
 date: 2025-12-20
 description: 'The most iconic year-end FAF event. Three tracks: AI for Study Optimization, Machine Learning, Cybersecurity — each with major prizes.'
 venue: Tekwill
-image: /assets/photos/XMAS-hack-2025.png
+image: ../../assets/photos/XMAS-hack-2025.png
 images:
-  - /assets/photos/xmas-2025/photo-1.jpg
-  - /assets/photos/xmas-2025/photo-2.jpg
-  - /assets/photos/xmas-2025/photo-3.jpg
-  - /assets/photos/xmas-2025/photo-4.jpg
+  - ../../assets/photos/xmas-2025/photo-1.jpg
+  - ../../assets/photos/xmas-2025/photo-2.jpg
+  - ../../assets/photos/xmas-2025/photo-3.jpg
+  - ../../assets/photos/xmas-2025/photo-4.jpg
 ---
 
 ## Who do you think won the XMAS FAF Hackathon 2025?
