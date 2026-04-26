@@ -1,12 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/volunteers.css';
+import planet from '../assets/web_elements/planet.PNG';
 
 const allRoles = await getCollection('roles');
-const roles = allRoles
-  .filter(r => !r.data.draft)
-  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+const roles = await Promise.all(
+  allRoles
+    .filter(r => !r.data.draft)
+    .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99))
+    .map(async r => ({ ...r, Content: (await render(r)).Content }))
+);
 ---
 
 <BaseLayout bodyClass="volunteers-page">
@@ -46,7 +51,7 @@ const roles = allRoles
                 <div class="step-card card-glass">
                     <span class="step-number">3</span>
                     <h3>Join a Team</h3>
-                    <p>Get placed under one of our leads — CRM, HR, Design, or PR — based on your skills and interests.</p>
+                    <p>Get placed under one of our leads — CFO, CPO, CCO, or CMO — based on your skills and interests.</p>
                 </div>
                 <div class="step-card card-glass">
                     <span class="step-number">4</span>
@@ -72,7 +77,7 @@ const roles = allRoles
                             <span class="role-arrow">&rsaquo;</span>
                         </div>
                         <div class="role-reveal">
-                            <p>{role.data.description}</p>
+                            {role.body?.trim() ? <role.Content /> : <p>{role.data.description}</p>}
                             {role.data.apply_link && (
                                 <a href={role.data.apply_link} class="btn btn-secondary" style="margin-top: var(--space-sm);">Apply</a>
                             )}
@@ -113,7 +118,7 @@ const roles = allRoles
 
     <div class="page-end-wrapper">
         <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+            <Image src={planet} alt="" class="planet-img" data-planet-img loading="lazy" />
         </div>
 
         <section class="vol-cta-banner">

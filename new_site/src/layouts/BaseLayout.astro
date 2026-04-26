@@ -1,14 +1,12 @@
 ---
 // src/layouts/BaseLayout.astro
-
-// Import your global CSS here.
-// (Make sure you moved these files into a src/styles/ folder!)
+import { Image } from 'astro:assets';
+import fafLogo from '../assets/logos/logo-faf-dark.svg';
 import '../styles/reset.css';
 import '../styles/style.css';
 import '../styles/mascot.css';
 import '../styles/global.css';
 
-// 1. Add this line to accept a custom body class
 const { bodyClass = "" } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
@@ -42,7 +40,7 @@ const pathname = Astro.url.pathname;
 
 <header class="site-header">
     <div class="logo">
-        <a href="/"><img src="/assets/logos/logo-faf-dark.svg" alt="FAF NGO logo"></a>
+        <a href="/"><Image src={fafLogo} alt="FAF NGO logo" width={71} height={48} /></a>
     </div>
 
     <nav class="nav" id="main-nav" aria-label="Main navigation">
@@ -64,7 +62,7 @@ const pathname = Astro.url.pathname;
                 <a href="/volunteers" class={pathname.includes('/volunteers') ? 'active' : ''}>Become a Volunteer</a>
             </div>
         </div>
-        <a href="#contact">Contact</a>
+        <a href="/#contact">Contact</a>
 
         <label class="mascot-toggle" title="Toggle mascot (saves preference)">
             <input type="checkbox" id="mascot-toggle-cb" checked>

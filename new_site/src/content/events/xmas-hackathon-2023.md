@@ -3,12 +3,12 @@ title: XMAS Hackathon 2023
 date: 2023-12-23
 description: 75 enthusiasts tackled OCR technology and automatic timetable generation. First-place prize sponsored by Allied Testing.
 venue: Tekwill
-image: /assets/photos/xmas-hack-2023.png
+image: ../../assets/photos/xmas-hack-2023.png
 images:
-  - /assets/photos/xmas-hackathon-2023/photo-1.jpg
-  - /assets/photos/xmas-hackathon-2023/photo-2.jpg
-  - /assets/photos/xmas-hackathon-2023/photo-3.jpg
-  - /assets/photos/xmas-hackathon-2023/photo-4.jpg
+  - ../../assets/photos/xmas-hackathon-2023/photo-1.jpg
+  - ../../assets/photos/xmas-hackathon-2023/photo-2.jpg
+  - ../../assets/photos/xmas-hackathon-2023/photo-3.jpg
+  - ../../assets/photos/xmas-hackathon-2023/photo-4.jpg
 ---
 
 ## XMas FAF Hackathon 2023: A Technological Adventure on the Eve of the Holidays

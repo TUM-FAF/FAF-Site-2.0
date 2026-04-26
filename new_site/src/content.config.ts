@@ -3,23 +3,23 @@ import { glob } from 'astro/loaders';
 
 const events = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/events' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     date: z.coerce.date(),
     description: z.string(),
-    image: z.string().optional(),
+    image: image().optional(),
     venue: z.string().optional(),
-    images: z.array(z.string()).optional(),
+    images: z.array(image()).optional(),
     draft: z.boolean().optional(),
   }),
 });
 
 const team = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/team' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
     role: z.string(),
-    photo: z.string().optional(),
+    photo: image().optional(),
     bio: z.string().optional(),
     sort_order: z.number().optional(),
     draft: z.boolean().optional(),
@@ -39,9 +39,9 @@ const testimonials = defineCollection({
 
 const partners = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/partners' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
-    logo: z.string(),
+    logo: image().optional(),
     url: z.string().optional(),
     large: z.boolean().optional(),
     sort_order: z.number().optional(),
@@ -51,9 +51,9 @@ const partners = defineCollection({
 
 const gallery = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/gallery' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
-    image: z.string(),
+    image: image(),
     caption: z.string().optional(),
     sort_order: z.number().optional(),
     draft: z.boolean().optional(),

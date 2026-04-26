@@ -3,12 +3,12 @@ title: XMAS Hackathon 2024
 date: 2024-12-21
 description: Holiday-themed 24h sprint on creative problem-solving. Mentors from top tech companies helped teams build functional prototypes.
 venue: Tekwill
-image: /assets/photos/XMAS-hackathon.png
+image: ../../assets/photos/XMAS-hackathon.png
 images:
-  - /assets/photos/xmas-hackathon-2024/photo-1.jpg
-  - /assets/photos/xmas-hackathon-2024/photo-2.jpg
-  - /assets/photos/xmas-hackathon-2024/photo-3.jpg
-  - /assets/photos/xmas-hackathon-2024/photo-4.jpg
+  - ../../assets/photos/xmas-hackathon-2024/photo-1.jpg
+  - ../../assets/photos/xmas-hackathon-2024/photo-2.jpg
+  - ../../assets/photos/xmas-hackathon-2024/photo-3.jpg
+  - ../../assets/photos/xmas-hackathon-2024/photo-4.jpg
 ---
 
 ## XMAS FAF Hackathon 2024

@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/about.css';
+import planet from '../assets/web_elements/planet.PNG';
 
 const allTeam = await getCollection('team');
 const teamMembers = allTeam
@@ -96,7 +98,7 @@ const teamMembers = allTeam
                 {teamMembers.map(member => (
                     <article class="team-card card-glass">
                         <div class="avatar">
-                            {member.data.photo && <img src={member.data.photo} alt={member.data.name} />}
+                            {member.data.photo && <Image src={member.data.photo} alt={member.data.name} loading="lazy" />}
                         </div>
                         <h3>{member.data.name}</h3>
                         <p class="team-role">{member.data.role}</p>
@@ -109,7 +111,7 @@ const teamMembers = allTeam
 
     <div class="page-end-wrapper">
         <div class="planet-parallax-zone" aria-hidden="true">
-            <img src="/assets/web_elements/planet.PNG" alt="" class="planet-img" data-planet-img>
+            <Image src={planet} alt="" class="planet-img" data-planet-img loading="lazy" />
         </div>
 
         <section class="history-cta">
