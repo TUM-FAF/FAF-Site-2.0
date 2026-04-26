@@ -1,6 +1,6 @@
 # FAF Landing Page – Site 2.0
 
-This project is a responsive, modern landing site for **FAF** (Fiesta Auto-Help and Friends), a student-led NGO that connects Moldova's IT community through hackathons, lectures, workshops, and tech events.
+This project is a responsive, modern landing site for **FAF**, a student-led NGO that connects Moldova's IT community through hackathons, lectures, workshops, and tech events.
 
 ## Technology Stack
 
