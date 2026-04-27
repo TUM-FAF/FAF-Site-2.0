@@ -21,6 +21,17 @@ function parseMember(filename: string): { name: string; role: string } {
 
 const ROLE_ORDER = ['CEO', 'COO', 'CFO', 'CMO', 'CPO', 'CCO', 'CLO'];
 
+const BOARD_DESCRIPTIONS: Record<number, string> = {
+    0: "This is where it all began. Board 0 is the founding board — the small group of students who looked at Moldova's IT landscape and decided to do something about it. They created FAF NGO from nothing: no playbook, no budget, no precedent. What they did have was a shared conviction that university students deserved a bridge between their studies and the real industry. Everything you see today — the events, the community, the tradition — traces back to them.",
+    1: "With the foundation in place, Board 1 took on the challenge of proving the organization could outlive its founders. They ran the first recurring events, established the internal processes that made handovers possible, and grew the volunteer base beyond a tight circle of friends. This board turned a founding idea into a functioning organization.",
+    2: "Board 2 pushed FAF into the public eye. They scaled up events, forged the first meaningful partnerships with companies in Moldova's tech sector, and showed that a student-run NGO could operate at a professional level. By the end of their term, FAF had a reputation — not just a presence.",
+    3: "Board 3 inherited momentum and used it. They deepened relationships with industry partners, introduced new event formats, and focused on making FAF genuinely useful to students at every stage of their studies — not just the ones already plugged into the tech world. Their term marked a shift from growth to maturity.",
+    4: "Board 4 ran one of the most active periods in FAF's history. Hackathons grew in scale, lectures brought in speakers from across the region, and the volunteer pipeline became a structured path rather than an open door. They left the organization larger, better documented, and ready for what came next.",
+    5: "Board 5 focused on depth over breadth. Rather than simply adding more events, they invested in the quality of each one — tighter logistics, better partnerships, stronger feedback loops. They also expanded FAF's internal roles, bringing in dedicated people for community and product, which gave the org the capacity to think beyond the next event.",
+    6: "Board 6 carried FAF through a period of change in the broader tech environment in Moldova and kept the organization not just stable but relevant. They modernized how FAF communicated with its community, strengthened ties with alumni, and set up the structures that would allow the next board to hit the ground running.",
+    7: "Board 7 is the most recent chapter before the current team. They built on everything that came before and brought their own identity to it — refining what worked, rethinking what didn't, and leaving the organization in the hands of a new generation with a clear sense of what FAF stands for and where it's going.",
+};
+
 interface BoardMember {
     name: string;
     role: string;
@@ -29,6 +40,7 @@ interface BoardMember {
 
 interface Board {
     number: number;
+    description: string;
     members: BoardMember[];
 }
 
@@ -54,7 +66,7 @@ for (let i = 0; i <= 7; i++) {
         return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
     });
 
-    boards.push({ number: i, members });
+    boards.push({ number: i, description: BOARD_DESCRIPTIONS[i] ?? '', members });
 }
 
 const totalMembers = boards.reduce((sum, b) => sum + b.members.length, 0);
@@ -108,6 +120,10 @@ const totalMembers = boards.reduce((sum, b) => sum + b.members.length, 0);
                             </div>
                             <div class="board-divider" aria-hidden="true"></div>
                         </div>
+
+                        {board.description && (
+                            <p class="board-description">{board.description}</p>
+                        )}
 
                         <div class="board-members">
                             {board.members.map(member => (
