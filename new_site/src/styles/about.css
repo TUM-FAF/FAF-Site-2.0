@@ -137,6 +137,29 @@
     box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
 }
 
+/* Match team card style to board card style */
+.team .team-role {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.team .avatar {
+    border: 2px solid rgba(255, 155, 43, 0.2);
+    transition: border-color 0.22s ease;
+}
+
+.team-card:hover .avatar {
+    border-color: rgba(255, 155, 43, 0.55);
+}
+
+.team .avatar img {
+    object-position: top center;
+}
+
 @media (max-width: 768px) {
     .volunteer-form .form-grid {
         grid-template-columns: 1fr;
