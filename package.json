@@ -9,9 +9,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:game": "npm --prefix games/space-invaders install && npm --prefix games/space-invaders run build"
   },
   "dependencies": {
+    "@rolldown/binding-win32-x64-msvc": "^1.0.0-rc.17",
     "astro": "^6.0.8"
   },
   "devDependencies": {

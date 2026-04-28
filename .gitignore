@@ -1,3 +1,9 @@
 /.idea
 node_modules/
 dist/
+
+# Dev/test workspace — never commit
+bk/
+
+# Generated game build output — rebuilt from source
+public/games/
