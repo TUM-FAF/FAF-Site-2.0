@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "hero_tagline": {
+      "type": "string"
+    },
+    "hero_title": {
+      "type": "string"
+    },
+    "hero_subtitle": {
+      "type": "string"
+    },
+    "next_event_title": {
+      "type": "string"
+    },
+    "next_event_date": {
+      "type": "string"
+    },
+    "next_event_description": {
+      "type": "string"
+    },
+    "next_event_location": {
+      "type": "string"
+    },
+    "meeting_heading": {
+      "type": "string"
+    },
+    "meeting_subtitle": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "hero_tagline",
+    "hero_title",
+    "hero_subtitle",
+    "next_event_title",
+    "next_event_date",
+    "next_event_description",
+    "next_event_location",
+    "meeting_heading",
+    "meeting_subtitle"
+  ]
+}

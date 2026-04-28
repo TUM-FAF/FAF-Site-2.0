@@ -1,4 +1,4 @@
 [build]
-  base    = "new_site"
+  base    = "."
   command = "npm run build"
   publish = "dist"
