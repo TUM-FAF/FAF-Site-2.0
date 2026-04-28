@@ -235,17 +235,17 @@ const row2 = testimonials.slice(3);
 			</div>
 		</section>
 	</div>
-</BaseLayout>
 
-<!-- FAF Invaders easter egg: Left→Right→Left→Right→Up→Down on the hero section -->
-<div id="faf-invaders-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center;">
-  <iframe
-    id="faf-invaders-frame"
-    src=""
-    style="width:100%; height:100%; border:none;"
-    allow="autoplay"
-  ></iframe>
-</div>
+	<!-- FAF Invaders easter egg: Left→Right→Left→Right→Up→Down -->
+	<div id="faf-invaders-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center;">
+		<iframe
+			id="faf-invaders-frame"
+			src=""
+			style="width:100%; height:100%; border:none;"
+			allow="autoplay"
+		></iframe>
+	</div>
+</BaseLayout>
 
 <script>
   (function () {
@@ -258,12 +258,12 @@ const row2 = testimonials.slice(3);
 
     const overlay = document.getElementById('faf-invaders-overlay');
     const frame   = document.getElementById('faf-invaders-frame');
-    const hero    = document.getElementById('hero');
 
     function openGame() {
       frame.src = GAME_URL;
       overlay.style.display = 'flex';
       document.body.style.overflow = 'hidden';
+      frame.focus();
     }
 
     function closeGame() {
@@ -273,17 +273,18 @@ const row2 = testimonials.slice(3);
       pos = 0;
     }
 
-    hero.addEventListener('keydown', onKey);
-    document.addEventListener('keydown', onKey);
-
-    function onKey(e) {
+    document.addEventListener('keydown', function onKey(e) {
+      if (overlay.style.display !== 'none' && e.key === 'Escape') {
+        closeGame();
+        return;
+      }
       if (SEQ[pos] === e.key) {
         pos++;
         if (pos === SEQ.length) { openGame(); pos = 0; }
       } else {
         pos = (SEQ[0] === e.key) ? 1 : 0;
       }
-    }
+    });
 
     window.addEventListener('message', function (e) {
       if (e.data && e.data.type === 'exitGame') closeGame();
