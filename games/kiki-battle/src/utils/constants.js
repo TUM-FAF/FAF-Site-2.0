@@ -1,8 +1,8 @@
 export const W = 800;
 export const H = 600;
 
-// Battle box — centered, smaller than original
-export const BOX = Object.freeze({ x: 200, y: 80, w: 400, h: 340 });
+// Battle box — 1.3× smaller than previous (400×340 → 308×262), centered
+export const BOX = Object.freeze({ x: 246, y: 90, w: 308, h: 262 });
 
 // Arena expand/shrink boost offsets (per side)
 export const BOX_EXPAND  = Object.freeze({ dx: 60, dy: 40 });
