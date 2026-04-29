@@ -304,16 +304,15 @@ const row2 = testimonials.slice(3);
       document.body.style.overflow = '';
     }
 
-    const mascot = document.getElementById('mascot-root');
-    if (mascot) {
-      mascot.addEventListener('pointerdown', () => {
-        holdTimer = setTimeout(openBattle, 7000);
-      });
-      const cancelHold = () => { clearTimeout(holdTimer); holdTimer = null; };
-      mascot.addEventListener('pointerup',     cancelHold);
-      mascot.addEventListener('pointercancel', cancelHold);
-      mascot.addEventListener('pointermove',   cancelHold);
-    }
+		const mascot = document.getElementById('mascot-root');
+		if (mascot) {
+			mascot.addEventListener('pointerdown', () => {
+				holdTimer = setTimeout(openBattle, 3000);
+			});
+			const cancelHold = () => { clearTimeout(holdTimer); holdTimer = null; };
+			mascot.addEventListener('pointerup',     cancelHold);
+			mascot.addEventListener('pointercancel', cancelHold);
+		}
 
     // ── Shared keyboard handler ───────────────────────────────────────────────
     document.addEventListener('keydown', function (e) {
