@@ -7,14 +7,17 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:games && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:games": "npm --prefix games/space-invaders install && npm --prefix games/space-invaders run build && npm --prefix games/kiki-battle install && npm --prefix games/kiki-battle run build"
   },
   "dependencies": {
     "astro": "^6.0.8"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2"
+    "@tailwindcss/postcss": "^4.2.2",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^4.2.2"
   }
 }
