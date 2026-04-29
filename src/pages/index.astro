@@ -286,19 +286,33 @@ const row2 = testimonials.slice(3);
     // ── Battle: hold mascot 7 seconds ────────────────────────────────────────
     const BATTLE_URL = import.meta.env.DEV
       ? 'http://localhost:5174/'
-      : '/games/undertale-battle/';
+      : '/games/kiki-battle/';
 
     const batOverlay = document.getElementById('faf-battle-overlay');
     const batFrame   = document.getElementById('faf-battle-frame');
     let holdTimer    = null;
 
     function openBattle() {
+      // Switch mascot to mad head and silence thought bubbles
+      const headEl    = document.querySelector('.mascot-head');
+      const thoughtEl = document.getElementById('mascot-thought');
+      const rootEl    = document.getElementById('mascot-root');
+      if (headEl) { headEl.dataset.origSrc = headEl.src; headEl.src = '/assets/mascot/head_mad.png'; }
+      if (thoughtEl) thoughtEl.style.display = 'none';
+      if (rootEl)    rootEl.classList.remove('mascot--thought-auto');
+
       batFrame.src = BATTLE_URL;
       batOverlay.style.display = 'flex';
       document.body.style.overflow = 'hidden';
       batFrame.focus();
     }
     function closeBattle() {
+      // Restore mascot head and thought bubble
+      const headEl    = document.querySelector('.mascot-head');
+      const thoughtEl = document.getElementById('mascot-thought');
+      if (headEl && headEl.dataset.origSrc) { headEl.src = headEl.dataset.origSrc; delete headEl.dataset.origSrc; }
+      if (thoughtEl) thoughtEl.style.display = '';
+
       batOverlay.style.display = 'none';
       batFrame.src = '';
       document.body.style.overflow = '';
@@ -312,7 +326,7 @@ const row2 = testimonials.slice(3);
 			if (!target) return;
 			cancelHold();
 			holdPointerId = e.pointerId;
-			holdTimer = setTimeout(openBattle, 3000);
+			holdTimer = setTimeout(openBattle, 7000);
 		});
 
 		document.addEventListener('pointerup', (e) => {
