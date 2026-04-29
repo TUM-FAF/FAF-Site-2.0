@@ -34,20 +34,17 @@ This project is a responsive, modern landing site for **FAF**, a student-led NGO
 
 ```
 FAF-Site-2.0/
-├── new_site/                    # Astro project root
-│   ├── src/
-│   │   ├── pages/              # Route pages
-│   │   ├── components/         # Reusable Astro/React components
-│   │   ├── layouts/            # Page layouts
-│   │   ├── content/            # Content collections (events, team, testimonials, etc.)
-│   │   └── styles/             # Global CSS
-│   ├── public/                 # Static assets (images, logos)
-│   ├── astro.config.mjs        # Astro configuration
-│   ├── package.json
-│   └── package-lock.json
-├── admin/                       # Decap CMS admin config
-│   └── config.yml              # CMS configuration
-├── .gitignore
+├── src/
+│   ├── pages/              # Route pages
+│   ├── layouts/            # Page layouts
+│   ├── content/            # Content collections (events, team, gallery, etc.)
+│   └── styles/             # Global CSS
+├── public/                 # Static assets (images, logos)
+│   └── admin/              # Decap CMS admin config
+├── games/                  # Interactive easter-egg HTML5 games
+├── astro.config.mjs        # Astro configuration
+├── netlify.toml            # Netlify configuration
+├── package.json
 └── README.md
 ```
 
@@ -66,31 +63,26 @@ FAF-Site-2.0/
    cd FAF-Site-2.0
    ```
 
-2. **Navigate to the Astro project**
-   ```bash
-   cd new_site
-   ```
-
-3. **Install dependencies**
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-4. **Start the development server**
+3. **Start the development server**
    ```bash
    npm run dev
    ```
 
    The site will be available at `http://localhost:4321/` (or the port displayed in your terminal).
 
-5. **Build for production**
+4. **Build for production**
    ```bash
    npm run build
    ```
 
    Static files are generated in the `dist/` directory.
 
-6. **Preview production build locally**
+5. **Preview production build locally**
    ```bash
    npm run preview
    ```
@@ -115,21 +107,38 @@ This allows non-technical team members to:
 
 ## Deployment
 
+### Netlify (Recommended)
+
+The easiest way to deploy this project is via Netlify, using the provided `netlify.toml` file. 
+
+If using the Netlify CLI (Secret Code / Login approach):
+```bash
+npm install netlify-cli -g
+ntl login
+ntl init
+ntl deploy --prod
+```
+Alternatively, just link the GitHub repository in the Netlify Dashboard.
+
+### GitHub Pages
+
+A GitHub Actions workflow is included at `.github/workflows/deploy.yml`. 
+To use this, go to your repository **Settings > Pages** and set **Source** to **GitHub Actions**. Pushing to `main` will trigger a build and publish the site.
+
 ### Live Site
 
-**URL**: [https://faf-site-2-0.pages.dev](https://faf-site-2-0.pages.dev)
+**URL**: [https://fafngo.netlify.app](https://fafngo.netlify.app)
+*(Netlify)*
 
-(Update this with your actual deployment URL)
+**GitHub Pages URL**: [https://tum-faf.github.io/FAF-Site-2.0/](https://tum-faf.github.io/FAF-Site-2.0/) 
 
 ### CMS Admin Dashboard
 
-**URL**: [https://faf-site-2-0.pages.dev/admin/](https://faf-site-2-0.pages.dev/admin/)
-
-(Update this with your actual admin URL)
+**URL**: [https://fafngo.netlify.app/admin/](https://fafngo.netlify.app/admin/)
 
 ## Available Scripts
 
-From the `new_site/` directory:
+From the repository root:
 
 | Command | Purpose |
 |---------|---------|
@@ -169,6 +178,10 @@ From the `new_site/` directory:
 7. **Contact & Footer**
    - Contact information and social links
    - Telegram channel for announcements
+
+8. **Easter Egg Games**
+   - Integrated HTML5 games ("Space Invaders" and an Undertale-style boss battle) allowing users to interact beyond typical static pages. 
+   - Games are located in the `games/` folder and pre-built files exist under `public/games/`. You can edit them using Vite inside their respective directories.
 
 ## Responsive Design
 
