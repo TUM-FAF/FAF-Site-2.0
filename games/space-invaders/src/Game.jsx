@@ -222,11 +222,9 @@ export default function Game({ onExit }) {
     g.grid.update(dt, g.ship.x, (ex, ey) => g.bullets.push(new Bullet(ex, ey, true)));
 
     if (g.boss && !g.boss.dead) {
-      g.boss.update(dt, g.ship.x, (mx, my) => {
-        const m = new Enemy(99, 99, 2, mx, my);
-        m.startDive(g.ship.x);
-        g.minions.push(m);
-      });
+      g.boss.update(dt, g.ship.x);
+      const drained = g.boss.drainBullets();
+      for (const bb of drained) g.bullets.push(bb);
       if (g.boss.rayActive && g.boss.rayHitsX(g.ship.x) && g.ship.hit()) {
         livesRef.current--;
         spawnFx(g.ship.x, g.ship.y, '#00ff88', 18);
@@ -276,6 +274,19 @@ export default function Game({ onExit }) {
       if (b.dead) continue;
       if (g.boss && !g.boss.dead) {
         const bos = g.boss;
+        // Ring aliens
+        for (const ra of bos.ringAliens) {
+          if (ra.dead) continue;
+          if (bulletHitsRect(b, ra.x, ra.y, ra.r * 2, ra.r * 2)) {
+            if (!b.isSpecial) b.dead = true;
+            ra.dead = true;
+            scoreRef.current += 20;
+            spawnFx(ra.x, ra.y, '#ff8800', 6);
+            if (!b.isSpecial) break;
+          }
+        }
+        if (b.dead) continue;
+        // Boss body (only damages when vulnerable)
         if (bulletHitsRect(b, bos.x, bos.y, bos.w, bos.h)) {
           if (!b.isSpecial) b.dead = true;
           bos.hit();
@@ -329,6 +340,22 @@ export default function Game({ onExit }) {
           g.dyingTimer = livesRef.current <= 0 ? 1.5 : 0.9;
           changePhase('dying');
           return;
+        }
+      }
+    }
+
+    if (g.boss && !g.boss.dead) {
+      for (const ra of g.boss.ringAliens) {
+        if (ra.dead) continue;
+        if (Math.abs(ra.x - s.x) < s.w / 2 + ra.r + 1 && Math.abs(ra.y - s.y) < s.h / 2 + ra.r + 1) {
+          ra.dead = true;
+          if (s.hit()) {
+            livesRef.current--;
+            spawnFx(s.x, s.y, '#00ff88', 18);
+            g.dyingTimer = livesRef.current <= 0 ? 1.5 : 0.9;
+            changePhase('dying');
+            return;
+          }
         }
       }
     }
