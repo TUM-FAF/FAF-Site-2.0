@@ -1,13 +1,11 @@
 import { W, H, BOX, BOX_EXPAND, BOX_SHRINK } from '../utils/constants.js';
 
-// Positive keys (green/blue/gold/purple)
 const POS_KEYS   = ['z', 'x', 'c', 'v'];
 const POS_TYPES  = ['heal', 'shield', 'score2x', 'expandArena'];
 const POS_LABELS = ['Z', 'X', 'C', 'V'];
 const POS_COLORS = ['#00ff88', '#4488ff', '#ffdd00', '#aa44ff'];
 const POS_DESCS  = ['HEAL', 'SHIELD', '2× SCORE', 'EXPAND'];
 
-// Negative/spicy keys (red/orange)
 const NEG_KEYS   = ['b', 'n'];
 const NEG_TYPES  = ['shrinkArena', 'speedUp'];
 const NEG_LABELS = ['B', 'N'];
@@ -20,24 +18,25 @@ const ALL_LABELS = [...POS_LABELS, ...NEG_LABELS];
 const ALL_COLORS = [...POS_COLORS, ...NEG_COLORS];
 const ALL_DESCS  = [...POS_DESCS,  ...NEG_DESCS];
 
-const KEY_SIZE = 52;
-const VISIBLE  = 4.0;
-const FADE_AT  = 3.0;
+const KEY_SIZE      = 52;
+const VISIBLE       = 4.0;
+const FADE_AT       = 3.0;
+const COOLDOWN      = 2.5;   // seconds before same key can be used again
+const FLASH_DUR     = 0.55;  // penalty flash duration
 
 export class BoostSystem {
   constructor() {
     this._active      = [];
     this._spawnTimer  = 0;
     this._spawnInterval = 3.5;
+    this._cooldowns   = {};   // key → remaining cooldown seconds
+    this._penaltyFlashes = []; // { key, x, y, age }
 
-    // Positive boost states
     this.hasShield      = false;
     this.scoreX2        = false;
     this.scoreX2Timer   = 0;
     this.arenaExpanded  = false;
     this.arenaTimer     = 0;
-
-    // Negative boost states
     this.shrinkActive   = false;
     this.shrinkTimer    = 0;
     this.speedUpActive  = false;
@@ -72,6 +71,11 @@ export class BoostSystem {
     if (this.shrinkTimer   > 0) { this.shrinkTimer   -= dt; if (this.shrinkTimer   <= 0) this.shrinkActive = false; }
     if (this.speedUpTimer  > 0) { this.speedUpTimer  -= dt; if (this.speedUpTimer  <= 0) this.speedUpActive = false; }
 
+    // Tick cooldowns
+    for (const k of ALL_KEYS) {
+      if (this._cooldowns[k] > 0) this._cooldowns[k] -= dt;
+    }
+
     this._spawnTimer += dt;
     if (this._spawnTimer >= this._spawnInterval && this._active.length < 2) {
       this._spawnTimer = 0;
@@ -83,6 +87,13 @@ export class BoostSystem {
       k.alpha = k.age >= FADE_AT ? Math.max(0, 1 - (k.age - FADE_AT) / (VISIBLE - FADE_AT)) : 1;
     }
     this._active = this._active.filter(k => k.age < VISIBLE);
+
+    // Tick penalty flashes
+    for (const f of this._penaltyFlashes) {
+      f.age += dt;
+      f.alpha = Math.max(0, 1 - f.age / FLASH_DUR);
+    }
+    this._penaltyFlashes = this._penaltyFlashes.filter(f => f.age < FLASH_DUR);
   }
 
   _trySpawn() {
@@ -107,16 +118,48 @@ export class BoostSystem {
     this._active.push({ key, age: 0, alpha: 1, x, y });
   }
 
+  _spawnPenaltyFlash(key) {
+    const box = this.currentBox;
+    let x, y, tries = 0;
+    do {
+      x = 60 + Math.random() * (W - 120);
+      y = 60 + Math.random() * (H - 120);
+      tries++;
+    } while (
+      tries < 15 &&
+      x > box.x - 40 && x < box.x + box.w + 40 &&
+      y > box.y - 40 && y < box.y + box.h + 40
+    );
+    this._penaltyFlashes.push({ key, x, y, age: 0, alpha: 1 });
+  }
+
+  // Returns { action: 'boost', type } | { action: 'penalty' } | null
   pressKey(key, player) {
     const idx = ALL_KEYS.indexOf(key.toLowerCase());
     if (idx === -1) return null;
-    const tile = this._active.find(k => k.key === ALL_KEYS[idx]);
-    if (!tile) return null;
 
-    tile.age = VISIBLE; // consume
+    const k = ALL_KEYS[idx];
+
+    // On cooldown — spam penalty
+    if ((this._cooldowns[k] ?? 0) > 0) {
+      this._spawnPenaltyFlash(k);
+      return { action: 'penalty' };
+    }
+
+    const tile = this._active.find(t => t.key === k);
+    if (!tile) {
+      // No matching tile visible — wrong-key penalty
+      this._spawnPenaltyFlash(k);
+      this._cooldowns[k] = COOLDOWN;
+      return { action: 'penalty' };
+    }
+
+    // Valid press — consume tile, apply boost, set cooldown
+    tile.age = VISIBLE;
+    this._cooldowns[k] = COOLDOWN;
     // SOUND: play boost_{ALL_TYPES[idx]}.wav here
     this._apply(ALL_TYPES[idx], player);
-    return ALL_TYPES[idx];
+    return { action: 'boost', type: ALL_TYPES[idx] };
   }
 
   _apply(type, player) {
@@ -136,6 +179,14 @@ export class BoostSystem {
       const idx = ALL_KEYS.indexOf(k.key);
       ctx.globalAlpha = k.alpha;
       this._drawTile(ctx, k.x, k.y, ALL_LABELS[idx], ALL_COLORS[idx], ALL_DESCS[idx]);
+      ctx.globalAlpha = 1;
+    }
+    // Penalty flashes — red tile with "−100" that fades fast
+    for (const f of this._penaltyFlashes) {
+      if (f.alpha <= 0) continue;
+      const idx = ALL_KEYS.indexOf(f.key);
+      ctx.globalAlpha = f.alpha;
+      this._drawTile(ctx, f.x, f.y, ALL_LABELS[idx], '#ff2222', '−100');
       ctx.globalAlpha = 1;
     }
   }

@@ -1,5 +1,19 @@
 import { PLAYER_SPEED, MAX_HP, INV_DURATION } from '../utils/constants.js';
 
+// Classic space-invader alien shape, 11 cols × 8 rows
+const ALIEN = [
+  [0,0,1,0,0,0,0,0,1,0,0],
+  [0,0,0,1,0,0,0,1,0,0,0],
+  [0,0,1,1,1,1,1,1,1,0,0],
+  [0,1,1,0,1,1,1,0,1,1,0],
+  [1,1,1,1,1,1,1,1,1,1,1],
+  [1,0,1,1,1,1,1,1,1,0,1],
+  [1,0,1,0,0,0,0,0,1,0,1],
+  [0,0,0,1,0,0,0,1,0,0,0],
+];
+const PX = 1.5;
+const COLS = 11, ROWS = 8;
+
 export class Player {
   constructor(x, y) {
     this.x = x;
@@ -26,7 +40,6 @@ export class Player {
     this.y = Math.max(box.y + m, Math.min(box.y + box.h - m, this.y + dy * spd));
   }
 
-  // Returns true if damage was applied (not invincible)
   hit(dmg) {
     if (this.invTime > 0) return false;
     this.hp = Math.max(0, this.hp - dmg);
@@ -35,26 +48,20 @@ export class Player {
     return true;
   }
 
-  // Circle collision: bullet at (cx,cy) with radius r vs player center with effective radius 2
   hitsCircle(cx, cy, r) {
     const dx = this.x - cx, dy = this.y - cy;
     return Math.sqrt(dx * dx + dy * dy) < r + 2;
   }
 
   render(ctx) {
-    // Flash every other frame during invincibility
     if (this.invTime > 0 && Math.floor(this.invTime * 12) % 2 === 0) return;
-
-    // 7×6 pixel heart centered on (this.x, this.y)
-    const ox = Math.round(this.x) - 3;
-    const oy = Math.round(this.y) - 3;
-    ctx.fillStyle = '#ff0033';
-    ctx.fillRect(ox + 1, oy,     2, 1); // .XX.
-    ctx.fillRect(ox + 4, oy,     2, 1); //    .XX.
-    ctx.fillRect(ox,     oy + 1, 7, 1); // XXXXXXX
-    ctx.fillRect(ox,     oy + 2, 7, 1); // XXXXXXX
-    ctx.fillRect(ox + 1, oy + 3, 5, 1); // .XXXXX.
-    ctx.fillRect(ox + 2, oy + 4, 3, 1); // ..XXX..
-    ctx.fillRect(ox + 3, oy + 5, 1, 1); // ...X...
+    const ox = Math.round(this.x) - Math.floor(COLS * PX / 2);
+    const oy = Math.round(this.y) - Math.floor(ROWS * PX / 2);
+    ctx.fillStyle = '#00ee66';
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        if (ALIEN[r][c]) ctx.fillRect(ox + c * PX, oy + r * PX, PX, PX);
+      }
+    }
   }
 }

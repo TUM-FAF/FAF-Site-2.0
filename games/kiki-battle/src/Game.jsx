@@ -60,7 +60,10 @@ export default function Game({ onExit }) {
       // Boost key presses
       const k = e.key.toLowerCase();
       if (phaseRef.current === 'playing' && BOOST_KEYS.has(k) && gRef.current) {
-        gRef.current.boostSystem.pressKey(k, gRef.current.player);
+        const result = gRef.current.boostSystem.pressKey(k, gRef.current.player);
+        if (result?.action === 'penalty') {
+          gRef.current.score = Math.max(0, gRef.current.score - 100);
+        }
       }
       // DEV: P→O→U skip — adds 2000 score (simulates dodging for testing)
       if (phaseRef.current === 'playing') {
