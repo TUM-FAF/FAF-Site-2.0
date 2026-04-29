@@ -7,3 +7,6 @@ bk/
 
 # Generated game build output — rebuilt from source
 public/games/
+
+# Platform-specific lockfile causes native binding failures on Linux CI
+package-lock.json
