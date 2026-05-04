@@ -1,0 +1,481 @@
+/* ── Upcoming Event page ─────────────────────────────────────────────────── */
+
+/* ── Hero banner ── */
+.ue-hero {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding-top: 80px; /* offset fixed header */
+}
+
+.ue-hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.85) 75%, #050505 100%),
+        linear-gradient(135deg, #1a0a00 0%, #050505 60%);
+    z-index: 0;
+}
+
+.ue-hero__accent-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--accent), var(--accent-soft), transparent);
+    z-index: 2;
+}
+
+.ue-hero__badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #050505;
+    background: var(--accent);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: var(--space-md);
+}
+
+.ue-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+    width: 100%;
+}
+
+.ue-hero__content h1 {
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, #ffffff 20%, #ffe0a0 60%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 40px rgba(255,155,43,0.25));
+}
+
+.ue-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.ue-hero__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: var(--muted);
+}
+
+.ue-hero__meta-item .meta-icon {
+    font-size: 1.1rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.ue-hero__meta-item strong {
+    color: var(--text);
+}
+
+/* ── Page body ── */
+.ue-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+/* ── Section label ── */
+.ue-section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+}
+
+/* ── About section ── */
+.ue-about {
+    margin-bottom: var(--space-2xl);
+    border-left: 3px solid rgba(255,155,43,0.4);
+    padding-left: var(--space-lg);
+}
+
+.ue-about h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: var(--space-md);
+}
+
+.ue-about p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: var(--space-md);
+}
+
+/* ── Info cards row ── */
+.ue-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+@media (max-width: 900px) {
+    .ue-info-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .ue-info-grid { grid-template-columns: 1fr; }
+}
+
+.ue-info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: var(--space-lg);
+}
+
+.ue-info-card__icon {
+    font-size: 1.6rem;
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+.ue-info-card__label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+.ue-info-card__value {
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.ue-info-card__sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* ── Divider ── */
+.ue-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: var(--space-2xl) 0;
+}
+
+/* ── Agenda ── */
+.ue-agenda {
+    margin-bottom: var(--space-2xl);
+}
+
+.ue-agenda h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-xl);
+}
+
+.ue-timeline {
+    position: relative;
+    padding-left: 28px;
+}
+
+.ue-timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(255,155,43,0.25);
+}
+
+.ue-timeline__item {
+    position: relative;
+    margin-bottom: var(--space-lg);
+}
+
+.ue-timeline__item::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(255,155,43,0.5);
+}
+
+.ue-timeline__time {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
+}
+
+.ue-timeline__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.ue-timeline__desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* ── Speakers / Participants ── */
+.ue-people {
+    margin-bottom: var(--space-2xl);
+}
+
+.ue-people h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-xl);
+}
+
+.ue-people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-lg);
+}
+
+.ue-person-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: var(--space-lg);
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ue-person-card:hover {
+    border-color: rgba(255,155,43,0.3);
+    background: rgba(255,155,43,0.04);
+}
+
+.ue-person-card__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,155,43,0.25), rgba(255,91,43,0.15));
+    border: 2px solid rgba(255,155,43,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto var(--space-md);
+    overflow: hidden;
+}
+
+.ue-person-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ue-person-card__name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.ue-person-card__role {
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+}
+
+.ue-person-card__company {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* ── Sponsors ── */
+.ue-sponsors {
+    margin-bottom: var(--space-2xl);
+}
+
+.ue-sponsors h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-md);
+}
+
+.ue-sponsors__intro {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: var(--space-xl);
+}
+
+.ue-sponsors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.ue-sponsor-logo {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: var(--space-md) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ue-sponsor-logo:hover {
+    border-color: rgba(255,155,43,0.3);
+    background: rgba(255,155,43,0.04);
+}
+
+.ue-sponsor-logo img {
+    max-height: 48px;
+    max-width: 120px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.ue-sponsor-logo:hover img {
+    opacity: 1;
+}
+
+.ue-sponsor-logo--large img {
+    max-height: 64px;
+    max-width: 160px;
+}
+
+/* ── Registration form ── */
+.ue-register {
+    background: radial-gradient(circle at 50% 0%, rgba(255,155,43,0.07) 0, transparent 65%);
+    border: 1px solid rgba(255,155,43,0.12);
+    border-radius: 20px;
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+}
+
+.ue-register h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-sm);
+}
+
+.ue-register__subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: var(--space-xl);
+}
+
+.ue-register__form {
+    max-width: 680px;
+}
+
+.ue-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 600px) {
+    .ue-form-grid { grid-template-columns: 1fr; }
+}
+
+.ue-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ue-form-row--full {
+    grid-column: 1 / -1;
+}
+
+.ue-form-row label {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.ue-form-row input,
+.ue-form-row select,
+.ue-form-row textarea {
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.ue-form-row input:focus,
+.ue-form-row select:focus,
+.ue-form-row textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.ue-form-row textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.ue-form-row select option {
+    background: #121212;
+}
+
+.ue-register__success {
+    display: none;
+    padding: var(--space-lg);
+    border-radius: 12px;
+    background: rgba(255,155,43,0.08);
+    border: 1px solid rgba(255,155,43,0.3);
+    text-align: center;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .ue-body {
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .ue-hero__content {
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .ue-hero__meta {
+        gap: var(--space-md);
+    }
+
+    .ue-register {
+        padding: var(--space-xl) var(--space-md);
+    }
+}

@@ -53,7 +53,13 @@ const pathname = Astro.url.pathname;
             </div>
         </div>
         <a href="/aboutUs" class={pathname.includes('/aboutUs') ? 'active' : ''}>About</a>
-        <a href="/events" class={pathname.includes('/events') ? 'active' : ''}>Events</a>
+        <div class="nav-dropdown">
+            <a href="/events" class={`nav-dropdown-trigger ${pathname.includes('/events') || pathname.includes('/upcoming-event') ? 'active' : ''}`}>Events <span class="dropdown-arrow">▾</span></a>
+            <div class="nav-dropdown-menu">
+                <a href="/upcoming-event" class={pathname.includes('/upcoming-event') ? 'active' : ''}>Upcoming Event</a>
+                <a href="/events" class={pathname === '/events' || (pathname.includes('/events') && !pathname.includes('/upcoming-event')) ? 'active' : ''}>Past Events</a>
+            </div>
+        </div>
         <a href="/gallery" class={pathname.includes('/gallery') ? 'active' : ''}>Gallery</a>
         <div class="nav-dropdown">
             <a href="#" class={`nav-dropdown-trigger ${pathname.includes('/sponsorship') || pathname.includes('/volunteers') ? 'active' : ''}`}>Get Involved <span class="dropdown-arrow">▾</span></a>
