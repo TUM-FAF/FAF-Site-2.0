@@ -99,4 +99,41 @@ const home = defineCollection({
   }),
 });
 
-export const collections = { events, team, testimonials, partners, gallery, roles, tiers, home };
+const upcomingEvent = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/upcoming-event' }),
+  schema: z.object({
+    title: z.string(),
+    tagline: z.string(),
+    description: z.string(),
+    description_extra: z.string().optional(),
+    date: z.string(),
+    start_time: z.string(),
+    duration: z.string(),
+    location: z.string(),
+    address: z.string().optional(),
+    format: z.string(),
+    people_label: z.string(),
+    banner: z.string().optional(),
+    show_agenda: z.boolean(),
+    show_people: z.boolean(),
+    show_sponsors: z.boolean(),
+    agenda: z.array(z.object({
+      time: z.string(),
+      title: z.string(),
+      desc: z.string(),
+    })).optional(),
+    people: z.array(z.object({
+      name: z.string(),
+      role: z.string(),
+      company: z.string().optional(),
+      photo: z.string().optional(),
+    })).optional(),
+    sponsors: z.array(z.object({
+      name: z.string(),
+      logo: z.string().optional(),
+      large: z.boolean().optional(),
+    })).optional(),
+  }),
+});
+
+export const collections = { events, team, testimonials, partners, gallery, roles, tiers, home, upcomingEvent };

@@ -1,94 +1,49 @@
 ---
-import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/upcoming-event.css';
-import bannerImg from '../assets/photos/summer-hack-2024.png';
-import amdaris from '../assets/logos/amdaris.png';
-import efes from '../assets/logos/efes.png';
-import sigmoid from '../assets/logos/sigmoid.png';
-import tekwill from '../assets/logos/tekwill.png';
-import alliedTesting from '../assets/logos/allied-testing.png';
 
-const event = {
-    title: 'Summer Hackathon 2026',
-    tagline: 'Upcoming Event',
-    description: `Summer Hackathon 2026 is FAF NGO's flagship annual event — a high-energy 24-hour coding sprint where students, designers, and innovators team up to solve real-world challenges. Expect late-night coding sessions, expert mentorship, great prizes, and a whole lot of camaraderie.`,
-    descriptionExtra: `Whether you're a first-year student writing your first lines of code or a seasoned developer hunting for a new challenge, Summer Hackathon 2026 has a place for you. Teams of up to four compete across four tracks: HealthTech, FinTech, EdTech, and Open Innovation.`,
-    date: 'June 20–21, 2026',
-    startTime: '10:00 AM',
-    duration: '24 hours',
-    location: 'Technical University of Moldova, Block of Study No. 1',
-    address: 'Str. Studențești 9/7, Chișinău, MD-2045',
-    format: 'In-person',
-    peopleLabel: 'Mentors',   // change to 'Speakers', 'Judges', 'Speakers & Mentors', etc.
-};
+const entries = await getCollection('upcomingEvent');
+if (!entries.length) throw new Error('Missing src/content/upcoming-event/index.md');
+const e = entries[0].data;
 
-const agenda = [
-    { time: '09:30', title: 'Registration & Check-in', desc: 'Pick up your badge, find your team table, and grab some coffee.' },
-    { time: '10:00', title: 'Opening Ceremony', desc: 'Welcome words from FAF NGO, partner introductions, and track briefings.' },
-    { time: '10:30', title: 'Hacking Starts', desc: 'The clock begins — 24 hours on the board. Build, iterate, and innovate.' },
-    { time: '13:00', title: 'Lunch Break', desc: 'Catered lunch provided by our sponsors. Recharge and keep the momentum going.' },
-    { time: '15:00', title: 'Mentor Sessions Round I', desc: 'Book 15-minute 1-on-1 slots with industry mentors to validate your approach.' },
-    { time: '20:00', title: 'Dinner & Networking', desc: 'Wind down with food, music, and conversations with fellow hackers.' },
-    { time: '00:00', title: 'Midnight Checkpoint', desc: 'Optional mid-point demo — share your progress and receive early feedback.' },
-    { time: '07:00', title: 'Mentor Sessions Round II', desc: 'Final guidance before the submission deadline. Polish that pitch.' },
-    { time: '10:00', title: 'Submission Deadline', desc: 'All projects must be submitted by 10:00 AM. No late submissions accepted.' },
-    { time: '11:00', title: 'Presentations & Judging', desc: 'Each team gets 5 minutes to pitch + 3 minutes Q&A with the jury panel.' },
-    { time: '14:00', title: 'Awards Ceremony & Closing', desc: 'Winners announced, prizes awarded, group photo, and farewell.' },
-];
-
-const people = [
-    { name: 'Alexandra Rusu', role: 'Keynote Speaker', company: 'CEO at Amdaris Moldova', emoji: '👩‍💼' },
-    { name: 'Ion Țurcanu', role: 'Mentor — FinTech', company: 'Senior Engineer at Sigmoid', emoji: '👨‍💻' },
-    { name: 'Maria Popescu', role: 'Mentor — HealthTech', company: 'Product Manager at Allied Testing', emoji: '👩‍⚕️' },
-    { name: 'Andrei Cojocaru', role: 'Jury Member', company: 'CTO at Tekwill', emoji: '👨‍⚖️' },
-    { name: 'Elena Moraru', role: 'Mentor — EdTech', company: 'Lead Developer at PGI', emoji: '👩‍🏫' },
-    { name: 'Vlad Ștefan', role: 'Mentor — Open Track', company: 'Founder at CyberCor', emoji: '🧑‍🚀' },
-    { name: 'Diana Gherman', role: 'Workshop Host', company: 'UX Lead at Fusionworks', emoji: '👩‍🎨' },
-    { name: 'Mihai Lungu', role: 'Jury Member', company: 'Engineering Director at Stefanini', emoji: '👨‍💼' },
-];
-
-const sponsors = [
-    { name: 'Amdaris', logo: amdaris, large: true },
-    { name: 'Sigmoid', logo: sigmoid, large: false },
-    { name: 'Allied Testing', logo: alliedTesting, large: false },
-    { name: 'Tekwill', logo: tekwill, large: false },
-    { name: 'Efes Moldova', logo: efes, large: false },
-];
+const agenda   = e.agenda   ?? [];
+const people   = e.people   ?? [];
+const sponsors = e.sponsors ?? [];
 ---
 
 <BaseLayout bodyClass="upcoming-event-page">
 
     <!-- ── Banner image ── -->
-    <div class="ue-banner">
-        <Image src={bannerImg} alt="Summer Hackathon 2025 banner" class="ue-banner__img" loading="eager" />
-    </div>
+    {e.banner && (
+        <div class="ue-banner">
+            <img src={e.banner} alt={`${e.title} banner`} class="ue-banner__img" loading="eager" />
+        </div>
+    )}
 
     <!-- ── Event header ── -->
     <div class="ue-header">
         <div class="ue-header__inner">
-            <span class="ue-hero__badge">{event.tagline}</span>
-            <h1>{event.title}</h1>
-            <p class="ue-header__tagline">
-                A 24-hour innovation sprint for students and developers. Code, create, and compete for Moldova's future.
-            </p>
+            <span class="ue-hero__badge">{e.tagline}</span>
+            <h1>{e.title}</h1>
+            <p class="ue-header__tagline">{e.description}</p>
 
             <div class="ue-hero__meta">
                 <div class="ue-hero__meta-item">
                     <span class="meta-icon">📅</span>
-                    <span><strong>{event.date}</strong></span>
+                    <span><strong>{e.date}</strong></span>
                 </div>
                 <div class="ue-hero__meta-item">
                     <span class="meta-icon">🕙</span>
-                    <span>Starts at <strong>{event.startTime}</strong></span>
+                    <span>Starts at <strong>{e.start_time}</strong></span>
                 </div>
                 <div class="ue-hero__meta-item">
                     <span class="meta-icon">⏱</span>
-                    <span>Duration: <strong>{event.duration}</strong></span>
+                    <span>Duration: <strong>{e.duration}</strong></span>
                 </div>
                 <div class="ue-hero__meta-item">
                     <span class="meta-icon">📍</span>
-                    <span><strong>{event.location}</strong></span>
+                    <span><strong>{e.location}</strong></span>
                 </div>
             </div>
 
@@ -105,9 +60,9 @@ const sponsors = [
         <!-- About the Event -->
         <section class="ue-about">
             <p class="ue-section-label">About the Event</p>
-            <h2>What is Summer Hackathon 2026?</h2>
-            <p>{event.description}</p>
-            <p>{event.descriptionExtra}</p>
+            <h2>What is {e.title}?</h2>
+            <p>{e.description}</p>
+            {e.description_extra && <p>{e.description_extra}</p>}
         </section>
 
         <!-- Quick Info Cards -->
@@ -115,38 +70,24 @@ const sponsors = [
             <div class="ue-info-card">
                 <span class="ue-info-card__icon">📍</span>
                 <p class="ue-info-card__label">Location</p>
-                <p class="ue-info-card__value">{event.location}</p>
-                <p class="ue-info-card__sub">{event.address}</p>
+                <p class="ue-info-card__value">{e.location}</p>
+                {e.address && <p class="ue-info-card__sub">{e.address}</p>}
             </div>
             <div class="ue-info-card">
                 <span class="ue-info-card__icon">📅</span>
                 <p class="ue-info-card__label">Date</p>
-                <p class="ue-info-card__value">{event.date}</p>
-                <p class="ue-info-card__sub">Check-in from 09:30 AM</p>
+                <p class="ue-info-card__value">{e.date}</p>
+                <p class="ue-info-card__sub">Starts at {e.start_time}</p>
             </div>
             <div class="ue-info-card">
                 <span class="ue-info-card__icon">⏱</span>
                 <p class="ue-info-card__label">Duration</p>
-                <p class="ue-info-card__value">{event.duration}</p>
-                <p class="ue-info-card__sub">Non-stop hacking marathon</p>
-            </div>
-            <div class="ue-info-card">
-                <span class="ue-info-card__icon">👥</span>
-                <p class="ue-info-card__label">Team Size</p>
-                <p class="ue-info-card__value">2 – 4 people</p>
-                <p class="ue-info-card__sub">Solo participants will be matched</p>
-            </div>
-            <div class="ue-info-card">
-                <span class="ue-info-card__icon">🏆</span>
-                <p class="ue-info-card__label">Prize Pool</p>
-                <p class="ue-info-card__value">5 000 MDL + Rewards</p>
-                <p class="ue-info-card__sub">Across 4 category tracks</p>
+                <p class="ue-info-card__value">{e.duration}</p>
             </div>
             <div class="ue-info-card">
                 <span class="ue-info-card__icon">🎟️</span>
                 <p class="ue-info-card__label">Format</p>
-                <p class="ue-info-card__value">{event.format}</p>
-                <p class="ue-info-card__sub">Meals & snacks provided</p>
+                <p class="ue-info-card__value">{e.format}</p>
             </div>
         </div>
 
@@ -157,36 +98,53 @@ const sponsors = [
             <p class="ue-section-label">Schedule</p>
             <h2>Event Agenda</h2>
 
-            <div class="ue-timeline">
-                {agenda.map(item => (
-                    <div class="ue-timeline__item">
-                        <p class="ue-timeline__time">{item.time}</p>
-                        <p class="ue-timeline__title">{item.title}</p>
-                        <p class="ue-timeline__desc">{item.desc}</p>
-                    </div>
-                ))}
-            </div>
+            {e.show_agenda ? (
+                <div class="ue-timeline">
+                    {agenda.map(item => (
+                        <div class="ue-timeline__item">
+                            <p class="ue-timeline__time">{item.time}</p>
+                            <p class="ue-timeline__title">{item.title}</p>
+                            <p class="ue-timeline__desc">{item.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">🗓️</span>
+                    <p>The full agenda will be published soon. Stay tuned!</p>
+                </div>
+            )}
         </section>
 
         <hr class="ue-divider" />
 
         <!-- Speakers & Mentors -->
         <section class="ue-people">
-            <p class="ue-section-label">{event.peopleLabel}</p>
+            <p class="ue-section-label">{e.people_label}</p>
             <h2>Who You'll Meet</h2>
 
-            <div class="ue-people-grid">
-                {people.map(person => (
-                    <div class="ue-person-card">
-                        <div class="ue-person-card__avatar">
-                            {person.emoji}
+            {e.show_people ? (
+                <div class="ue-people-grid">
+                    {people.map(person => (
+                        <div class="ue-person-card">
+                            <div class="ue-person-card__avatar">
+                                {person.photo
+                                    ? <img src={person.photo} alt={person.name} />
+                                    : '👤'
+                                }
+                            </div>
+                            <p class="ue-person-card__name">{person.name}</p>
+                            <p class="ue-person-card__role">{person.role}</p>
+                            {person.company && <p class="ue-person-card__company">{person.company}</p>}
                         </div>
-                        <p class="ue-person-card__name">{person.name}</p>
-                        <p class="ue-person-card__role">{person.role}</p>
-                        <p class="ue-person-card__company">{person.company}</p>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">👥</span>
+                    <p>The {e.people_label.toLowerCase()} list will be announced soon. Check back closer to the event!</p>
+                </div>
+            )}
         </section>
 
         <hr class="ue-divider" />
@@ -196,16 +154,23 @@ const sponsors = [
             <p class="ue-section-label">Our Sponsors</p>
             <h2>Made Possible By</h2>
             <p class="ue-sponsors__intro">
-                Summer Hackathon 2026 is powered by industry partners who believe in Moldova's next generation of tech talent.
+                {e.title} is powered by industry partners who believe in Moldova's next generation of tech talent.
             </p>
 
-            <div class="ue-sponsors-grid">
-                {sponsors.map(s => (
-                    <div class={`ue-sponsor-logo${s.large ? ' ue-sponsor-logo--large' : ''}`}>
-                        <Image src={s.logo} alt={`${s.name} logo`} loading="lazy" />
-                    </div>
-                ))}
-            </div>
+            {e.show_sponsors ? (
+                <div class="ue-sponsors-grid">
+                    {sponsors.map(s => (
+                        <div class={`ue-sponsor-logo${s.large ? ' ue-sponsor-logo--large' : ''}`}>
+                            {s.logo && <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">🤝</span>
+                    <p>Our sponsors will be revealed soon. Interested in partnering with us? <a href="/sponsorship">Get in touch</a>.</p>
+                </div>
+            )}
         </section>
 
         <hr class="ue-divider" />
@@ -215,7 +180,7 @@ const sponsors = [
             <p class="ue-section-label">Sign Up</p>
             <h2>Register for the Event</h2>
             <p class="ue-register__subtitle">
-                Spots are limited — secure your place at Summer Hackathon 2026 today. We'll send confirmation details to your email.
+                Spots are limited — secure your place at {e.title} today. We'll send confirmation details to your email.
             </p>
 
             <form class="ue-register__form" id="ue-form" novalidate>
@@ -263,7 +228,7 @@ const sponsors = [
             </form>
 
             <div class="ue-register__success" id="ue-success">
-                ✅ You're registered! Check your inbox for a confirmation email. See you at Summer Hackathon 2026!
+                ✅ You're registered! Check your inbox for a confirmation email. See you at {e.title}!
             </div>
         </section>
 
