@@ -19,39 +19,10 @@ const pastEvents = allEvents
                     <p class="hero-tagline">Join the Movement</p>
                     <h2>Next Event: Summer Hackathon 2026</h2>
                     <p>
-                        Ready to innovate? Register for our 24-hour event on <b>June 20-21</b>.
+                        Ready to innovate? Join our 24-hour event on <b>June 20-21</b>.
                         Experience mentorship, collaboration, and high-energy competition.
                     </p>
-                    <button id="showFormBtn" class="btn btn-primary">Open Registration Form</button>
-                </div>
-
-                <div id="registrationFormContainer" class="registration-form-wrapper" style="display: none;">
-                    <form class="form registration-form">
-                        <div class="form-grid">
-                            <div class="form-row">
-                                <label for="reg-name">Name</label>
-                                <input id="reg-name" type="text" placeholder="Your name" required>
-                            </div>
-                            <div class="form-row">
-                                <label for="reg-surname">Surname</label>
-                                <input id="reg-surname" type="text" placeholder="Your surname" required>
-                            </div>
-                            <div class="form-row">
-                                <label for="reg-email">Email Address</label>
-                                <input id="reg-email" type="email" placeholder="example@mail.com" required>
-                            </div>
-                            <div class="form-row">
-                                <label for="reg-occupation">Occupation</label>
-                                <select id="reg-occupation">
-                                    <option value="student">Student</option>
-                                    <option value="junior">Junior Developer</option>
-                                    <option value="enthusiast">IT Enthusiast</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary form-submit">Submit Registration</button>
-                    </form>
+                    <a href="/upcoming-event" class="btn btn-primary">Discover More →</a>
                 </div>
             </div>
         </div>
@@ -100,16 +71,6 @@ const pastEvents = allEvents
     </div>
 </BaseLayout>
 
-<script is:inline>
-    const showFormBtn = document.getElementById('showFormBtn');
-    if (showFormBtn) {
-        showFormBtn.addEventListener('click', function() {
-            const formContainer = document.getElementById('registrationFormContainer');
-            formContainer.style.display = 'block';
-            this.style.display = 'none';
-        });
-    }
-</script>
 <script type="module" is:inline>
     import { initDistanceScroll } from '/effects/distanceScroll.js';
     initDistanceScroll();
