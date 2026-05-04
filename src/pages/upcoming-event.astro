@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/upcoming-event.css';
+import bannerImg from '../assets/photos/summer-hack-2024.png';
 import amdaris from '../assets/logos/amdaris.png';
 import efes from '../assets/logos/efes.png';
 import sigmoid from '../assets/logos/sigmoid.png';
@@ -19,6 +20,7 @@ const event = {
     location: 'Technical University of Moldova, Block of Study No. 1',
     address: 'Str. Studențești 9/7, Chișinău, MD-2045',
     format: 'In-person',
+    peopleLabel: 'Mentors',   // change to 'Speakers', 'Judges', 'Speakers & Mentors', etc.
 };
 
 const agenda = [
@@ -57,15 +59,17 @@ const sponsors = [
 
 <BaseLayout bodyClass="upcoming-event-page">
 
-    <!-- ── Hero Banner ── -->
-    <section class="ue-hero">
-        <div class="ue-hero__bg"></div>
-        <div class="ue-hero__accent-line"></div>
+    <!-- ── Banner image ── -->
+    <div class="ue-banner">
+        <Image src={bannerImg} alt="Summer Hackathon 2025 banner" class="ue-banner__img" loading="eager" />
+    </div>
 
-        <div class="ue-hero__content">
+    <!-- ── Event header ── -->
+    <div class="ue-header">
+        <div class="ue-header__inner">
             <span class="ue-hero__badge">{event.tagline}</span>
             <h1>{event.title}</h1>
-            <p style="font-size:1.15rem; color:var(--muted); max-width:680px; margin-bottom:0;">
+            <p class="ue-header__tagline">
                 A 24-hour innovation sprint for students and developers. Code, create, and compete for Moldova's future.
             </p>
 
@@ -93,7 +97,7 @@ const sponsors = [
                 <a href="#agenda" class="btn btn-secondary">View Agenda</a>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- ── Body ── -->
     <div class="ue-body">
@@ -168,7 +172,7 @@ const sponsors = [
 
         <!-- Speakers & Mentors -->
         <section class="ue-people">
-            <p class="ue-section-label">Speakers & Mentors</p>
+            <p class="ue-section-label">{event.peopleLabel}</p>
             <h2>Who You'll Meet</h2>
 
             <div class="ue-people-grid">
@@ -243,17 +247,6 @@ const sponsors = [
                             <option value="designer">Designer</option>
                             <option value="pm">Product Manager</option>
                             <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="ue-form-row">
-                        <label for="ue-track">Preferred Track</label>
-                        <select id="ue-track" name="track">
-                            <option value="" disabled selected>Choose a track</option>
-                            <option value="healthtech">HealthTech</option>
-                            <option value="fintech">FinTech</option>
-                            <option value="edtech">EdTech</option>
-                            <option value="open">Open Innovation</option>
-                            <option value="undecided">Not decided yet</option>
                         </select>
                     </div>
                     <div class="ue-form-row ue-form-row--full">
