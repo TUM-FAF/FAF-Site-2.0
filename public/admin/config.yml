@@ -174,6 +174,51 @@ collections:
       - { label: Featured (Most Popular), name: featured, widget: boolean, default: false, required: false }
       - { label: Draft, name: draft, widget: boolean, default: false, required: false }
 
+  - name: upcoming-event
+    label: Upcoming Event
+    files:
+      - label: Upcoming Event Settings
+        name: upcoming-event
+        file: new_site/src/content/upcoming-event/index.md
+        fields:
+          - { label: Event Title, name: title, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Extra Description, name: description_extra, widget: text, required: false }
+          - { label: Date, name: date, widget: string, hint: 'e.g. June 20–21, 2026' }
+          - { label: Start Time, name: start_time, widget: string, hint: 'e.g. 10:00 AM' }
+          - { label: Duration, name: duration, widget: string, hint: 'e.g. 24 hours' }
+          - { label: Location, name: location, widget: string }
+          - { label: Address, name: address, widget: string, required: false }
+          - { label: Format, name: format, widget: string, hint: 'e.g. In-person, Hybrid, Online' }
+          - { label: People Section Label, name: people_label, widget: select, options: [Mentors, Speakers, Judges, 'Speakers & Mentors'], hint: 'Label shown above the people section' }
+          - { label: Banner Image, name: banner, widget: image, required: false, hint: 'Upload the event banner (replaces the previous one)' }
+          - { label: Show Agenda, name: show_agenda, widget: boolean, default: false, hint: 'Toggle on when the agenda is ready to publish' }
+          - { label: Show People (Mentors/Speakers), name: show_people, widget: boolean, default: false, hint: 'Toggle on when the full list is confirmed' }
+          - { label: Show Sponsors, name: show_sponsors, widget: boolean, default: false, hint: 'Toggle on when sponsors are confirmed' }
+          - label: Agenda
+            name: agenda
+            widget: list
+            fields:
+              - { label: Time, name: time, widget: string, hint: 'e.g. 10:00' }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: desc, widget: text }
+          - label: People
+            name: people
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string, hint: 'e.g. Mentor — FinTech, Keynote Speaker' }
+              - { label: Company, name: company, widget: string, required: false }
+              - { label: Photo, name: photo, widget: image, required: false }
+          - label: Sponsors
+            name: sponsors
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Logo, name: logo, widget: image, required: false }
+              - { label: Large logo, name: large, widget: boolean, default: false, required: false }
+
   - name: home
     label: Home Page
     files:

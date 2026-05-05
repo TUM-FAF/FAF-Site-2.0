@@ -1,0 +1,251 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/upcoming-event.css';
+
+const entries = await getCollection('upcomingEvent');
+if (!entries.length) throw new Error('Missing src/content/upcoming-event/index.md');
+const e = entries[0].data;
+
+const agenda   = e.agenda   ?? [];
+const people   = e.people   ?? [];
+const sponsors = e.sponsors ?? [];
+---
+
+<BaseLayout bodyClass="upcoming-event-page">
+
+    <!-- ── Banner image ── -->
+    {e.banner && (
+        <div class="ue-banner">
+            <img src={e.banner} alt={`${e.title} banner`} class="ue-banner__img" loading="eager" />
+        </div>
+    )}
+
+    <!-- ── Event header ── -->
+    <div class="ue-header">
+        <div class="ue-header__inner">
+            <span class="ue-hero__badge">{e.tagline}</span>
+            <h1>{e.title}</h1>
+            <p class="ue-header__tagline">{e.description}</p>
+
+            <div class="ue-hero__meta">
+                <div class="ue-hero__meta-item">
+                    <span class="meta-icon">📅</span>
+                    <span><strong>{e.date}</strong></span>
+                </div>
+                <div class="ue-hero__meta-item">
+                    <span class="meta-icon">🕙</span>
+                    <span>Starts at <strong>{e.start_time}</strong></span>
+                </div>
+                <div class="ue-hero__meta-item">
+                    <span class="meta-icon">⏱</span>
+                    <span>Duration: <strong>{e.duration}</strong></span>
+                </div>
+                <div class="ue-hero__meta-item">
+                    <span class="meta-icon">📍</span>
+                    <span><strong>{e.location}</strong></span>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-xl); display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="#register" class="btn btn-primary">Register Now</a>
+                <a href="#agenda" class="btn btn-secondary">View Agenda</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Body ── -->
+    <div class="ue-body">
+
+        <!-- About the Event -->
+        <section class="ue-about">
+            <p class="ue-section-label">About the Event</p>
+            <h2>What is {e.title}?</h2>
+            <p>{e.description}</p>
+            {e.description_extra && <p>{e.description_extra}</p>}
+        </section>
+
+        <!-- Quick Info Cards -->
+        <div class="ue-info-grid">
+            <div class="ue-info-card">
+                <span class="ue-info-card__icon">📍</span>
+                <p class="ue-info-card__label">Location</p>
+                <p class="ue-info-card__value">{e.location}</p>
+                {e.address && <p class="ue-info-card__sub">{e.address}</p>}
+            </div>
+            <div class="ue-info-card">
+                <span class="ue-info-card__icon">📅</span>
+                <p class="ue-info-card__label">Date</p>
+                <p class="ue-info-card__value">{e.date}</p>
+                <p class="ue-info-card__sub">Starts at {e.start_time}</p>
+            </div>
+            <div class="ue-info-card">
+                <span class="ue-info-card__icon">⏱</span>
+                <p class="ue-info-card__label">Duration</p>
+                <p class="ue-info-card__value">{e.duration}</p>
+            </div>
+            <div class="ue-info-card">
+                <span class="ue-info-card__icon">🎟️</span>
+                <p class="ue-info-card__label">Format</p>
+                <p class="ue-info-card__value">{e.format}</p>
+            </div>
+        </div>
+
+        <hr class="ue-divider" />
+
+        <!-- Agenda -->
+        <section class="ue-agenda" id="agenda">
+            <p class="ue-section-label">Schedule</p>
+            <h2>Event Agenda</h2>
+
+            {e.show_agenda ? (
+                <div class="ue-timeline">
+                    {agenda.map(item => (
+                        <div class="ue-timeline__item">
+                            <p class="ue-timeline__time">{item.time}</p>
+                            <p class="ue-timeline__title">{item.title}</p>
+                            <p class="ue-timeline__desc">{item.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">🗓️</span>
+                    <p>The full agenda will be published soon. Stay tuned!</p>
+                </div>
+            )}
+        </section>
+
+        <hr class="ue-divider" />
+
+        <!-- Speakers & Mentors -->
+        <section class="ue-people">
+            <p class="ue-section-label">{e.people_label}</p>
+            <h2>Who You'll Meet</h2>
+
+            {e.show_people ? (
+                <div class="ue-people-grid">
+                    {people.map(person => (
+                        <div class="ue-person-card">
+                            <div class="ue-person-card__avatar">
+                                {person.photo
+                                    ? <img src={person.photo} alt={person.name} />
+                                    : '👤'
+                                }
+                            </div>
+                            <p class="ue-person-card__name">{person.name}</p>
+                            <p class="ue-person-card__role">{person.role}</p>
+                            {person.company && <p class="ue-person-card__company">{person.company}</p>}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">👥</span>
+                    <p>The {e.people_label.toLowerCase()} list will be announced soon. Check back closer to the event!</p>
+                </div>
+            )}
+        </section>
+
+        <hr class="ue-divider" />
+
+        <!-- Sponsors -->
+        <section class="ue-sponsors">
+            <p class="ue-section-label">Our Sponsors</p>
+            <h2>Made Possible By</h2>
+            <p class="ue-sponsors__intro">
+                {e.title} is powered by industry partners who believe in Moldova's next generation of tech talent.
+            </p>
+
+            {e.show_sponsors ? (
+                <div class="ue-sponsors-grid">
+                    {sponsors.map(s => (
+                        <div class={`ue-sponsor-logo${s.large ? ' ue-sponsor-logo--large' : ''}`}>
+                            {s.logo && <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">🤝</span>
+                    <p>Our sponsors will be revealed soon. Interested in partnering with us? <a href="/sponsorship">Get in touch</a>.</p>
+                </div>
+            )}
+        </section>
+
+        <hr class="ue-divider" />
+
+        <!-- Registration Form -->
+        <section class="ue-register" id="register">
+            <p class="ue-section-label">Sign Up</p>
+            <h2>Register for the Event</h2>
+            <p class="ue-register__subtitle">
+                Spots are limited — secure your place at {e.title} today. We'll send confirmation details to your email.
+            </p>
+
+            <form class="ue-register__form" id="ue-form" novalidate>
+                <div class="ue-form-grid">
+                    <div class="ue-form-row">
+                        <label for="ue-first-name">First Name *</label>
+                        <input id="ue-first-name" name="first_name" type="text" placeholder="Ion" required />
+                    </div>
+                    <div class="ue-form-row">
+                        <label for="ue-last-name">Last Name *</label>
+                        <input id="ue-last-name" name="last_name" type="text" placeholder="Popescu" required />
+                    </div>
+                    <div class="ue-form-row">
+                        <label for="ue-email">Email Address *</label>
+                        <input id="ue-email" name="email" type="email" placeholder="ion.popescu@example.com" required />
+                    </div>
+                    <div class="ue-form-row">
+                        <label for="ue-phone">Phone Number</label>
+                        <input id="ue-phone" name="phone" type="tel" placeholder="+373 6X XXX XXX" />
+                    </div>
+                    <div class="ue-form-row">
+                        <label for="ue-occupation">Occupation *</label>
+                        <select id="ue-occupation" name="occupation" required>
+                            <option value="" disabled selected>Select your occupation</option>
+                            <option value="student">Student</option>
+                            <option value="junior">Junior Developer</option>
+                            <option value="mid">Mid-level Developer</option>
+                            <option value="senior">Senior Developer</option>
+                            <option value="designer">Designer</option>
+                            <option value="pm">Product Manager</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="ue-form-row ue-form-row--full">
+                        <label for="ue-team">Team Name (if you have one)</label>
+                        <input id="ue-team" name="team_name" type="text" placeholder="Leave blank if solo or undecided" />
+                    </div>
+                    <div class="ue-form-row ue-form-row--full">
+                        <label for="ue-message">Anything you'd like us to know?</label>
+                        <textarea id="ue-message" name="message" placeholder="Dietary needs, accessibility requirements, questions..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Registration</button>
+            </form>
+
+            <div class="ue-register__success" id="ue-success">
+                ✅ You're registered! Check your inbox for a confirmation email. See you at {e.title}!
+            </div>
+        </section>
+
+    </div><!-- /.ue-body -->
+
+</BaseLayout>
+
+<script is:inline>
+    const form = document.getElementById('ue-form');
+    const success = document.getElementById('ue-success');
+
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            form.style.display = 'none';
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    }
+</script>
