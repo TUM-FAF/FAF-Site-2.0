@@ -12,6 +12,8 @@ collections:
   - name: events
     label: Events
     folder: src/content/events
+    media_folder: src/assets/uploads
+    public_folder: ../../assets/uploads
     create: true
     slug: "{{slug}}"
     summary: "{{title}}"
@@ -36,6 +38,8 @@ collections:
   - name: team
     label: Team Members
     folder: src/content/team
+    media_folder: src/assets/uploads
+    public_folder: ../../assets/uploads
     create: true
     slug: "{{slug}}"
     summary: "{{name}}"
@@ -83,6 +87,8 @@ collections:
   - name: partners
     label: Partners
     folder: src/content/partners
+    media_folder: src/assets/uploads
+    public_folder: ../../assets/uploads
     create: true
     slug: "{{slug}}"
     summary: "{{name}}"
@@ -106,6 +112,8 @@ collections:
   - name: gallery
     label: Gallery
     folder: src/content/gallery
+    media_folder: src/assets/uploads
+    public_folder: ../../assets/uploads
     create: true
     slug: "{{slug}}"
     summary: "{{title}}"
