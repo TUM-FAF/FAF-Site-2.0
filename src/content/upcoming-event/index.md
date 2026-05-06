@@ -16,7 +16,7 @@ location: Technical University of Moldova, Block of Study No. 1
 address: Str. Studențești 9/7, Chișinău, MD-2045
 format: In-person
 people_label: Mentors
-banner: /uploads/frame-3-2-.png
+banner: /uploads/frame-4.png
 show_agenda: true
 show_people: false
 show_sponsors: true
