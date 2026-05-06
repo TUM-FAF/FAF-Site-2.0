@@ -227,6 +227,25 @@ collections:
               - { label: Logo, name: logo, widget: image, required: false }
               - { label: Large logo, name: large, widget: boolean, default: false, required: false }
 
+  - name: boards
+    label: Boards History
+    folder: src/content/boards
+    media_folder: src/assets/uploads
+    public_folder: ../../assets/uploads
+    create: true
+    slug: "{{number}}-board"
+    summary: "Board {{number}}"
+    fields:
+      - { label: Board Number, name: number, widget: number }
+      - { label: Description, name: description, widget: text }
+      - label: Members
+        name: members
+        widget: list
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Role, name: role, widget: string, required: false }
+          - { label: Photo, name: photo, widget: image, required: false }
+
   - name: home
     label: Home Page
     files:
