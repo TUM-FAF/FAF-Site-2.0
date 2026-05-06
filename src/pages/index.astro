@@ -6,23 +6,16 @@ import hero1 from '../assets/photos/hero-1.JPG';
 import hero2 from '../assets/photos/hero-2.JPG';
 import hero3 from '../assets/photos/hero-3.JPG';
 import planet from '../assets/web_elements/planet.PNG';
-import logoEfes from '../assets/logos/efes.png';
-import logoAmdaris from '../assets/logos/amdaris.png';
-import logoAllied from '../assets/logos/allied-testing.png';
-import logoUtm from '../assets/logos/utm.png';
-import logoTechQuarter from '../assets/logos/tech-quarter.png';
-import logoTekwill from '../assets/logos/tekwill.png';
-import logoCybercor from '../assets/logos/cybercor.png';
-import logoOptiplaza from '../assets/logos/optiplaza.png';
-import logoPgi from '../assets/logos/pgi.png';
-import logoSigmoid from '../assets/logos/sigmoid.png';
-import logoFusionworks from '../assets/logos/fusionworks.png';
-import logoStefanini from '../assets/logos/stefanini.png';
 import logoInstagram from '../assets/logos/instagram.png';
 import logoTelegram from '../assets/logos/telegram.png';
 
 const homeEntry = await getEntry('home', 'index');
 const home = homeEntry!.data;
+
+const allPartners = await getCollection('partners');
+const partners = allPartners
+  .filter(p => !p.data.draft)
+  .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
 
 const allTestimonials = await getCollection('testimonials');
 const testimonials = allTestimonials
@@ -188,18 +181,16 @@ const row2 = testimonials.slice(3);
 				<h2>Our partners</h2>
 
 				<div class="partners-logos-row">
-					<Image src={logoEfes} alt="Efes" class="logo-big" loading="lazy" />
-					<Image src={logoAmdaris} alt="Amdaris" loading="lazy" />
-					<Image src={logoAllied} alt="Allied Testing" loading="lazy" />
-					<Image src={logoUtm} alt="UTM" class="logo-big" loading="lazy" />
-					<Image src={logoTechQuarter} alt="Tech Quarter" class="logo-big" loading="lazy" />
-					<Image src={logoTekwill} alt="Tekwill" class="logo-big" loading="lazy" />
-					<Image src={logoCybercor} alt="Cybercor" class="logo-big" loading="lazy" />
-					<Image src={logoOptiplaza} alt="Optiplaza" loading="lazy" />
-					<Image src={logoPgi} alt="PGI" class="logo-big" loading="lazy" />
-					<Image src={logoSigmoid} alt="Sigmoid" class="logo-big" loading="lazy" />
-					<Image src={logoFusionworks} alt="FusionWorks" class="logo-big" loading="lazy" />
-					<Image src={logoStefanini} alt="Stefanini" class="logo-big" loading="lazy" />
+					{partners.map(p => (
+						p.data.logo && (
+							<Image
+								src={p.data.logo}
+								alt={p.data.name}
+								class={p.data.large ? 'logo-big' : undefined}
+								loading="lazy"
+							/>
+						)
+					))}
 				</div>
 			</div>
 		</section>

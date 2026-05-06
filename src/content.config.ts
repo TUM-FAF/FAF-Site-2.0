@@ -136,4 +136,17 @@ const upcomingEvent = defineCollection({
   }),
 });
 
-export const collections = { events, team, testimonials, partners, gallery, roles, tiers, home, upcomingEvent };
+const boards = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/boards' }),
+  schema: ({ image }) => z.object({
+    number: z.number(),
+    description: z.string(),
+    members: z.array(z.object({
+      name: z.string(),
+      role: z.string().optional(),
+      photo: image().optional(),
+    })).optional(),
+  }),
+});
+
+export const collections = { events, team, testimonials, partners, gallery, roles, tiers, home, upcomingEvent, boards };
