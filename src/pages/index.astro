@@ -34,29 +34,23 @@ const row2 = testimonials.slice(3);
 				<h1>{home.hero_title}</h1>
 				<p class="hero-subtitle">{home.hero_subtitle}</p>
 				<div class="hero-buttons">
-					<a href="/sponsorship" class="btn btn-primary">Book a meeting</a>
-					<a href="/volunteers" class="btn btn-secondary">Become a volunteer</a>
+					<a href={home.hero_btn1_href ?? '/sponsorship'} class="btn btn-primary">{home.hero_btn1_label ?? 'Book a meeting'}</a>
+					<a href={home.hero_btn2_href ?? '/volunteers'} class="btn btn-secondary">{home.hero_btn2_label ?? 'Become a volunteer'}</a>
 				</div>
 
 				<div class="hero-stats">
-					<div class="hero-stat">
-						<span class="hero-stat-num">150+</span>
-						<span class="hero-stat-lbl">Participants per event</span>
-					</div>
-					<div class="hero-stat">
-						<span class="hero-stat-num">6</span>
-						<span class="hero-stat-lbl">Events per year</span>
-					</div>
-					<div class="hero-stat">
-						<span class="hero-stat-num">5+</span>
-						<span class="hero-stat-lbl">Years running</span>
-					</div>
+					{(home.hero_stats ?? []).map(s => (
+						<div class="hero-stat">
+							<span class="hero-stat-num">{s.num}</span>
+							<span class="hero-stat-lbl">{s.label}</span>
+						</div>
+					))}
 				</div>
 			</div>
 
 			<div class="hero-visual">
 				<div class="hero-next-event">
-					<span class="hero-ne-label">Coming Soon</span>
+					<span class="hero-ne-label">{home.next_event_label ?? 'Coming Soon'}</span>
 					<h3 class="hero-ne-title">{home.next_event_title}</h3>
 					<p class="hero-ne-body">{home.next_event_description}</p>
 					<div class="hero-ne-meta">
@@ -64,7 +58,7 @@ const row2 = testimonials.slice(3);
 						<span>·</span>
 						<span>{home.next_event_location}</span>
 					</div>
-					<a href="/upcoming-event" class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">Discover More →</a>
+					<a href={home.next_event_btn_href ?? '/upcoming-event'} class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">{home.next_event_btn_label ?? 'Discover More →'}</a>
 				</div>
 			</div>
 		</div>
