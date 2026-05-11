@@ -38,7 +38,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl) var(--space-lg);
-    padding: var(--space-xl);
+    padding: var(--space-xl) 0;
 }
 
 @media (max-width: 1024px) {
@@ -50,7 +50,7 @@
 @media (max-width: 560px) {
     .gallery-masonry.distance-stage {
         grid-template-columns: 1fr;
-        padding: var(--space-md);
+        padding: var(--space-md) 0;
         gap: var(--space-lg);
     }
 }

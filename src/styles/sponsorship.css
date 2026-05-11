@@ -2,7 +2,7 @@
 
 /* Hero */
 .sponsor-hero {
-    padding-top: calc(80px + 60px);
+    padding-top: calc(80px + var(--space-2xl));
     padding-bottom: var(--space-2xl);
     background:
         radial-gradient(circle at 20% 10%, rgba(255, 155, 43, 0.15) 0, transparent 50%),
