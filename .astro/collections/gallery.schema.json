@@ -11,6 +11,15 @@
     "caption": {
       "type": "string"
     },
+    "description": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "sort_order": {
       "type": "number"
     },

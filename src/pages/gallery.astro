@@ -31,7 +31,7 @@ const photos = allPhotos
             <div class="container">
                 <div class="gallery-masonry distance-stage">
                     {photos.map(photo => (
-                        <div class="gallery-item">
+                        <a href={`/gallery/${photo.id}`} class="gallery-item">
                             <div class="gallery-item__thumb">
                                 <Image src={photo.data.image} alt={photo.data.caption ?? photo.data.title} loading="lazy" />
                             </div>
@@ -39,7 +39,7 @@ const photos = allPhotos
                                 <span class="gallery-item__title">{photo.data.title}</span>
                                 <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>

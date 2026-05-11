@@ -55,6 +55,8 @@ const gallery = defineCollection({
     title: z.string(),
     image: image(),
     caption: z.string().optional(),
+    description: z.string().optional(),
+    images: z.array(image()).optional(),
     sort_order: z.number().optional(),
     draft: z.boolean().optional(),
   }),
