@@ -11,6 +11,7 @@ import logoTelegram from '../assets/logos/telegram.png';
 
 const homeEntry = await getEntry('home', 'index');
 const home = homeEntry!.data;
+const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 
 const allPartners = await getCollection('partners');
 const partners = allPartners
@@ -142,11 +143,15 @@ const row2 = testimonials.slice(3);
 				<h2>{home.meeting_heading}</h2>
 				<p class=”section-subtitle”>{home.meeting_subtitle}</p>
 
-				<form method="POST" action="#" class="form">
+				<form id="meeting-form" class="form" data-endpoint={formEndpoint}>
 					<div class="form-grid">
 						<div class="form-row">
-							<label for="name">Name</label>
-							<input id="name" name="name" type="text" required>
+							<label for="first_name">First Name</label>
+							<input id="first_name" name="first_name" type="text" required>
+						</div>
+						<div class="form-row">
+							<label for="last_name">Last Name</label>
+							<input id="last_name" name="last_name" type="text" required>
 						</div>
 						<div class="form-row">
 							<label for="email">Email</label>
@@ -159,18 +164,26 @@ const row2 = testimonials.slice(3);
 						<div class="form-row">
 							<label for="role">Role</label>
 							<select id="role" name="role">
-								<option>Company representative</option>
-								<option>Student</option>
-								<option>Mentor</option>
-								<option>Other</option>
+								{home.meeting_roles.map(r => <option>{r}</option>)}
+							</select>
+						</div>
+						<div class="form-row">
+							<label for="purpose">Purpose</label>
+							<select id="purpose" name="purpose">
+								{home.meeting_purposes.map(p => <option>{p}</option>)}
 							</select>
 						</div>
 					</div>
-					<div class="form-row">
+					{/* Honeypot — invisible to users, bots fill it in */}
+					<div style="display:none" aria-hidden="true">
+						<input name="_honey" tabindex="-1" autocomplete="off">
+					</div>
+					<div class="form-row" style="margin-top: var(--space-md);">
 						<label for="note">Additional note</label>
 						<textarea id="note" name="note" rows="4"
 								  placeholder="Tell us how you’d like to collaborate"></textarea>
 					</div>
+					<p id="meeting-msg" style="display:none; margin-top: var(--space-md);"></p>
 					<button type="submit" class="btn btn-primary form-submit">Send request</button>
 				</form>
 			</div>
@@ -348,4 +361,60 @@ const row2 = testimonials.slice(3);
       }
     });
   })();
+
+  // Meeting form submission
+  (function () {
+    var form = document.getElementById('meeting-form');
+    if (!form) return;
+    var endpoint = form.dataset.endpoint;
+    var msg = document.getElementById('meeting-msg');
+    var btn = form.querySelector('[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Honeypot check — silent drop if bot filled it in
+      if (form.elements['_honey'] && form.elements['_honey'].value) return;
+
+      if (!endpoint) {
+        msg.style.display = '';
+        msg.style.color = '#f87171';
+        msg.textContent = 'Form endpoint not configured.';
+        return;
+      }
+
+      var data = {
+        first_name: form.elements['first_name'].value,
+        last_name:  form.elements['last_name'].value,
+        email:      form.elements['email'].value,
+        company:    form.elements['company'].value,
+        role:       form.elements['role'].value,
+        purpose:    form.elements['purpose'].value,
+        note:       form.elements['note'].value,
+      };
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      msg.style.display = 'none';
+
+      // no-cors because Apps Script doesn't return CORS headers
+      fetch(endpoint, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
+        .then(function () {
+          form.reset();
+          msg.style.display = '';
+          msg.style.color = 'var(--accent)';
+          msg.textContent = "Thanks! We'll be in touch soon.";
+        })
+        .catch(function () {
+          msg.style.display = '';
+          msg.style.color = '#f87171';
+          msg.textContent = 'Something went wrong — please try again or email us directly.';
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send request';
+        });
+    });
+  })();
+
 </script>

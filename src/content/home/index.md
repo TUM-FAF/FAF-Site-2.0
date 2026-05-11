@@ -9,4 +9,13 @@ next_event_location: "Chișinău, Moldova"
 meeting_heading: Book a meeting with FAF
 meeting_subtitle: >
   Want to become a partner or sponsor? Leave us a message and let's do something "cu tolk'".
+meeting_roles:
+  - Company representative
+  - Student
+  - Mentor
+  - Other
+meeting_purposes:
+  - Partner
+  - Volunteer
+  - Other
 ---
