@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "hero_tagline": {
+      "type": "string"
+    },
+    "hero_heading": {
+      "type": "string"
+    },
+    "hero_subtitle": {
+      "type": "string"
+    },
+    "hero_btn1_label": {
+      "type": "string"
+    },
+    "hero_btn2_label": {
+      "type": "string"
+    },
+    "why_heading": {
+      "type": "string"
+    },
+    "why_subtitle": {
+      "type": "string"
+    },
+    "why_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "desc"
+        ]
+      }
+    },
+    "tiers_heading": {
+      "type": "string"
+    },
+    "tiers_subtitle": {
+      "type": "string"
+    },
+    "partners_heading": {
+      "type": "string"
+    },
+    "partners_subtitle": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  }
+}

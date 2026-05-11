@@ -96,10 +96,110 @@ const home = defineCollection({
     next_event_date: z.string(),
     next_event_description: z.string(),
     next_event_location: z.string(),
+    events_heading: z.string().optional(),
+    events_subtitle: z.string().optional(),
+    events_list: z.array(z.string()).optional(),
+    events_cta_label: z.string().optional(),
+    feedback_heading: z.string().optional(),
+    feedback_subtitle: z.string().optional(),
+    partners_heading: z.string().optional(),
     meeting_heading: z.string(),
     meeting_subtitle: z.string(),
     meeting_roles: z.array(z.string()),
     meeting_purposes: z.array(z.string()),
+  }),
+});
+
+const volunteersPage = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/volunteers-page' }),
+  schema: z.object({
+    hero_tagline: z.string().optional(),
+    hero_heading: z.string().optional(),
+    hero_subtitle: z.string().optional(),
+    hero_btn1_label: z.string().optional(),
+    hero_btn2_label: z.string().optional(),
+    steps_heading: z.string().optional(),
+    steps_subtitle: z.string().optional(),
+    steps: z.array(z.object({ title: z.string(), desc: z.string() })).optional(),
+    roles_heading: z.string().optional(),
+    roles_subtitle: z.string().optional(),
+    perks_heading: z.string().optional(),
+    perks_subtitle: z.string().optional(),
+    perks: z.array(z.object({ title: z.string(), desc: z.string() })).optional(),
+    cta_heading: z.string().optional(),
+    cta_text: z.string().optional(),
+    cta_btn_label: z.string().optional(),
+  }),
+});
+
+const sponsorshipPage = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/sponsorship-page' }),
+  schema: z.object({
+    hero_tagline: z.string().optional(),
+    hero_heading: z.string().optional(),
+    hero_subtitle: z.string().optional(),
+    hero_btn1_label: z.string().optional(),
+    hero_btn2_label: z.string().optional(),
+    why_heading: z.string().optional(),
+    why_subtitle: z.string().optional(),
+    why_cards: z.array(z.object({ title: z.string(), desc: z.string() })).optional(),
+    tiers_heading: z.string().optional(),
+    tiers_subtitle: z.string().optional(),
+    partners_heading: z.string().optional(),
+    partners_subtitle: z.string().optional(),
+  }),
+});
+
+const aboutPage = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/about-page' }),
+  schema: z.object({
+    intro_tagline: z.string().optional(),
+    intro_heading: z.string().optional(),
+    intro_text: z.string().optional(),
+    details_heading: z.string().optional(),
+    details_text: z.string().optional(),
+    volunteer_tagline: z.string().optional(),
+    volunteer_heading: z.string().optional(),
+    volunteer_text: z.string().optional(),
+    volunteer_btn_label: z.string().optional(),
+    team_heading: z.string().optional(),
+    team_subtitle: z.string().optional(),
+    history_heading: z.string().optional(),
+    history_text: z.string().optional(),
+    history_btn_label: z.string().optional(),
+  }),
+});
+
+const eventsPage = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/events-page' }),
+  schema: z.object({
+    promo_tagline: z.string().optional(),
+    promo_heading: z.string().optional(),
+    promo_text: z.string().optional(),
+    promo_btn_label: z.string().optional(),
+    promo_btn_href: z.string().optional(),
+    title_heading: z.string().optional(),
+    title_subtitle: z.string().optional(),
+  }),
+});
+
+const galleryPage = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/gallery-page' }),
+  schema: z.object({
+    heading: z.string().optional(),
+    subtitle: z.string().optional(),
+  }),
+});
+
+const boardsPage = defineCollection({
+  loader: glob({ pattern: 'index.md', base: './src/content/boards-page' }),
+  schema: z.object({
+    hero_tagline: z.string().optional(),
+    hero_heading: z.string().optional(),
+    hero_subtitle: z.string().optional(),
+    stat_boards_label: z.string().optional(),
+    stat_members_label: z.string().optional(),
+    back_label: z.string().optional(),
   }),
 });
 
@@ -178,4 +278,4 @@ const boards = defineCollection({
   }),
 });
 
-export const collections = { events, team, testimonials, partners, gallery, roles, tiers, home, upcomingEvent, boards };
+export const collections = { events, team, testimonials, partners, gallery, roles, tiers, home, upcomingEvent, boards, volunteersPage, sponsorshipPage, aboutPage, eventsPage, galleryPage, boardsPage };

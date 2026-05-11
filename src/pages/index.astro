@@ -72,10 +72,8 @@ const row2 = testimonials.slice(3);
 
 	<section id="events" class="events">
 		<div class="container">
-			<h2>Our Events</h2>
-			<p class="section-subtitle">
-				We create high-impact spaces where students, mentors, and professionals learn, build, and celebrate technology together. From 24-hour technical marathons to community-led workshops, discover how we are shaping the local IT landscape.
-			</p>
+			<h2>{home.events_heading ?? 'Our Events'}</h2>
+			<p class="section-subtitle">{home.events_subtitle ?? ''}</p>
 
 			<div class="events-overview">
 				<div class="events-photos-col">
@@ -93,13 +91,9 @@ const row2 = testimonials.slice(3);
 				</div>
 				<div class="events-list-col">
 					<ul class="event-type-list">
-						<li>Hackathons</li>
-						<li>Technical Lectures</li>
-						<li>Programmer's Day</li>
-						<li>SheNovate</li>
-						<li>Community Evenings</li>
+						{(home.events_list ?? []).map(item => <li>{item}</li>)}
 					</ul>
-					<a href="/events" class="btn btn-primary events-cta">View Events History</a>
+					<a href="/events" class="btn btn-primary events-cta">{home.events_cta_label ?? 'View Events History'}</a>
 				</div>
 			</div>
 		</div>
@@ -107,10 +101,8 @@ const row2 = testimonials.slice(3);
 
 	<section id="feedback" class="feedback">
 		<div class="container">
-			<h2>What people say</h2>
-			<p class="section-subtitle">
-				A few reactions from participants at our hackathons and community events.
-			</p>
+			<h2>{home.feedback_heading ?? 'What people say'}</h2>
+			<p class="section-subtitle">{home.feedback_subtitle ?? ''}</p>
 
 			<div class="feedback-grid">
 				<div class="feedback-row1">
@@ -191,7 +183,7 @@ const row2 = testimonials.slice(3);
 
 		<section id="partners" class="partners">
 			<div class="container partners-inner">
-				<h2>Our partners</h2>
+				<h2>{home.partners_heading ?? 'Our partners'}</h2>
 
 				<div class="partners-logos-row">
 					{partners.map(p => (

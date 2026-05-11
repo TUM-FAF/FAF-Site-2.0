@@ -150,22 +150,22 @@ people:
     company: Engineering Director at Stefanini
     photo: ""
 sponsors:
-  - name: UTM
-    logo: /uploads/utm.png
-    large: false
-  - name: Sigmoid
-    logo: /uploads/sigmoid.png
-    large: false
-  - name: Allied Testing
-    logo: /uploads/allied-testing.png
+  - name: Stefanini
+    logo: /uploads/stefanini.png
     large: false
   - name: Orange
     logo: /uploads/orange.png
+    large: true
+  - name: Allied Testing
+    logo: /uploads/allied-testing.png
+    large: true
+  - name: Sigmoid
+    logo: /uploads/sigmoid.png
+    large: false
+  - name: UTM
+    logo: /uploads/utm.png
     large: false
   - name: Tekwill
     logo: /uploads/tekwill.png
-    large: false
-  - name: Stefanini
-    logo: /uploads/stefanini.png
     large: false
 ---

@@ -23,6 +23,30 @@
     "next_event_location": {
       "type": "string"
     },
+    "events_heading": {
+      "type": "string"
+    },
+    "events_subtitle": {
+      "type": "string"
+    },
+    "events_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "events_cta_label": {
+      "type": "string"
+    },
+    "feedback_heading": {
+      "type": "string"
+    },
+    "feedback_subtitle": {
+      "type": "string"
+    },
+    "partners_heading": {
+      "type": "string"
+    },
     "meeting_heading": {
       "type": "string"
     },

@@ -120,11 +120,27 @@ declare module 'astro:content' {
 		: any;
 
 	type DataEntryMap = {
-		"boards": Record<string, {
+		"aboutPage": Record<string, {
+  id: string;
+  body?: string;
+  collection: "aboutPage";
+  data: InferEntrySchema<"aboutPage">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"boards": Record<string, {
   id: string;
   body?: string;
   collection: "boards";
   data: InferEntrySchema<"boards">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"boardsPage": Record<string, {
+  id: string;
+  body?: string;
+  collection: "boardsPage";
+  data: InferEntrySchema<"boardsPage">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -136,11 +152,27 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"eventsPage": Record<string, {
+  id: string;
+  body?: string;
+  collection: "eventsPage";
+  data: InferEntrySchema<"eventsPage">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "gallery": Record<string, {
   id: string;
   body?: string;
   collection: "gallery";
   data: InferEntrySchema<"gallery">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"galleryPage": Record<string, {
+  id: string;
+  body?: string;
+  collection: "galleryPage";
+  data: InferEntrySchema<"galleryPage">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -165,6 +197,14 @@ declare module 'astro:content' {
   body?: string;
   collection: "roles";
   data: InferEntrySchema<"roles">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"sponsorshipPage": Record<string, {
+  id: string;
+  body?: string;
+  collection: "sponsorshipPage";
+  data: InferEntrySchema<"sponsorshipPage">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -197,6 +237,14 @@ declare module 'astro:content' {
   body?: string;
   collection: "upcomingEvent";
   data: InferEntrySchema<"upcomingEvent">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"volunteersPage": Record<string, {
+  id: string;
+  body?: string;
+  collection: "volunteersPage";
+  data: InferEntrySchema<"volunteersPage">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

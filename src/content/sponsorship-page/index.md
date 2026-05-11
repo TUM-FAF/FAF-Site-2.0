@@ -1,0 +1,20 @@
+---
+hero_tagline: "Partner with FAF"
+hero_heading: "Sponsor the Future of Tech in Moldova"
+hero_subtitle: "Join the companies shaping Moldova's next generation of IT professionals. Choose a sponsorship tier that fits your goals and let's build something \"cu tolk'\"."
+hero_btn1_label: "View Packages"
+hero_btn2_label: "Get in Touch"
+why_heading: "Why Sponsor FAF?"
+why_subtitle: "Our events reach hundreds of students, developers, and tech professionals across Moldova every year. Here's what your brand gets in return."
+why_cards:
+  - title: "Brand Visibility"
+    desc: "Your logo on all event materials, social media shoutouts, and on-stage mentions during our hackathons and conferences."
+  - title: "Talent Pipeline"
+    desc: "Direct access to top CS students. Recruit from hackathon winners and workshop participants before anyone else."
+  - title: "Community Impact"
+    desc: "Support education, mentorship, and gender-inclusive programs like SheNovate that create lasting change in Moldova's tech ecosystem."
+tiers_heading: "Sponsorship Packages"
+tiers_subtitle: "Four tiers designed to match different levels of involvement. Every partnership helps us create better events for the community."
+partners_heading: "Companies we've worked with"
+partners_subtitle: "Past and present partners who helped make our events possible."
+---

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/events.css';
@@ -9,6 +9,19 @@ const allEvents = await getCollection('events');
 const pastEvents = allEvents
   .filter(e => e.id !== 'cms-test' && !e.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const pageEntry = await getEntry('eventsPage', 'index');
+const p = pageEntry?.data ?? {};
+
+const txt = {
+  promo_tagline:   p.promo_tagline   ?? 'Join the Movement',
+  promo_heading:   p.promo_heading   ?? 'Next Event: Summer Hackathon 2026',
+  promo_text:      p.promo_text      ?? 'Ready to innovate? Join our 24-hour event on <b>June 20-21</b>. Experience mentorship, collaboration, and high-energy competition.',
+  promo_btn_label: p.promo_btn_label ?? 'Discover More →',
+  promo_btn_href:  p.promo_btn_href  ?? '/upcoming-event',
+  title_heading:   p.title_heading   ?? 'Past Events',
+  title_subtitle:  p.title_subtitle  ?? "A timeline of what we've built and celebrated together.",
+};
 ---
 
 <BaseLayout bodyClass="events-page">
@@ -16,13 +29,10 @@ const pastEvents = allEvents
         <div class="card-glass registration-card-wide">
             <div class="registration-content-wrapper">
                 <div class="registration-info">
-                    <p class="hero-tagline">Join the Movement</p>
-                    <h2>Next Event: Summer Hackathon 2026</h2>
-                    <p>
-                        Ready to innovate? Join our 24-hour event on <b>June 20-21</b>.
-                        Experience mentorship, collaboration, and high-energy competition.
-                    </p>
-                    <a href="/upcoming-event" class="btn btn-primary">Discover More →</a>
+                    <p class="hero-tagline">{txt.promo_tagline}</p>
+                    <h2>{txt.promo_heading}</h2>
+                    <p set:html={txt.promo_text} />
+                    <a href={txt.promo_btn_href} class="btn btn-primary">{txt.promo_btn_label}</a>
                 </div>
             </div>
         </div>
@@ -30,8 +40,8 @@ const pastEvents = allEvents
 
     <header class="page-title events-page-title">
         <div class="container">
-            <h2>Past Events</h2>
-            <p class="section-subtitle">A timeline of what we've built and celebrated together.</p>
+            <h2>{txt.title_heading}</h2>
+            <p class="section-subtitle">{txt.title_subtitle}</p>
         </div>
     </header>
 

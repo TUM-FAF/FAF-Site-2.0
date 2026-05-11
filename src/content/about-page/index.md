@@ -1,0 +1,16 @@
+---
+intro_tagline: "Connecting Moldova's IT Community"
+intro_heading: "Who we are"
+intro_text: "FAF is a student-led non-profit organization dedicated to bridging the gap between university education and the IT industry in Moldova. We foster a community where passion for technology meets practical application."
+details_heading: "Events & Governance"
+details_text: "We take pride in creating high-impact events like <b>Hackathons</b>, <b>FAF Lectures</b>, <b>Workshops</b> and others. These initiatives are made possible by our dedicated boards—groups of students who manage everything from logistics and finance to partnerships and marketing. Each event is a testament to the collaborative spirit of our community."
+volunteer_tagline: "Get Involved"
+volunteer_heading: "Become a Volunteer"
+volunteer_text: "Want to be part of the magic? FAF is always looking for passionate students to join our community. Whether you're interested in logistics, tech, or marketing, there's a place for you here."
+volunteer_btn_label: "Join the Team"
+team_heading: "Meet the team"
+team_subtitle: "The core team coordinating FAF projects and keeping the community moving forward."
+history_heading: "Explore Our Journey"
+history_text: "Want to explore the detailed history of the organization and learn about the previous boards that built our foundation?"
+history_btn_label: "Discover Our History"
+---

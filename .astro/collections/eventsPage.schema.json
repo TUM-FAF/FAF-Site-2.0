@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "promo_tagline": {
+      "type": "string"
+    },
+    "promo_heading": {
+      "type": "string"
+    },
+    "promo_text": {
+      "type": "string"
+    },
+    "promo_btn_label": {
+      "type": "string"
+    },
+    "promo_btn_href": {
+      "type": "string"
+    },
+    "title_heading": {
+      "type": "string"
+    },
+    "title_subtitle": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  }
+}
