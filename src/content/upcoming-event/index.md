@@ -150,19 +150,22 @@ people:
     company: Engineering Director at Stefanini
     photo: ""
 sponsors:
-  - name: Amdaris
-    logo: /uploads/amdaris.png
-    large: true
+  - name: UTM
+    logo: /uploads/utm.png
+    large: false
   - name: Sigmoid
     logo: /uploads/sigmoid.png
     large: false
   - name: Allied Testing
     logo: /uploads/allied-testing.png
     large: false
+  - name: Orange
+    logo: /uploads/orange.png
+    large: false
   - name: Tekwill
     logo: /uploads/tekwill.png
     large: false
-  - name: Efes Moldova
-    logo: /uploads/efes.png
+  - name: Stefanini
+    logo: /uploads/stefanini.png
     large: false
 ---
