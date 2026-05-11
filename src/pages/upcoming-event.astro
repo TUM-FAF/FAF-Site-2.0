@@ -7,9 +7,11 @@ const entries = await getCollection('upcomingEvent');
 if (!entries.length) throw new Error('Missing src/content/upcoming-event/index.md');
 const e = entries[0].data;
 
-const agenda   = e.agenda   ?? [];
-const people   = e.people   ?? [];
-const sponsors = e.sponsors ?? [];
+const agenda      = e.agenda   ?? [];
+const people      = e.people   ?? [];
+const sponsors    = e.sponsors ?? [];
+const regFields   = e.registration_fields ?? [];
+const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
 ---
 
 <BaseLayout bodyClass="upcoming-event-page">
@@ -180,56 +182,55 @@ const sponsors = e.sponsors ?? [];
             <p class="ue-section-label">Sign Up</p>
             <h2>Register for the Event</h2>
             <p class="ue-register__subtitle">
-                Spots are limited — secure your place at {e.title} today. We'll send confirmation details to your email.
+                {e.registration_subtitle ?? `Spots are limited — secure your place at ${e.title} today. We'll send confirmation details to your email.`}
             </p>
 
-            <form class="ue-register__form" id="ue-form" novalidate>
-                <div class="ue-form-grid">
-                    <div class="ue-form-row">
-                        <label for="ue-first-name">First Name *</label>
-                        <input id="ue-first-name" name="first_name" type="text" placeholder="Ion" required />
+            {e.registration_open ? (
+                <form class="ue-register__form" id="ue-form" novalidate
+                      data-endpoint={eventFormEndpoint} data-event={e.title}>
+                    <div class="ue-form-grid">
+                        {regFields.map(field => (
+                            <div class={`ue-form-row${field.full_width ? ' ue-form-row--full' : ''}`}>
+                                <label for={`ue-${field.name}`}>
+                                    {field.label}{field.required ? ' *' : ''}
+                                </label>
+                                {field.type === 'select' ? (
+                                    <select id={`ue-${field.name}`} name={field.name} required={field.required ?? false}>
+                                        <option value="" disabled selected>Select {field.label.toLowerCase()}</option>
+                                        {(field.options ?? []).map(o => <option value={o}>{o}</option>)}
+                                    </select>
+                                ) : field.type === 'textarea' ? (
+                                    <textarea
+                                        id={`ue-${field.name}`}
+                                        name={field.name}
+                                        placeholder={field.placeholder ?? ''}
+                                        required={field.required ?? false}
+                                    ></textarea>
+                                ) : (
+                                    <input
+                                        id={`ue-${field.name}`}
+                                        name={field.name}
+                                        type={field.type}
+                                        placeholder={field.placeholder ?? ''}
+                                        required={field.required ?? false}
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
-                    <div class="ue-form-row">
-                        <label for="ue-last-name">Last Name *</label>
-                        <input id="ue-last-name" name="last_name" type="text" placeholder="Popescu" required />
+                    {/* Honeypot */}
+                    <div style="display:none" aria-hidden="true">
+                        <input name="_honey" tabindex="-1" autocomplete="off" />
                     </div>
-                    <div class="ue-form-row">
-                        <label for="ue-email">Email Address *</label>
-                        <input id="ue-email" name="email" type="email" placeholder="ion.popescu@example.com" required />
-                    </div>
-                    <div class="ue-form-row">
-                        <label for="ue-phone">Phone Number</label>
-                        <input id="ue-phone" name="phone" type="tel" placeholder="+373 6X XXX XXX" />
-                    </div>
-                    <div class="ue-form-row">
-                        <label for="ue-occupation">Occupation *</label>
-                        <select id="ue-occupation" name="occupation" required>
-                            <option value="" disabled selected>Select your occupation</option>
-                            <option value="student">Student</option>
-                            <option value="junior">Junior Developer</option>
-                            <option value="mid">Mid-level Developer</option>
-                            <option value="senior">Senior Developer</option>
-                            <option value="designer">Designer</option>
-                            <option value="pm">Product Manager</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="ue-form-row ue-form-row--full">
-                        <label for="ue-team">Team Name (if you have one)</label>
-                        <input id="ue-team" name="team_name" type="text" placeholder="Leave blank if solo or undecided" />
-                    </div>
-                    <div class="ue-form-row ue-form-row--full">
-                        <label for="ue-message">Anything you'd like us to know?</label>
-                        <textarea id="ue-message" name="message" placeholder="Dietary needs, accessibility requirements, questions..."></textarea>
-                    </div>
+                    <p id="ue-msg" style="display:none; margin-top: var(--space-md);"></p>
+                    <button type="submit" class="btn btn-primary">Submit Registration</button>
+                </form>
+            ) : (
+                <div class="ue-coming-soon">
+                    <span class="ue-coming-soon__icon">🔒</span>
+                    <p>Registration is currently closed. Check back soon!</p>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Submit Registration</button>
-            </form>
-
-            <div class="ue-register__success" id="ue-success">
-                ✅ You're registered! Check your inbox for a confirmation email. See you at {e.title}!
-            </div>
+            )}
         </section>
 
     </div><!-- /.ue-body -->
@@ -237,15 +238,56 @@ const sponsors = e.sponsors ?? [];
 </BaseLayout>
 
 <script is:inline>
-    const form = document.getElementById('ue-form');
-    const success = document.getElementById('ue-success');
+    (function () {
+        var form = document.getElementById('ue-form');
+        if (!form) return;
+        var endpoint = form.dataset.endpoint;
+        var eventTitle = form.dataset.event;
+        var msg = document.getElementById('ue-msg');
+        var btn = form.querySelector('[type="submit"]');
 
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            form.style.display = 'none';
-            success.style.display = 'block';
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.addEventListener('submit', function (ev) {
+            ev.preventDefault();
+
+            if (form.elements['_honey'] && form.elements['_honey'].value) return;
+
+            if (!endpoint) {
+                msg.style.display = '';
+                msg.style.color = '#f87171';
+                msg.textContent = 'Registration endpoint not configured.';
+                return;
+            }
+
+            var data = { event_title: eventTitle };
+            var els = form.elements;
+            for (var i = 0; i < els.length; i++) {
+                var el = els[i];
+                if (el.name && el.name !== '_honey' && el.type !== 'submit') {
+                    data[el.name] = el.value;
+                }
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Submitting…';
+            msg.style.display = 'none';
+
+            fetch(endpoint, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
+                .then(function () {
+                    form.reset();
+                    msg.style.display = '';
+                    msg.style.color = 'var(--accent)';
+                    msg.textContent = "You're registered! Check your inbox for a confirmation email.";
+                    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                })
+                .catch(function () {
+                    msg.style.display = '';
+                    msg.style.color = '#f87171';
+                    msg.textContent = 'Something went wrong — please try again or contact us directly.';
+                })
+                .finally(function () {
+                    btn.disabled = false;
+                    btn.textContent = 'Submit Registration';
+                });
         });
-    }
+    })();
 </script>

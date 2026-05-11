@@ -20,6 +20,53 @@ banner: /uploads/frame-4.png
 show_agenda: true
 show_people: false
 show_sponsors: true
+registration_open: true
+registration_subtitle: Spots are limited — secure your place today. We'll send confirmation details to your email.
+registration_fields:
+  - name: first_name
+    label: First Name
+    type: text
+    required: true
+    placeholder: Ion
+  - name: last_name
+    label: Last Name
+    type: text
+    required: true
+    placeholder: Popescu
+  - name: email
+    label: Email Address
+    type: email
+    required: true
+    placeholder: ion.popescu@example.com
+  - name: phone
+    label: Phone Number
+    type: tel
+    required: false
+    placeholder: "+373 6X XXX XXX"
+  - name: occupation
+    label: Occupation
+    type: select
+    required: true
+    options:
+      - Student
+      - Junior Developer
+      - Mid-level Developer
+      - Senior Developer
+      - Designer
+      - Product Manager
+      - Other
+  - name: team_name
+    label: Team Name (if you have one)
+    type: text
+    required: false
+    placeholder: Leave blank if solo or undecided
+    full_width: true
+  - name: message
+    label: Anything you'd like us to know?
+    type: textarea
+    required: false
+    placeholder: "Dietary needs, accessibility requirements, questions..."
+    full_width: true
 agenda:
   - time: 09:30
     title: Registration & Check-in

@@ -96,6 +96,8 @@ const home = defineCollection({
     next_event_location: z.string(),
     meeting_heading: z.string(),
     meeting_subtitle: z.string(),
+    meeting_roles: z.array(z.string()),
+    meeting_purposes: z.array(z.string()),
   }),
 });
 
@@ -117,6 +119,17 @@ const upcomingEvent = defineCollection({
     show_agenda: z.boolean(),
     show_people: z.boolean(),
     show_sponsors: z.boolean(),
+    registration_open: z.boolean().default(true),
+    registration_subtitle: z.string().optional(),
+    registration_fields: z.array(z.object({
+      name: z.string(),
+      label: z.string(),
+      type: z.enum(['text', 'email', 'tel', 'select', 'textarea']),
+      required: z.boolean().optional(),
+      placeholder: z.string().optional(),
+      full_width: z.boolean().optional(),
+      options: z.array(z.string()).optional(),
+    })).optional(),
     agenda: z.array(z.object({
       time: z.string(),
       title: z.string(),
