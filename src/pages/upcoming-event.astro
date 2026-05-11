@@ -7,11 +7,28 @@ const entries = await getCollection('upcomingEvent');
 if (!entries.length) throw new Error('Missing src/content/upcoming-event/index.md');
 const e = entries[0].data;
 
-const agenda      = e.agenda   ?? [];
-const people      = e.people   ?? [];
-const sponsors    = e.sponsors ?? [];
-const regFields   = e.registration_fields ?? [];
+const agenda    = e.agenda   ?? [];
+const people    = e.people   ?? [];
+const sponsors  = e.sponsors ?? [];
+const regFields = e.registration_fields ?? [];
 const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
+
+const txt = {
+  about_label:          e.about_label          ?? 'About the Event',
+  about_heading:        e.about_heading         ?? `What is ${e.title}?`,
+  agenda_label:         e.agenda_label          ?? 'Schedule',
+  agenda_heading:       e.agenda_heading        ?? 'Event Agenda',
+  agenda_coming_soon:   e.agenda_coming_soon    ?? 'The full agenda will be published soon. Stay tuned!',
+  people_heading:       e.people_heading        ?? "Who You'll Meet",
+  people_coming_soon:   e.people_coming_soon    ?? `The ${e.people_label.toLowerCase()} list will be announced soon. Check back closer to the event!`,
+  sponsors_label:       e.sponsors_label        ?? 'Our Sponsors',
+  sponsors_heading:     e.sponsors_heading      ?? 'Made Possible By',
+  sponsors_intro:       e.sponsors_intro        ?? `${e.title} is powered by industry partners who believe in Moldova's next generation of tech talent.`,
+  sponsors_coming_soon: e.sponsors_coming_soon  ?? 'Our sponsors will be revealed soon. Interested in partnering with us?',
+  register_label:       e.register_label        ?? 'Sign Up',
+  register_heading:     e.register_heading      ?? 'Register for the Event',
+  registration_closed:  e.registration_closed_text ?? 'Registration is currently closed. Check back soon!',
+};
 ---
 
 <BaseLayout bodyClass="upcoming-event-page">
@@ -32,19 +49,27 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
 
             <div class="ue-hero__meta">
                 <div class="ue-hero__meta-item">
-                    <span class="meta-icon">📅</span>
+                    <span class="meta-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </span>
                     <span><strong>{e.date}</strong></span>
                 </div>
                 <div class="ue-hero__meta-item">
-                    <span class="meta-icon">🕙</span>
+                    <span class="meta-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </span>
                     <span>Starts at <strong>{e.start_time}</strong></span>
                 </div>
                 <div class="ue-hero__meta-item">
-                    <span class="meta-icon">⏱</span>
+                    <span class="meta-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                    </span>
                     <span>Duration: <strong>{e.duration}</strong></span>
                 </div>
                 <div class="ue-hero__meta-item">
-                    <span class="meta-icon">📍</span>
+                    <span class="meta-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </span>
                     <span><strong>{e.location}</strong></span>
                 </div>
             </div>
@@ -61,8 +86,8 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
 
         <!-- About the Event -->
         <section class="ue-about">
-            <p class="ue-section-label">About the Event</p>
-            <h2>What is {e.title}?</h2>
+            <p class="ue-section-label">{txt.about_label}</p>
+            <h2>{txt.about_heading}</h2>
             <p>{e.description}</p>
             {e.description_extra && <p>{e.description_extra}</p>}
         </section>
@@ -70,24 +95,32 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
         <!-- Quick Info Cards -->
         <div class="ue-info-grid">
             <div class="ue-info-card">
-                <span class="ue-info-card__icon">📍</span>
+                <span class="ue-info-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
                 <p class="ue-info-card__label">Location</p>
                 <p class="ue-info-card__value">{e.location}</p>
                 {e.address && <p class="ue-info-card__sub">{e.address}</p>}
             </div>
             <div class="ue-info-card">
-                <span class="ue-info-card__icon">📅</span>
+                <span class="ue-info-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </span>
                 <p class="ue-info-card__label">Date</p>
                 <p class="ue-info-card__value">{e.date}</p>
                 <p class="ue-info-card__sub">Starts at {e.start_time}</p>
             </div>
             <div class="ue-info-card">
-                <span class="ue-info-card__icon">⏱</span>
+                <span class="ue-info-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                </span>
                 <p class="ue-info-card__label">Duration</p>
                 <p class="ue-info-card__value">{e.duration}</p>
             </div>
             <div class="ue-info-card">
-                <span class="ue-info-card__icon">🎟️</span>
+                <span class="ue-info-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                </span>
                 <p class="ue-info-card__label">Format</p>
                 <p class="ue-info-card__value">{e.format}</p>
             </div>
@@ -97,8 +130,8 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
 
         <!-- Agenda -->
         <section class="ue-agenda" id="agenda">
-            <p class="ue-section-label">Schedule</p>
-            <h2>Event Agenda</h2>
+            <p class="ue-section-label">{txt.agenda_label}</p>
+            <h2>{txt.agenda_heading}</h2>
 
             {e.show_agenda ? (
                 <div class="ue-timeline">
@@ -112,8 +145,10 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
                 </div>
             ) : (
                 <div class="ue-coming-soon">
-                    <span class="ue-coming-soon__icon">🗓️</span>
-                    <p>The full agenda will be published soon. Stay tuned!</p>
+                    <span class="ue-coming-soon__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </span>
+                    <p>{txt.agenda_coming_soon}</p>
                 </div>
             )}
         </section>
@@ -123,7 +158,7 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
         <!-- Speakers & Mentors -->
         <section class="ue-people">
             <p class="ue-section-label">{e.people_label}</p>
-            <h2>Who You'll Meet</h2>
+            <h2>{txt.people_heading}</h2>
 
             {e.show_people ? (
                 <div class="ue-people-grid">
@@ -132,7 +167,7 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
                             <div class="ue-person-card__avatar">
                                 {person.photo
                                     ? <img src={person.photo} alt={person.name} />
-                                    : '👤'
+                                    : <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                                 }
                             </div>
                             <p class="ue-person-card__name">{person.name}</p>
@@ -143,8 +178,10 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
                 </div>
             ) : (
                 <div class="ue-coming-soon">
-                    <span class="ue-coming-soon__icon">👥</span>
-                    <p>The {e.people_label.toLowerCase()} list will be announced soon. Check back closer to the event!</p>
+                    <span class="ue-coming-soon__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span>
+                    <p>{txt.people_coming_soon}</p>
                 </div>
             )}
         </section>
@@ -153,11 +190,9 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
 
         <!-- Sponsors -->
         <section class="ue-sponsors">
-            <p class="ue-section-label">Our Sponsors</p>
-            <h2>Made Possible By</h2>
-            <p class="ue-sponsors__intro">
-                {e.title} is powered by industry partners who believe in Moldova's next generation of tech talent.
-            </p>
+            <p class="ue-section-label">{txt.sponsors_label}</p>
+            <h2>{txt.sponsors_heading}</h2>
+            <p class="ue-sponsors__intro">{txt.sponsors_intro}</p>
 
             {e.show_sponsors ? (
                 <div class="ue-sponsors-grid">
@@ -169,8 +204,10 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
                 </div>
             ) : (
                 <div class="ue-coming-soon">
-                    <span class="ue-coming-soon__icon">🤝</span>
-                    <p>Our sponsors will be revealed soon. Interested in partnering with us? <a href="/sponsorship">Get in touch</a>.</p>
+                    <span class="ue-coming-soon__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    </span>
+                    <p>{txt.sponsors_coming_soon} <a href="/sponsorship">Get in touch</a>.</p>
                 </div>
             )}
         </section>
@@ -179,8 +216,8 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
 
         <!-- Registration Form -->
         <section class="ue-register" id="register">
-            <p class="ue-section-label">Sign Up</p>
-            <h2>Register for the Event</h2>
+            <p class="ue-section-label">{txt.register_label}</p>
+            <h2>{txt.register_heading}</h2>
             <p class="ue-register__subtitle">
                 {e.registration_subtitle ?? `Spots are limited — secure your place at ${e.title} today. We'll send confirmation details to your email.`}
             </p>
@@ -218,7 +255,6 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
                             </div>
                         ))}
                     </div>
-                    {/* Honeypot */}
                     <div style="display:none" aria-hidden="true">
                         <input name="_honey" tabindex="-1" autocomplete="off" />
                     </div>
@@ -227,8 +263,10 @@ const eventFormEndpoint = import.meta.env.PUBLIC_EVENT_FORM_ENDPOINT ?? '';
                 </form>
             ) : (
                 <div class="ue-coming-soon">
-                    <span class="ue-coming-soon__icon">🔒</span>
-                    <p>Registration is currently closed. Check back soon!</p>
+                    <span class="ue-coming-soon__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
+                    <p>{txt.registration_closed}</p>
                 </div>
             )}
         </section>

@@ -22,6 +22,20 @@ show_people: false
 show_sponsors: true
 registration_open: true
 registration_subtitle: Spots are limited — secure your place today. We'll send confirmation details to your email.
+about_label: "About the Event"
+about_heading: "What is Summer Hackathon 2026?"
+agenda_label: "Schedule"
+agenda_heading: "Event Agenda"
+agenda_coming_soon: "The full agenda will be published soon. Stay tuned!"
+people_heading: "Who You'll Meet"
+people_coming_soon: "The mentors list will be announced soon. Check back closer to the event!"
+sponsors_label: "Our Sponsors"
+sponsors_heading: "Made Possible By"
+sponsors_intro: "Summer Hackathon 2026 is powered by industry partners who believe in Moldova's next generation of tech talent."
+sponsors_coming_soon: "Our sponsors will be revealed soon. Interested in partnering with us?"
+register_label: "Sign Up"
+register_heading: "Register for the Event"
+registration_closed_text: "Registration is currently closed. Check back soon!"
 registration_fields:
   - name: first_name
     label: First Name
@@ -60,7 +74,6 @@ registration_fields:
     type: text
     required: false
     placeholder: Leave blank if solo or undecided
-    full_width: true
   - name: message
     label: Anything you'd like us to know?
     type: textarea

@@ -54,6 +54,48 @@
     "registration_subtitle": {
       "type": "string"
     },
+    "about_label": {
+      "type": "string"
+    },
+    "about_heading": {
+      "type": "string"
+    },
+    "agenda_label": {
+      "type": "string"
+    },
+    "agenda_heading": {
+      "type": "string"
+    },
+    "agenda_coming_soon": {
+      "type": "string"
+    },
+    "people_heading": {
+      "type": "string"
+    },
+    "people_coming_soon": {
+      "type": "string"
+    },
+    "sponsors_label": {
+      "type": "string"
+    },
+    "sponsors_heading": {
+      "type": "string"
+    },
+    "sponsors_intro": {
+      "type": "string"
+    },
+    "sponsors_coming_soon": {
+      "type": "string"
+    },
+    "register_label": {
+      "type": "string"
+    },
+    "register_heading": {
+      "type": "string"
+    },
+    "registration_closed_text": {
+      "type": "string"
+    },
     "registration_fields": {
       "type": "array",
       "items": {

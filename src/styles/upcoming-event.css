@@ -18,13 +18,13 @@
 
 /* ── Event header (below banner) ── */
 .ue-header {
-    border-left: 3px solid rgba(255,155,43,0.45);
     margin: var(--space-xl) auto 0;
     max-width: 1100px;
     padding: 0 var(--space-xl);
 }
 
 .ue-header__inner {
+    border-left: 3px solid rgba(255,155,43,0.45);
     padding-left: var(--space-lg);
 }
 
@@ -71,8 +71,10 @@
 }
 
 .ue-hero__meta-item .meta-icon {
-    font-size: 1.1rem;
     flex-shrink: 0;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
 }
 
 .ue-hero__meta-item strong {
@@ -139,7 +141,7 @@
 }
 
 .ue-info-card__icon {
-    font-size: 1.6rem;
+    color: var(--accent);
     margin-bottom: var(--space-sm);
     display: block;
 }
@@ -373,8 +375,14 @@
 }
 
 .ue-coming-soon__icon {
-    font-size: 1.8rem;
     flex-shrink: 0;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+}
+
+.ue-person-card__avatar svg {
+    color: rgba(255, 155, 43, 0.65);
 }
 
 .ue-coming-soon p {
@@ -400,16 +408,22 @@
 .ue-register h2 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+.ue-register .ue-section-label {
+    text-align: center;
 }
 
 .ue-register__subtitle {
     font-size: 0.95rem;
     color: var(--muted);
     margin-bottom: var(--space-xl);
+    text-align: center;
 }
 
 .ue-register__form {
-    max-width: 680px;
+    width: 100%;
 }
 
 .ue-form-grid {
