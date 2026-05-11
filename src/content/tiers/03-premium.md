@@ -1,6 +1,7 @@
 ---
-name: Premium
-description: Maximum exposure with priority placement and direct access to top student talent.
+name: General
+description: Maximum exposure with priority placement and direct access to top
+  student talent.
 benefits:
   - Everything in General
   - Priority logo placement (all materials)
@@ -8,7 +9,7 @@ benefits:
   - Branded challenge track at hackathons
   - Access to participant CVs & portfolios
   - 4 mentor or jury seats
-cta_label: Become a Premium Sponsor
-featured: true
+cta_label: Become a General Sponsor
+featured: false
 sort_order: 3
 ---
