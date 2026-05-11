@@ -16,7 +16,7 @@
     "astro": "^6.0.8"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.3.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^4.2.2"
   }

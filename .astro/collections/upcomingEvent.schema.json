@@ -47,6 +47,57 @@
     "show_sponsors": {
       "type": "boolean"
     },
+    "registration_open": {
+      "default": true,
+      "type": "boolean"
+    },
+    "registration_subtitle": {
+      "type": "string"
+    },
+    "registration_fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "email",
+              "tel",
+              "select",
+              "textarea"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "placeholder": {
+            "type": "string"
+          },
+          "full_width": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "label",
+          "type"
+        ]
+      }
+    },
     "agenda": {
       "type": "array",
       "items": {
