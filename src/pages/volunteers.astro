@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/volunteers.css';
@@ -12,62 +12,76 @@ const roles = await Promise.all(
     .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99))
     .map(async r => ({ ...r, Content: (await render(r)).Content }))
 );
+
+import { render } from 'astro:content';
+
+const pageEntry = await getEntry('volunteersPage', 'index');
+const p = pageEntry?.data ?? {};
+
+const txt = {
+  hero_tagline:   p.hero_tagline   ?? 'Join the Movement',
+  hero_heading:   p.hero_heading   ?? 'Become a FAF Volunteer',
+  hero_subtitle:  p.hero_subtitle  ?? 'FAF runs on passion. Every hackathon, lecture, and community evening happens because students like you step up and make it real.',
+  hero_btn1_label: p.hero_btn1_label ?? 'See Volunteer Roles',
+  hero_btn2_label: p.hero_btn2_label ?? 'Apply Now',
+  steps_heading:  p.steps_heading  ?? 'How It Works',
+  steps_subtitle: p.steps_subtitle ?? 'From application to your first event — here\'s the path to becoming a FAF volunteer.',
+  steps: p.steps ?? [
+    { title: 'Apply',         desc: 'Fill out a short form telling us about yourself, your skills, and which department interests you.' },
+    { title: 'Meet the Team', desc: 'We\'ll invite you for a casual chat to get to know you and find the best fit for your interests.' },
+    { title: 'Join a Team',   desc: 'Get placed under one of our leads — CFO, CPO, CCO, or CMO — based on your skills and interests.' },
+    { title: 'Make an Impact',desc: 'Help organize hackathons, create content, design visuals, or coordinate with partners. You\'re in.' },
+  ],
+  roles_heading:  p.roles_heading  ?? 'Our Team Structure',
+  roles_subtitle: p.roles_subtitle ?? 'FAF is led by a focused team of student leaders. Here\'s how we\'re organized — and where you could fit in.',
+  perks_heading:  p.perks_heading  ?? 'Why Volunteer with FAF?',
+  perks_subtitle: p.perks_subtitle ?? 'It\'s not just about helping out — it\'s about growing together.',
+  perks: p.perks ?? [
+    { title: 'Real Experience', desc: 'Organize events with 150+ participants, manage budgets, and work with real companies. This goes straight on your CV.' },
+    { title: 'Network',         desc: 'Meet industry professionals, mentors, and fellow students who share your passion for technology.' },
+    { title: 'Community',       desc: 'Movie nights, team outings, and a tight-knit group of people who actually care about what they\'re building.' },
+    { title: 'Growth',          desc: 'Develop soft skills — leadership, communication, project management — in a supportive environment where mistakes are learning opportunities.' },
+  ],
+  cta_heading:   p.cta_heading   ?? 'Ready to join?',
+  cta_text:      p.cta_text      ?? 'Applications are always open. Tell us about yourself and we\'ll find a place for you.',
+  cta_btn_label: p.cta_btn_label ?? 'Apply to Volunteer',
+};
 ---
 
 <BaseLayout bodyClass="volunteers-page">
     <section class="vol-hero">
         <div class="container">
-            <p class="hero-tagline">Join the Movement</p>
-            <h1>Become a FAF Volunteer</h1>
-            <p class="hero-subtitle">
-                FAF runs on passion. Every hackathon, lecture, and community evening happens because
-                students like you step up and make it real. Ready to be part of it?
-            </p>
+            <p class="hero-tagline">{txt.hero_tagline}</p>
+            <h1>{txt.hero_heading}</h1>
+            <p class="hero-subtitle">{txt.hero_subtitle}</p>
             <div class="hero-buttons">
-                <a href="#roles" class="btn btn-primary">See Volunteer Roles</a>
-                <a href="/#meeting" class="btn btn-secondary">Apply Now</a>
+                <a href="#roles" class="btn btn-primary">{txt.hero_btn1_label}</a>
+                <a href="/#meeting" class="btn btn-secondary">{txt.hero_btn2_label}</a>
             </div>
         </div>
     </section>
 
     <section class="how-it-works">
         <div class="container">
-            <h2>How It Works</h2>
-            <p class="section-subtitle">
-                From application to your first event — here's the path to becoming a FAF volunteer.
-            </p>
+            <h2>{txt.steps_heading}</h2>
+            <p class="section-subtitle">{txt.steps_subtitle}</p>
 
             <div class="steps-grid">
-                <div class="step-card card-glass">
-                    <span class="step-number">1</span>
-                    <h3>Apply</h3>
-                    <p>Fill out a short form telling us about yourself, your skills, and which department interests you.</p>
-                </div>
-                <div class="step-card card-glass">
-                    <span class="step-number">2</span>
-                    <h3>Meet the Team</h3>
-                    <p>We'll invite you for a casual chat to get to know you and find the best fit for your interests.</p>
-                </div>
-                <div class="step-card card-glass">
-                    <span class="step-number">3</span>
-                    <h3>Join a Team</h3>
-                    <p>Get placed under one of our leads — CFO, CPO, CCO, or CMO — based on your skills and interests.</p>
-                </div>
-                <div class="step-card card-glass">
-                    <span class="step-number">4</span>
-                    <h3>Make an Impact</h3>
-                    <p>Help organize hackathons, create content, design visuals, or coordinate with partners. You're in.</p>
-                </div>
+                {txt.steps.map((step, i) => (
+                    <div class="step-card card-glass">
+                        <span class="step-number">{i + 1}</span>
+                        <h3>{step.title}</h3>
+                        <p>{step.desc}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
 
     <section id="roles" class="roles">
         <div class="container">
-            <h2>Our Team Structure</h2>
-            <p class="section-subtitle">
-                FAF is led by a focused team of student leaders. Here's how we're organized — and where you could fit in.
-            </p>
+            <h2>{txt.roles_heading}</h2>
+            <p class="section-subtitle">{txt.roles_subtitle}</p>
 
             <div class="roles-list">
                 {roles.map(role => (
@@ -90,28 +104,16 @@ const roles = await Promise.all(
 
     <section class="why-volunteer">
         <div class="container">
-            <h2>Why Volunteer with FAF?</h2>
-            <p class="section-subtitle">
-                It's not just about helping out — it's about growing together.
-            </p>
+            <h2>{txt.perks_heading}</h2>
+            <p class="section-subtitle">{txt.perks_subtitle}</p>
 
             <div class="perks-grid">
-                <div class="perk-card card-glass">
-                    <h3>Real Experience</h3>
-                    <p>Organize events with 150+ participants, manage budgets, and work with real companies. This goes straight on your CV.</p>
-                </div>
-                <div class="perk-card card-glass">
-                    <h3>Network</h3>
-                    <p>Meet industry professionals, mentors, and fellow students who share your passion for technology.</p>
-                </div>
-                <div class="perk-card card-glass">
-                    <h3>Community</h3>
-                    <p>Movie nights, team outings, and a tight‑knit group of people who actually care about what they're building.</p>
-                </div>
-                <div class="perk-card card-glass">
-                    <h3>Growth</h3>
-                    <p>Develop soft skills — leadership, communication, project management — in a supportive environment where mistakes are learning opportunities.</p>
-                </div>
+                {txt.perks.map(perk => (
+                    <div class="perk-card card-glass">
+                        <h3>{perk.title}</h3>
+                        <p>{perk.desc}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
@@ -123,9 +125,9 @@ const roles = await Promise.all(
 
         <section class="vol-cta-banner">
             <div class="container vol-cta-inner">
-                <h2>Ready to join?</h2>
-                <p>Applications are always open. Tell us about yourself and we'll find a place for you.</p>
-                <a href="/#meeting" class="btn btn-primary">Apply to Volunteer</a>
+                <h2>{txt.cta_heading}</h2>
+                <p>{txt.cta_text}</p>
+                <a href="/#meeting" class="btn btn-primary">{txt.cta_btn_label}</a>
             </div>
         </section>
     </div>

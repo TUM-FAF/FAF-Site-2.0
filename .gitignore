@@ -1,6 +1,7 @@
 /.idea
 node_modules/
 dist/
+.env
 
 # Dev/test workspace — never commit
 bk/

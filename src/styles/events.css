@@ -3,20 +3,20 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl) var(--space-lg);
-    padding: var(--space-xl);
+    padding: 0 var(--space-xl);
     background: transparent;
 }
 
 @media (max-width: 768px) {
     .event-grid-special {
         grid-template-columns: 1fr;
-        padding: var(--space-md);
+        padding: 0 var(--space-md);
     }
 }
 
 /* ── Event card link wrapper ───────────────────────────────────────────────── */
 .event-card-link {
-    display: contents; /* behaves as if the <a> isn't there for grid layout */
+    display: block;
     text-decoration: none;
     color: inherit;
 }
@@ -205,20 +205,30 @@
     border-bottom: none;
     box-shadow: none;
     margin-bottom: 0;
-    border-left: 3px solid rgba(255, 155, 43, 0.45);
 }
 
 .events-page-title .container {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 var(--space-xl);
+    position: relative;
 }
 
-.events-page-title h2   { margin-bottom: var(--space-xs); }
-.events-page-title .section-subtitle { margin-bottom: 0; }
+.events-page-title .container::before {
+    content: '';
+    position: absolute;
+    left: var(--space-xl);
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(255, 155, 43, 0.45);
+}
 
-/* Distance-card override (class added by distanceScroll.js) */
-.event-card-featured.distance-card {
+.events-page-title h2   { margin-bottom: var(--space-xs); padding-left: var(--space-md); }
+.events-page-title .section-subtitle { margin-bottom: 0; padding-left: var(--space-md); }
+
+/* Distance-card override (class added by distanceScroll.js to .event-card-link) */
+.event-card-link.distance-card {
     will-change: transform;
     transform-origin: top center;
     transition: opacity 0.06s linear;

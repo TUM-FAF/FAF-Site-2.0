@@ -36,67 +36,28 @@
 }
 
 .history-cta {
-    background: radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.05) 0%, transparent 70%);
-    text-align: center;
-    padding-bottom: var(--space-2xl);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 155, 43, 0.08) 0, transparent 60%);
 }
 
-.cta-box h2 {
+.history-cta-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.history-cta-inner h2 {
     margin-bottom: var(--space-sm);
 }
 
-.cta-box p {
+.history-cta-inner p {
     margin-bottom: var(--space-xl);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.05rem;
 }
 
 .text-center {
     text-align: center;
 }
 
-.site-footer {
-    padding: var(--space-xl) 0;
-    margin-top: var(--space-2xl);
-    border-top: none; /* planet decoration replaces the visual separator */
-}
-
-.footer-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-lg);
-}
-
-.footer-social-links {
-    display: flex;
-    gap: var(--space-xl);
-    padding: var(--space-md) 0;
-}
-
-.footer-social-links img {
-    width: 28px; /* Slightly larger for better visibility */
-    height: 28px;
-    object-fit: contain;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    /* This makes them white to match the text; remove if you want original colors */
-    filter: brightness(0) invert(1);
-    opacity: 0.8;
-}
-
-.footer-social-links a:hover img {
-    transform: translateY(-5px);
-    filter: brightness(1) invert(0); /* Returns to original color on hover */
-    opacity: 1;
-}
-
-.footer-info, .footer-credit {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.5;
-}
 
 .volunteer-cta {
     padding: var(--space-2xl);
@@ -106,25 +67,6 @@
 /* Push the action button down so it has clear visual breathing room */
 .volunteer-content .btn {
     margin-top: var(--space-xl);
-}
-
-.registration-form-wrapper {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-    /* Smooth fade-in animation */
-    animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.volunteer-form .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
 }
 
 /* Team card hover lift */

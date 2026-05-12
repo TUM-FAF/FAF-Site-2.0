@@ -1,6 +1,6 @@
 ---
-name: Optiplaza
-logo: ../../assets/logos/optiplaza.png
+name: Orange
+logo: ../../assets/logos/orange.png
 large: false
 sort_order: 8
 ---

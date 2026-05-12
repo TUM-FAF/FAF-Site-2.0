@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "intro_tagline": {
+      "type": "string"
+    },
+    "intro_heading": {
+      "type": "string"
+    },
+    "intro_text": {
+      "type": "string"
+    },
+    "details_heading": {
+      "type": "string"
+    },
+    "details_text": {
+      "type": "string"
+    },
+    "volunteer_tagline": {
+      "type": "string"
+    },
+    "volunteer_heading": {
+      "type": "string"
+    },
+    "volunteer_text": {
+      "type": "string"
+    },
+    "volunteer_btn_label": {
+      "type": "string"
+    },
+    "team_heading": {
+      "type": "string"
+    },
+    "team_subtitle": {
+      "type": "string"
+    },
+    "history_heading": {
+      "type": "string"
+    },
+    "history_text": {
+      "type": "string"
+    },
+    "history_btn_label": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  }
+}

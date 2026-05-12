@@ -23,11 +23,47 @@
     "next_event_location": {
       "type": "string"
     },
+    "events_heading": {
+      "type": "string"
+    },
+    "events_subtitle": {
+      "type": "string"
+    },
+    "events_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "events_cta_label": {
+      "type": "string"
+    },
+    "feedback_heading": {
+      "type": "string"
+    },
+    "feedback_subtitle": {
+      "type": "string"
+    },
+    "partners_heading": {
+      "type": "string"
+    },
     "meeting_heading": {
       "type": "string"
     },
     "meeting_subtitle": {
       "type": "string"
+    },
+    "meeting_roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "meeting_purposes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "$schema": {
       "type": "string"
@@ -42,6 +78,8 @@
     "next_event_description",
     "next_event_location",
     "meeting_heading",
-    "meeting_subtitle"
+    "meeting_subtitle",
+    "meeting_roles",
+    "meeting_purposes"
   ]
 }

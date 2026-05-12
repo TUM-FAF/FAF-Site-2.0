@@ -2,7 +2,7 @@
 
 /* Hero */
 .vol-hero {
-    padding-top: calc(80px + 60px);
+    padding-top: calc(80px + var(--space-2xl));
     padding-bottom: var(--space-2xl);
     background:
             radial-gradient(circle at 30% 15%, rgba(255, 155, 43, 0.12) 0, transparent 50%),

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/sponsorship.css';
@@ -14,55 +14,63 @@ const allPartners = await getCollection('partners');
 const partners = allPartners
   .filter(p => !p.data.draft)
   .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+
+const pageEntry = await getEntry('sponsorshipPage', 'index');
+const p = pageEntry?.data ?? {};
+
+const txt = {
+  hero_tagline:     p.hero_tagline     ?? 'Partner with FAF',
+  hero_heading:     p.hero_heading     ?? 'Sponsor the Future of Tech in Moldova',
+  hero_subtitle:    p.hero_subtitle    ?? "Join the companies shaping Moldova's next generation of IT professionals. Choose a sponsorship tier that fits your goals and let's build something \"cu tolk'\".",
+  hero_btn1_label:  p.hero_btn1_label  ?? 'View Packages',
+  hero_btn2_label:  p.hero_btn2_label  ?? 'Get in Touch',
+  why_heading:      p.why_heading      ?? 'Why Sponsor FAF?',
+  why_subtitle:     p.why_subtitle     ?? 'Our events reach hundreds of students, developers, and tech professionals across Moldova every year.',
+  why_cards: p.why_cards ?? [
+    { title: 'Brand Visibility',  desc: 'Your logo on all event materials, social media shoutouts, and on-stage mentions during our hackathons and conferences.' },
+    { title: 'Talent Pipeline',   desc: 'Direct access to top CS students. Recruit from hackathon winners and workshop participants before anyone else.' },
+    { title: 'Community Impact',  desc: "Support education, mentorship, and gender-inclusive programs like SheNovate that create lasting change in Moldova's tech ecosystem." },
+  ],
+  tiers_heading:    p.tiers_heading    ?? 'Sponsorship Packages',
+  tiers_subtitle:   p.tiers_subtitle   ?? 'Four tiers designed to match different levels of involvement. Every partnership helps us create better events for the community.',
+  partners_heading: p.partners_heading ?? "Companies we've worked with",
+  partners_subtitle: p.partners_subtitle ?? 'Past and present partners who helped make our events possible.',
+};
 ---
 
 <BaseLayout bodyClass="sponsorship-page">
     <section class="sponsor-hero">
         <div class="container">
-            <p class="hero-tagline">Partner with FAF</p>
-            <h1>Sponsor the Future of Tech in Moldova</h1>
-            <p class="hero-subtitle">
-                Join the companies shaping Moldova's next generation of IT professionals.
-                Choose a sponsorship tier that fits your goals and let's build something "cu tolk'".
-            </p>
+            <p class="hero-tagline">{txt.hero_tagline}</p>
+            <h1>{txt.hero_heading}</h1>
+            <p class="hero-subtitle">{txt.hero_subtitle}</p>
             <div class="hero-buttons">
-                <a href="#tiers" class="btn btn-primary">View Packages</a>
-                <a href="/#meeting" class="btn btn-secondary">Get in Touch</a>
+                <a href="#tiers" class="btn btn-primary">{txt.hero_btn1_label}</a>
+                <a href="/#meeting" class="btn btn-secondary">{txt.hero_btn2_label}</a>
             </div>
         </div>
     </section>
 
     <section class="why-sponsor">
         <div class="container">
-            <h2>Why Sponsor FAF?</h2>
-            <p class="section-subtitle">
-                Our events reach hundreds of students, developers, and tech professionals across Moldova every year.
-                Here's what your brand gets in return.
-            </p>
+            <h2>{txt.why_heading}</h2>
+            <p class="section-subtitle">{txt.why_subtitle}</p>
 
             <div class="why-grid">
-                <article class="why-card card-glass">
-                    <h3>Brand Visibility</h3>
-                    <p>Your logo on all event materials, social media shoutouts, and on‑stage mentions during our hackathons and conferences.</p>
-                </article>
-                <article class="why-card card-glass">
-                    <h3>Talent Pipeline</h3>
-                    <p>Direct access to top CS students. Recruit from hackathon winners and workshop participants before anyone else.</p>
-                </article>
-                <article class="why-card card-glass">
-                    <h3>Community Impact</h3>
-                    <p>Support education, mentorship, and gender‑inclusive programs like SheNovate that create lasting change in Moldova's tech ecosystem.</p>
-                </article>
+                {txt.why_cards.map(card => (
+                    <article class="why-card card-glass">
+                        <h3>{card.title}</h3>
+                        <p>{card.desc}</p>
+                    </article>
+                ))}
             </div>
         </div>
     </section>
 
     <section id="tiers" class="tiers">
         <div class="container">
-            <h2>Sponsorship Packages</h2>
-            <p class="section-subtitle">
-                Four tiers designed to match different levels of involvement. Every partnership helps us create better events for the community.
-            </p>
+            <h2>{txt.tiers_heading}</h2>
+            <p class="section-subtitle">{txt.tiers_subtitle}</p>
 
             <div class="tiers-grid">
                 {tiers.map(tier => (
@@ -89,9 +97,9 @@ const partners = allPartners
 
         <section class="partners">
             <div class="container partners-inner">
-                <h2>Companies we've worked with</h2>
+                <h2>{txt.partners_heading}</h2>
                 <p class="section-subtitle" style="margin-left: auto; margin-right: auto; text-align: center;">
-                    Past and present partners who helped make our events possible.
+                    {txt.partners_subtitle}
                 </p>
 
                 <div class="partners-logos-row">

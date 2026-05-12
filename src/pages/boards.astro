@@ -1,49 +1,55 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/boards.css';
 
 const allBoards = await getCollection('boards');
 const boards = allBoards.sort((a, b) => b.data.number - a.data.number);
-
 const totalMembers = boards.reduce((sum, b) => sum + (b.data.members?.length ?? 0), 0);
+
+const pageEntry = await getEntry('boardsPage', 'index');
+const p = pageEntry?.data ?? {};
+
+const txt = {
+  hero_tagline:       p.hero_tagline       ?? 'Our Legacy',
+  hero_heading:       p.hero_heading       ?? 'The Boards That Built FAF',
+  hero_subtitle:      p.hero_subtitle      ?? 'Every great community is shaped by the people who gave their time to build it. Here are the boards that came before — each one leaving FAF stronger than they found it.',
+  stat_boards_label:  p.stat_boards_label  ?? 'Boards',
+  stat_members_label: p.stat_members_label ?? 'Members',
+  back_label:         p.back_label         ?? 'Back to About Us',
+};
 ---
 
 <BaseLayout>
-    <!-- Hero -->
     <section class="boards-hero">
         <div class="container">
             <div class="boards-hero-content">
-                <p class="hero-tagline">Our Legacy</p>
-                <h1>The Boards That Built FAF</h1>
-                <p class="boards-hero-subtitle">
-                    Every great community is shaped by the people who gave their time to build it.
-                    Here are the boards that came before — each one leaving FAF stronger than they found it.
-                </p>
+                <p class="hero-tagline">{txt.hero_tagline}</p>
+                <h1>{txt.hero_heading}</h1>
+                <p class="boards-hero-subtitle">{txt.hero_subtitle}</p>
 
                 <div class="boards-meta">
                     <div class="boards-stat">
                         <span class="boards-stat-num">{boards.length}</span>
-                        <span class="boards-stat-label">Boards</span>
+                        <span class="boards-stat-label">{txt.stat_boards_label}</span>
                     </div>
                     <div class="boards-stat">
                         <span class="boards-stat-num">{totalMembers}</span>
-                        <span class="boards-stat-label">Members</span>
+                        <span class="boards-stat-label">{txt.stat_members_label}</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline -->
     <section class="boards-timeline">
         <div class="container">
-            <a href="/aboutUs" class="boards-back" aria-label="Back to About Us">
+            <a href="/aboutUs" class="boards-back" aria-label={txt.back_label}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                Back to About Us
+                {txt.back_label}
             </a>
 
             <div class="timeline-inner">
@@ -68,19 +74,11 @@ const totalMembers = boards.reduce((sum, b) => sum + (b.data.members?.length ?? 
                                 <article class="board-card card-glass">
                                     <div class="board-avatar">
                                         {member.photo && (
-                                            <Image
-                                                src={member.photo}
-                                                alt={member.name}
-                                                width={200}
-                                                height={200}
-                                                loading="lazy"
-                                            />
+                                            <Image src={member.photo} alt={member.name} width={200} height={200} loading="lazy" />
                                         )}
                                     </div>
                                     <p class="board-member-name">{member.name}</p>
-                                    {member.role && (
-                                        <p class="board-member-role">{member.role}</p>
-                                    )}
+                                    {member.role && <p class="board-member-role">{member.role}</p>}
                                 </article>
                             ))}
                         </div>

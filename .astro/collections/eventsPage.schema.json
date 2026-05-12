@@ -2,36 +2,29 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
-    "title": {
+    "promo_tagline": {
       "type": "string"
     },
-    "image": {
+    "promo_heading": {
       "type": "string"
     },
-    "caption": {
+    "promo_text": {
       "type": "string"
     },
-    "description": {
+    "promo_btn_label": {
       "type": "string"
     },
-    "images": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    "promo_btn_href": {
+      "type": "string"
     },
-    "sort_order": {
-      "type": "number"
+    "title_heading": {
+      "type": "string"
     },
-    "draft": {
-      "type": "boolean"
+    "title_subtitle": {
+      "type": "string"
     },
     "$schema": {
       "type": "string"
     }
-  },
-  "required": [
-    "title",
-    "image"
-  ]
+  }
 }

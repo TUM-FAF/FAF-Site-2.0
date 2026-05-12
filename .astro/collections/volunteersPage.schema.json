@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "hero_tagline": {
+      "type": "string"
+    },
+    "hero_heading": {
+      "type": "string"
+    },
+    "hero_subtitle": {
+      "type": "string"
+    },
+    "hero_btn1_label": {
+      "type": "string"
+    },
+    "hero_btn2_label": {
+      "type": "string"
+    },
+    "steps_heading": {
+      "type": "string"
+    },
+    "steps_subtitle": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "desc"
+        ]
+      }
+    },
+    "roles_heading": {
+      "type": "string"
+    },
+    "roles_subtitle": {
+      "type": "string"
+    },
+    "perks_heading": {
+      "type": "string"
+    },
+    "perks_subtitle": {
+      "type": "string"
+    },
+    "perks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "desc"
+        ]
+      }
+    },
+    "cta_heading": {
+      "type": "string"
+    },
+    "cta_text": {
+      "type": "string"
+    },
+    "cta_btn_label": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/gallery.css';
@@ -9,16 +9,21 @@ const allPhotos = await getCollection('gallery');
 const photos = allPhotos
   .filter(p => !p.data.draft)
   .sort((a, b) => (a.data.sort_order ?? 99) - (b.data.sort_order ?? 99));
+
+const pageEntry = await getEntry('galleryPage', 'index');
+const p = pageEntry?.data ?? {};
+
+const txt = {
+  heading:  p.heading  ?? 'Our Journey',
+  subtitle: p.subtitle ?? 'Take a look at the smiles, the late-night coding sessions, and the moments that bring us together. Every photo tells a story of the friendships and innovations that make our community so special.',
+};
 ---
 
 <BaseLayout bodyClass="gallery-page">
     <section class="gallery-intro page-title">
         <div class="container">
-            <h2>Our Journey </h2>
-            <p class="section-subtitle">
-                Take a look at the smiles, the late-night coding sessions, and the moments that bring us together.
-                Every photo tells a story of the friendships and innovations that make our community so special.
-            </p>
+            <h2>{txt.heading}</h2>
+            <p class="section-subtitle">{txt.subtitle}</p>
         </div>
     </section>
 
@@ -31,7 +36,7 @@ const photos = allPhotos
             <div class="container">
                 <div class="gallery-masonry distance-stage">
                     {photos.map(photo => (
-                        <div class="gallery-item">
+                        <a href={`/gallery/${photo.id}`} class="gallery-item">
                             <div class="gallery-item__thumb">
                                 <Image src={photo.data.image} alt={photo.data.caption ?? photo.data.title} loading="lazy" />
                             </div>
@@ -39,7 +44,7 @@ const photos = allPhotos
                                 <span class="gallery-item__title">{photo.data.title}</span>
                                 <span class="gallery-item__arrow" aria-hidden="true">&#x2197;</span>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>
