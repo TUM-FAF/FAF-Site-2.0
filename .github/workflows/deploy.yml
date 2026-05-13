@@ -25,7 +25,8 @@ jobs:
         with:
           node-version: "22"
       - name: Install dependencies
-        run: npm ci
+        # Lockfile is gitignored (Linux CI native-binding issue), so use install not ci.
+        run: npm install --no-audit --no-fund
       - name: Build Astro
         env:
           PUBLIC_FORM_ENDPOINT: ${{ secrets.PUBLIC_FORM_ENDPOINT }}
