@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/url';
 import '../../styles/events.css';
 import '../../styles/event-detail.css';
 
@@ -32,7 +33,7 @@ const dateStr = date.toLocaleDateString('ro-RO', { day: 'numeric', month: 'long'
     )}
 
     <div class="event-detail__container">
-      <a href="/events" class="event-detail__back">← Back to Events</a>
+      <a href={withBase('/events')} class="event-detail__back">← Back to Events</a>
 
       <header class="event-detail__header">
         <h1>{title}</h1>

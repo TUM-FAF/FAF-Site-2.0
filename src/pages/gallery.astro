@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/url';
 import '../styles/gallery.css';
 import planet from '../assets/web_elements/planet.PNG';
 
@@ -36,7 +37,7 @@ const txt = {
             <div class="container">
                 <div class="gallery-masonry distance-stage">
                     {photos.map(photo => (
-                        <a href={`/gallery/${photo.id}`} class="gallery-item">
+                        <a href={withBase(`/gallery/${photo.id}`)} class="gallery-item">
                             <div class="gallery-item__thumb">
                                 <Image src={photo.data.image} alt={photo.data.caption ?? photo.data.title} loading="lazy" />
                             </div>
@@ -52,7 +53,8 @@ const txt = {
     </div>
 </BaseLayout>
 
-<script type="module" is:inline>
-    import { initDistanceScroll } from '/effects/distanceScroll.js';
+<script>
+    import { withBase } from '../utils/url';
+    const { initDistanceScroll } = await import(/* @vite-ignore */ withBase('/effects/distanceScroll.js'));
     initDistanceScroll();
 </script>
