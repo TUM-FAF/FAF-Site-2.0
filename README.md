@@ -107,34 +107,94 @@ This allows non-technical team members to:
 
 ## Deployment
 
-### Netlify (Recommended)
+### GitHub Pages (primary)
 
-The easiest way to deploy this project is via Netlify, using the provided `netlify.toml` file. 
+A GitHub Actions workflow at `.github/workflows/deploy.yml` builds and publishes the site on every push to `master`.
 
-If using the Netlify CLI (Secret Code / Login approach):
+One-time setup:
+
+1. **Settings → Pages → Source** → set to **GitHub Actions**.
+2. Add the build-time variables (see the [Environment variables](#environment-variables) table) under **Settings → Secrets and variables → Actions**.
+
+The site is built with `base: '/FAF-Site-2.0'` so it serves correctly under the repo path. A `public/.nojekyll` file prevents GitHub Pages from stripping `_astro/` chunks.
+
+**Live URL**: [https://tum-faf.github.io/FAF-Site-2.0/](https://tum-faf.github.io/FAF-Site-2.0/)
+
+### Netlify (fallback)
+
+`netlify.toml` is still wired so Netlify can build the same repo if needed:
+
 ```bash
 npm install netlify-cli -g
 ntl login
 ntl init
 ntl deploy --prod
 ```
-Alternatively, just link the GitHub repository in the Netlify Dashboard.
 
-### GitHub Pages
-
-A GitHub Actions workflow is included at `.github/workflows/deploy.yml`. 
-To use this, go to your repository **Settings > Pages** and set **Source** to **GitHub Actions**. Pushing to `main` will trigger a build and publish the site.
-
-### Live Site
-
-**URL**: [https://fafngo.netlify.app](https://fafngo.netlify.app)
-*(Netlify)*
-
-**GitHub Pages URL**: [https://tum-faf.github.io/FAF-Site-2.0/](https://tum-faf.github.io/FAF-Site-2.0/) 
+Live: [https://fafngo.netlify.app](https://fafngo.netlify.app). The Astro `base` setting still applies on Netlify, so the deployed Netlify URL serves from `/FAF-Site-2.0/` as well — adjust `astro.config.mjs` to drop `base` if you want the Netlify site at root.
 
 ### CMS Admin Dashboard
 
-**URL**: [https://fafngo.netlify.app/admin/](https://fafngo.netlify.app/admin/)
+On GitHub Pages: [https://tum-faf.github.io/FAF-Site-2.0/admin/](https://tum-faf.github.io/FAF-Site-2.0/admin/)
+On Netlify: [https://fafngo.netlify.app/admin/](https://fafngo.netlify.app/admin/)
+
+## Environment variables
+
+Configure in **Settings → Secrets and variables → Actions** of the GitHub repo, then commit/push to `master` to trigger a rebuild.
+
+| Name | Kind | Purpose |
+|------|------|---------|
+| `PUBLIC_FORM_ENDPOINT` | Secret | POST endpoint for the meeting form (Google Apps Script Web App URL) |
+| `PUBLIC_EVENT_FORM_ENDPOINT` | Secret | POST endpoint for the event registration form |
+| `PUBLIC_MATOMO_URL` | Variable | Matomo instance URL, e.g. `https://matomo.example.com/` |
+| `PUBLIC_MATOMO_SITE_ID` | Variable | Numeric site ID from the Matomo dashboard |
+
+> ⚠️ All four are `PUBLIC_` Astro vars — they are inlined into the client bundle at build time and **are not secret post-build**. The Secret/Variable distinction only controls whether the value is masked in CI logs and where you store it. Choose Secrets for endpoint URLs you don't want pasted into PRs and Variables for values that are okay being visible.
+
+A `.env.example` documents the same names for local development. Copy it to `.env` and fill in your own values to test locally.
+
+## Forms
+
+**Status:** Submission is wired in code and ready to receive a real endpoint URL. The current build has empty endpoint values, so the forms intentionally show "not configured." We have **not** verified an end-to-end live submission because no production Apps Script URL has been provided. Once `PUBLIC_FORM_ENDPOINT` / `PUBLIC_EVENT_FORM_ENDPOINT` are set in repo Secrets and the site is rebuilt, the meeting and event forms will POST to those endpoints as documented below.
+
+The site has two forms that POST as JSON to externally hosted endpoints (the recommended pattern is a Google Apps Script Web App):
+
+- **Meeting form** — `src/pages/index.astro` (id `meeting-form`), reads `PUBLIC_FORM_ENDPOINT`.
+- **Event registration form** — `src/pages/upcoming-event.astro` (id `ue-form`), reads `PUBLIC_EVENT_FORM_ENDPOINT`. Fields come from `src/content/upcoming-event/index.md → registration_fields`.
+
+Both forms include a `_honey` honeypot field for bot mitigation.
+
+**GitHub Pages cannot process forms by itself** — it is static hosting. Submissions go to the configured external endpoint.
+
+If the endpoint env var is empty at build time, the form will render and on submit show:
+
+> Form endpoint not configured. *(meeting)*
+> Registration endpoint not configured. *(event)*
+
+### Why `mode: 'no-cors'`
+
+`mode: 'no-cors'` is used because Google Apps Script does not return CORS headers. The trade-off is that the response is **opaque** to the browser:
+
+- `.then()` runs whenever the request reaches the server and the server returns any response — even an HTTP 500. The client cannot read the status.
+- `.catch()` runs only for hard network failures (DNS, offline, request never sent).
+
+In practice this means the UI shows a success message as long as the request was delivered. **Confirm receipt server-side** (Apps Script execution log, target spreadsheet, or destination inbox).
+
+The form `fetch` calls also intentionally omit a `Content-Type` header: under `no-cors` only CORS-safelisted Content-Types are allowed (`application/json` is not one of them), and Apps Script reads the raw body via `e.postData.contents` regardless of the header.
+
+If you swap Apps Script for a CORS-enabled service (Formspree, Basin, Getform), drop `mode: 'no-cors'` from the two `<script>` blocks in `src/pages/index.astro` and `src/pages/upcoming-event.astro` to get real success/failure handling client-side.
+
+## Matomo analytics
+
+Visit tracking via the Matomo JavaScript snippet. Implemented in `src/components/MatomoAnalytics.astro` and mounted globally inside `src/layouts/BaseLayout.astro`.
+
+- If both `PUBLIC_MATOMO_URL` **and** `PUBLIC_MATOMO_SITE_ID` are set at build time, the tracker is injected into every page's `<head>`.
+- If either is missing, the component renders nothing — no console warnings, builds succeed.
+- No Matomo API token is needed. This is only the front-end tracking pixel; statistics are viewed in your Matomo instance's own dashboard.
+
+## API documentation
+
+**Swagger/OpenAPI is not applicable.** This site is fully static and owns no backend API routes. Form submissions are POSTed to an externally configured Google Apps Script Web App, addressed via the env vars above. There is no project-owned API surface to document.
 
 ## Available Scripts
 
