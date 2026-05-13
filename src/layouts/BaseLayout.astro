@@ -3,6 +3,7 @@
 import { Image } from 'astro:assets';
 import fafLogo from '../assets/logos/logo-faf-dark.svg';
 import { withBase } from '../utils/url';
+import MatomoAnalytics from '../components/MatomoAnalytics.astro';
 import '../styles/reset.css';
 import '../styles/style.css';
 import '../styles/mascot.css';
@@ -34,6 +35,8 @@ const pathname = Astro.url.pathname;
             }
         }
     </script>
+
+    <MatomoAnalytics />
 </head>
 <body class={`bg-[#050505] text-white ${bodyClass}`}>
 <canvas id="backgroundCanvas"></canvas>
