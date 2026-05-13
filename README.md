@@ -148,6 +148,7 @@ Configure in **Settings → Secrets and variables → Actions** of the GitHub re
 | `PUBLIC_EVENT_FORM_ENDPOINT` | Secret | POST endpoint for the event registration form |
 | `PUBLIC_MATOMO_URL` | Variable | Matomo instance URL, e.g. `https://matomo.example.com/` |
 | `PUBLIC_MATOMO_SITE_ID` | Variable | Numeric site ID from the Matomo dashboard |
+| `PUBLIC_MATOMO_COOKIE_DOMAIN` | Variable (optional) | Share Matomo cookies across subdomains, e.g. `*.fafngo.netlify.app`. Leave unset for single-host deployments like GitHub Pages. |
 
 > ⚠️ All four are `PUBLIC_` Astro vars — they are inlined into the client bundle at build time and **are not secret post-build**. The Secret/Variable distinction only controls whether the value is masked in CI logs and where you store it. Choose Secrets for endpoint URLs you don't want pasted into PRs and Variables for values that are okay being visible.
 
@@ -191,6 +192,7 @@ Visit tracking via the Matomo JavaScript snippet. Implemented in `src/components
 - If both `PUBLIC_MATOMO_URL` **and** `PUBLIC_MATOMO_SITE_ID` are set at build time, the tracker is injected into every page's `<head>`.
 - If either is missing, the component renders nothing — no console warnings, builds succeed.
 - No Matomo API token is needed. This is only the front-end tracking pixel; statistics are viewed in your Matomo instance's own dashboard.
+- Optional `PUBLIC_MATOMO_COOKIE_DOMAIN` lets you share visitor cookies across subdomains (useful for Netlify deploy previews like `deploy-preview-xx--fafngo.netlify.app` — set it to `*.fafngo.netlify.app`). Leave it unset on GitHub Pages.
 
 ## API documentation
 

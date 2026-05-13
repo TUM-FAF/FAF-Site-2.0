@@ -1,11 +1,15 @@
 ---
 const url = import.meta.env.PUBLIC_MATOMO_URL;
 const siteId = import.meta.env.PUBLIC_MATOMO_SITE_ID;
+const cookieDomain = import.meta.env.PUBLIC_MATOMO_COOKIE_DOMAIN;
 const enabled = Boolean(url && siteId);
 ---
 {enabled && (
-  <script is:inline define:vars={{ url, siteId }}>
+  <script is:inline define:vars={{ url, siteId, cookieDomain }}>
     var _paq = (window._paq = window._paq || []);
+    if (cookieDomain) {
+      _paq.push(['setCookieDomain', cookieDomain]);
+    }
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function () {
