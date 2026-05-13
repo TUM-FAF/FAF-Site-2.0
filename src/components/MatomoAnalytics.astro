@@ -1,0 +1,27 @@
+---
+const url = import.meta.env.PUBLIC_MATOMO_URL;
+const siteId = import.meta.env.PUBLIC_MATOMO_SITE_ID;
+const enabled = Boolean(url && siteId);
+---
+{enabled && (
+  <script is:inline define:vars={{ url, siteId }}>
+    var _paq = (window._paq = window._paq || []);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function () {
+      var u = url.endsWith('/') ? url : url + '/';
+      _paq.push(['setTrackerUrl', u + 'matomo.php']);
+      _paq.push(['setSiteId', String(siteId)]);
+      var d = document,
+        g = d.createElement('script'),
+        s = d.getElementsByTagName('script')[0];
+      g.async = true;
+      // Matomo Cloud serves matomo.js via a CDN; self-hosted serves from the instance.
+      var host = new URL(u).host;
+      g.src = /\.matomo\.cloud$/.test(host)
+        ? 'https://cdn.matomo.cloud/' + host + '/matomo.js'
+        : u + 'matomo.js';
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+)}

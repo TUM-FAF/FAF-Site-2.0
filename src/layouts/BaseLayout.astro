@@ -2,6 +2,8 @@
 // src/layouts/BaseLayout.astro
 import { Image } from 'astro:assets';
 import fafLogo from '../assets/logos/logo-faf-dark.svg';
+import { withBase } from '../utils/url';
+import MatomoAnalytics from '../components/MatomoAnalytics.astro';
 import '../styles/reset.css';
 import '../styles/style.css';
 import '../styles/mascot.css';
@@ -33,6 +35,8 @@ const pathname = Astro.url.pathname;
             }
         }
     </script>
+
+    <MatomoAnalytics />
 </head>
 <body class={`bg-[#050505] text-white ${bodyClass}`}>
 <canvas id="backgroundCanvas"></canvas>
@@ -40,35 +44,35 @@ const pathname = Astro.url.pathname;
 
 <header class="site-header">
     <div class="logo">
-        <a href="/"><Image src={fafLogo} alt="FAF NGO logo" width={71} height={48} /></a>
+        <a href={withBase('/')}><Image src={fafLogo} alt="FAF NGO logo" width={71} height={48} /></a>
     </div>
 
     <nav class="nav" id="main-nav" aria-label="Main navigation">
         <div class="nav-dropdown">
-            <a href="/" class={`nav-dropdown-trigger ${pathname === '/' ? 'active' : ''}`}>Home <span class="dropdown-arrow">▾</span></a>
+            <a href={withBase('/')} class={`nav-dropdown-trigger ${pathname === withBase('/') ? 'active' : ''}`}>Home <span class="dropdown-arrow">▾</span></a>
             <div class="nav-dropdown-menu">
-                <a href="/#feedback">Feedback</a>
-                <a href="/#meeting">Meeting</a>
-                <a href="/#partners">Partners</a>
+                <a href={withBase('/#feedback')}>Feedback</a>
+                <a href={withBase('/#meeting')}>Meeting</a>
+                <a href={withBase('/#partners')}>Partners</a>
             </div>
         </div>
-        <a href="/aboutUs" class={pathname.includes('/aboutUs') ? 'active' : ''}>About</a>
+        <a href={withBase('/aboutUs')} class={pathname.includes('/aboutUs') ? 'active' : ''}>About</a>
         <div class="nav-dropdown">
-            <a href="/events" class={`nav-dropdown-trigger ${pathname.includes('/events') || pathname.includes('/upcoming-event') ? 'active' : ''}`}>Events <span class="dropdown-arrow">▾</span></a>
+            <a href={withBase('/events')} class={`nav-dropdown-trigger ${pathname.includes('/events') || pathname.includes('/upcoming-event') ? 'active' : ''}`}>Events <span class="dropdown-arrow">▾</span></a>
             <div class="nav-dropdown-menu">
-                <a href="/upcoming-event" class={pathname.includes('/upcoming-event') ? 'active' : ''}>Upcoming Event</a>
-                <a href="/events" class={pathname === '/events' || (pathname.includes('/events') && !pathname.includes('/upcoming-event')) ? 'active' : ''}>Past Events</a>
+                <a href={withBase('/upcoming-event')} class={pathname.includes('/upcoming-event') ? 'active' : ''}>Upcoming Event</a>
+                <a href={withBase('/events')} class={pathname === withBase('/events') || (pathname.includes('/events') && !pathname.includes('/upcoming-event')) ? 'active' : ''}>Past Events</a>
             </div>
         </div>
-        <a href="/gallery" class={pathname.includes('/gallery') ? 'active' : ''}>Gallery</a>
+        <a href={withBase('/gallery')} class={pathname.includes('/gallery') ? 'active' : ''}>Gallery</a>
         <div class="nav-dropdown">
             <a href="#" class={`nav-dropdown-trigger ${pathname.includes('/sponsorship') || pathname.includes('/volunteers') ? 'active' : ''}`}>Get Involved <span class="dropdown-arrow">▾</span></a>
             <div class="nav-dropdown-menu">
-                <a href="/sponsorship" class={pathname.includes('/sponsorship') ? 'active' : ''}>Become a Sponsor</a>
-                <a href="/volunteers" class={pathname.includes('/volunteers') ? 'active' : ''}>Become a Volunteer</a>
+                <a href={withBase('/sponsorship')} class={pathname.includes('/sponsorship') ? 'active' : ''}>Become a Sponsor</a>
+                <a href={withBase('/volunteers')} class={pathname.includes('/volunteers') ? 'active' : ''}>Become a Volunteer</a>
             </div>
         </div>
-        <a href="/#contact">Contact</a>
+        <a href={withBase('/#contact')}>Contact</a>
 
         <label class="mascot-toggle" title="Toggle mascot (saves preference)">
             <input type="checkbox" id="mascot-toggle-cb" checked>
@@ -97,9 +101,9 @@ const pathname = Astro.url.pathname;
 
 <div id="nav-overlay" aria-hidden="true"></div>
 
-<script is:inline src="/stars.js"></script>
-<script is:inline src="/mascot/mascot.js"></script>
-<script is:inline src="/effects/planetParallax.js"></script>
+<script is:inline src={withBase('/stars.js')}></script>
+<script is:inline src={withBase('/mascot/mascot.js')}></script>
+<script is:inline src={withBase('/effects/planetParallax.js')}></script>
 
 <script is:inline>
     /* ── Navigation + Mascot ─────────────────────────────────────────────── */

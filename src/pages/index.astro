@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/url';
 import hero1 from '../assets/photos/hero-1.JPG';
 import hero2 from '../assets/photos/hero-2.JPG';
 import hero3 from '../assets/photos/hero-3.JPG';
@@ -34,8 +35,8 @@ const row2 = testimonials.slice(3);
 				<h1>{home.hero_title}</h1>
 				<p class="hero-subtitle">{home.hero_subtitle}</p>
 				<div class="hero-buttons">
-					<a href={home.hero_btn1_href ?? '/sponsorship'} class="btn btn-primary">{home.hero_btn1_label ?? 'Book a meeting'}</a>
-					<a href={home.hero_btn2_href ?? '/volunteers'} class="btn btn-secondary">{home.hero_btn2_label ?? 'Become a volunteer'}</a>
+					<a href={withBase(home.hero_btn1_href ?? '/sponsorship')} class="btn btn-primary">{home.hero_btn1_label ?? 'Book a meeting'}</a>
+					<a href={withBase(home.hero_btn2_href ?? '/volunteers')} class="btn btn-secondary">{home.hero_btn2_label ?? 'Become a volunteer'}</a>
 				</div>
 
 				<div class="hero-stats">
@@ -58,7 +59,7 @@ const row2 = testimonials.slice(3);
 						<span>·</span>
 						<span>{home.next_event_location}</span>
 					</div>
-					<a href={home.next_event_btn_href ?? '/upcoming-event'} class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">{home.next_event_btn_label ?? 'Discover More →'}</a>
+					<a href={withBase(home.next_event_btn_href ?? '/upcoming-event')} class="btn btn-primary" style="margin-top: var(--space-xl); align-self: flex-start;">{home.next_event_btn_label ?? 'Discover More →'}</a>
 				</div>
 			</div>
 		</div>
@@ -87,7 +88,7 @@ const row2 = testimonials.slice(3);
 					<ul class="event-type-list">
 						{(home.events_list ?? []).map(item => <li>{item}</li>)}
 					</ul>
-					<a href="/events" class="btn btn-primary events-cta">{home.events_cta_label ?? 'View Events History'}</a>
+					<a href={withBase('/events')} class="btn btn-primary events-cta">{home.events_cta_label ?? 'View Events History'}</a>
 				</div>
 			</div>
 		</div>
@@ -246,6 +247,8 @@ const row2 = testimonials.slice(3);
 </BaseLayout>
 
 <script>
+  import { withBase } from '../utils/url';
+
   (function () {
     // ── Space Invaders: Left→Right→Left→Right→Up→Down ────────────────────────
     const SEQ = ['ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'];
@@ -253,7 +256,7 @@ const row2 = testimonials.slice(3);
 
     const INVADERS_URL = import.meta.env.DEV
       ? 'http://localhost:5173/'
-      : '/games/space-invaders/';
+      : withBase('/games/space-invaders/');
 
     const invOverlay = document.getElementById('faf-invaders-overlay');
     const invFrame   = document.getElementById('faf-invaders-frame');
@@ -274,7 +277,7 @@ const row2 = testimonials.slice(3);
     // ── Battle: hold mascot 7 seconds ────────────────────────────────────────
     const BATTLE_URL = import.meta.env.DEV
       ? 'http://localhost:5174/'
-      : '/games/kiki-battle/';
+      : withBase('/games/kiki-battle/');
 
     const batOverlay = document.getElementById('faf-battle-overlay');
     const batFrame   = document.getElementById('faf-battle-frame');
@@ -285,7 +288,7 @@ const row2 = testimonials.slice(3);
       const headEl    = document.querySelector('.mascot-head');
       const thoughtEl = document.getElementById('mascot-thought');
       const rootEl    = document.getElementById('mascot-root');
-      if (headEl) { headEl.dataset.origSrc = headEl.src; headEl.src = '/assets/mascot/head_mad.png'; }
+      if (headEl) { headEl.dataset.origSrc = headEl.src; headEl.src = withBase('/assets/mascot/head_mad.png'); }
       if (thoughtEl) thoughtEl.style.display = 'none';
       if (rootEl)    rootEl.classList.remove('mascot--thought-auto');
 
