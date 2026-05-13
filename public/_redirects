@@ -1,0 +1,5 @@
+# Netlify serves the Astro build at root, but Astro emits links under /FAF-Site-2.0/
+# (to match the GitHub Pages base path). Rewrite that prefix back to root so both
+# URL shapes resolve to the same files. The 200 status keeps the URL bar untouched.
+/FAF-Site-2.0/*    /:splat    200
+/FAF-Site-2.0      /          200
